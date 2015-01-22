@@ -9,22 +9,19 @@ import argparse
 _fn = None
 
 def xml_parser(fn):     # one depth
-  tree = ET.parse('test.xml')
+  tree = ET.parse(fn)
   root = tree.getroot()
   ay = dict()
   for sub in root:
     for ssub in sub:
       # print ', '.join(['%s:%s' % item for item in ssub.__dict__.items()])
       ay[ssub.attrib['name']] = ssub.text
-  return ay
-
+  # return ay
 
 def main():
   global _fn
   print _fn
   a = xml_parser(_fn)
-  print a
-
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(description='XML parser')
