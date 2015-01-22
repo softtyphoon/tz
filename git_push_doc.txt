@@ -1,0 +1,22 @@
+
+clone project form repository
+git clone https://github.com/softtyphoon/tz
+
+add all file or specific files
+git add .
+git add git*.txt
+
+commit with a comment
+git commit -m "commit info"
+
+add to remote as origin
+git remote add origin https://github.com/softtyphoon/tz
+
+if origin exists, rm it firstly
+git remote rm origin https://github.com/softtyphoon/tz
+
+then push files
+git push origin master
+
+if current is not clone from repository, pull down it, then push it
+git pull origin master

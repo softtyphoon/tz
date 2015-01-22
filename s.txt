@@ -1,0 +1,3 @@
+hello, git
+try again
+bash again
