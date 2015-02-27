@@ -4,6 +4,7 @@ import argparse
 import urllib2
 import urllib
 import os
+# import get_proxy_list from proxy_extractor
 import re
 import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
@@ -38,36 +39,32 @@ def gzdecode(data):
   data2 = gziper.read()
   return data2
 
-def try_code(num):
+def try_code(proxy):
   opener = urllib2.OpenerDirector()
+  print proxy
   if _use_proxy is True:
-    # handler = urllib2.ProxyHandler({'http': '61.184.192.42:80'})
-    handler = urllib2.ProxyHandler({'http': '61.54.221.200:3128'})
+    handler = urllib2.ProxyHandler({'http': '218.90.174.167:3128'})
+    # handler = urllib2.ProxyHandler({'http': proxy['ip']+':'+proxy['port']})
     opener.add_handler(handler)
-    # opener = urllib2.build_opener(handler)
-    # urllib2.install_opener(opener)
-    # response = urllib2.urlopen(_url)
-    # print response.read()
-    # return 0
   handler = urllib2.HTTPHandler()
   opener.add_handler(handler)
-  # opener = urllib2.build_opener(handler)
   req = urllib2.Request(_url)
   for (name, val) in _header.items():
     req.add_header(name, val)
   try:
-    response = opener.open(req)
+    print 'a'
+    response = opener.open(req, timeout=5)
   except:
-    # print '10060 error, sleep 10 second'
-    print 'sleep'
-    time.sleep(10)
-    return '0'
+    # proxy is cann't be used
+    print 'b'
+    return 2
   content = response.read()
-  # print content
-  bs_page =  BeautifulSoup(gzdecode(content))
-  # bs_page =  BeautifulSoup(content)
-  # print bs_page
-  # return 0
+  try:
+    gz = gzdecode(content)
+  except:
+    print content
+    return 2
+  bs_page =  BeautifulSoup(gz)
   sxm = json.loads(bs_page.p.get_text())
   if sxm['message'] == 'ok':
     print sxm['message']
@@ -75,19 +72,71 @@ def try_code(num):
   else:
     print sxm['message']
     return 0
-  # print sxm['data']
-  # print sxm['data'][0]['ftime']
-  # print json.loads(bs_page.p.get_text())
-  # print bs_page.contents[0]
 
 def code_write(fp, num):
   fp.writelines(num)
 
+def  get_proxy_list(url, num):
+  proxy_list = list()
+  opener = urllib2.OpenerDirector()
+  handler = urllib2.HTTPHandler()
+  opener.add_handler(handler)
+  req = urllib2.Request(url)
+  response = opener.open(req)
+  content = response.read()
+  bs = BeautifulSoup(content)
+  # print bs
+  tag_b = bs.find_all('b')
+  st = False
+  cnt = 0
+  for a in tag_b:
+    ip_indexa = a.next_sibling
+    if ip_indexa is not None and ip_indexa.string == str(num*50-50+1):
+      st = True
+    if st == True:
+      ip_index = ip_indexa.next_sibling
+      ip = ip_index.next_sibling
+      # print ip_index.string, ip.string
+      proxy = {'ip':ip_index.string,
+               'port':ip.string}
+      proxy_list.append(proxy)
+      cnt = cnt + 1
+    if cnt == 50:
+      return proxy_list
+
 def main():
-  _file = open(_file_name, 'a')
-  a = 0
+  proxy_num = 1
+  info_num = 0
+  faile_cnt = 0
+  change_proxy = False
   while True:
-    b = try_code('code')
+    change_proxy = False
+    # get proxy list
+    proxy_url = 'http://proxy.com.ru/list_'+str(proxy_num)+'.html'
+    proxy_list = get_proxy_list(proxy_url, proxy_num)
+    print proxy_list
+    for p in proxy_list:
+      faile_cnt = 0
+      # p = proxy_list[2]
+      while True:
+        a = try_code(p)
+        if a == 2:      # timeout
+          change_proxy = True
+          break
+        elif a == 0:    # checking faile
+          faile_cnt = faile_cnt + 1
+        else:
+          info_num = info_num + 1
+          print info_num
+
+        if faile_cnt == 3:  # consecutive 3 times checking failed, change proxy
+          change_proxy = True
+          break
+        # return 0
+
+  proxy = {'ip': u'41.79.69.8', 'port': u'9090'}
+  while True:
+    b = try_code('code', proxy)
     if b == 0:
       print 'false'
       return 0
@@ -101,7 +150,7 @@ def main():
       a = random.choice('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ')
       code = code + a
     print 'try ->>>>>>>>>>>>>>>>>>>>>>>'+code
-    d = try_code(code)
+    d = try_code(code, proxy)
     # d = '0'
     # print code+'-------------------->'+d
     if d == '0':
