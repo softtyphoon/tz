@@ -12,26 +12,29 @@ from bs4 import BeautifulSoup
 import httplib
 import StringIO, gzip
 import random
+import copy
 import time
 import json
 
 # http://www.kuaidi100.com/chaxun?com=usps&nu=LN633399366CN 218.5.74.174
 # http://proxy.com.ru/list_1.html
 _file_name = 'code.txt'
-_use_proxy = True
-# _use_proxy = False
-_url = 'http://www.kuaidi100.com/query?type=usps&postid=LN633399366CN&id=1&valicode=&temp=0.9436875737737864'
-# _url = 'http://www.kuaidi100.com/chaxun?com=usps&nu=LN633399366CN'
-# _url = 'https://tools.usps.com/go/TrackConfirmAction?qtc_tLabels1=LN633399366CN'
+# _use_proxy = True
+_use_proxy = False
+# _url = 'http://www.kuaidi100.com/query?type=usps&postid=LN633399366CN&id=1&valicode=&temp=0.9436875737737864'
+_url = 'https://tools.usps.com/go/TrackConfirmAction?qtc_tLabels1=LN633399366CN'
+_usps_url = 'https://tools.usps.com/go/TrackConfirmAction?qtc_tLabels1='
 # _file = None
 _header = {'Accept': '*/*',
            'X-Requested-With': 'XMLHttpRequest',
            'Accept-Language': 'zh-CN,zh;q=0.8',
-           'Referer': 'http://www.kuaidi100.com/global/usps.shtml?from=openv',
+           # 'Referer': 'http://www.kuaidi100.com/global/usps.shtml?from=openv',
            'Accept-Encoding': 'gzip, deflate',
            'User-Agent': 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.48 Safari/537.36 QQBrowser/8.0.3197.400',
-           'Host': 'www.kuaidi100.com',
+           # 'Host': 'www.kuaidi100.com',
            'Proxy-Connection': 'Keep-Alive'}
+
+_usps_format = ['date', 'status', 'location']
 
 def gzdecode(data):
   compressedstream = StringIO.StringIO(data)
@@ -39,15 +42,55 @@ def gzdecode(data):
   data2 = gziper.read()
   return data2
 
+def usps_tag_attr(tag):
+  return tag.name == 'tr'
+  
+def usps_query(ln):
+  url = _usps_url + ln
+  opener = urllib2.OpenerDirector()
+  if _use_proxy is True:
+    handler = urllib2.ProxyHandler({'http': proxy['ip']+':'+proxy['port']})
+    opener.add_handler(handler)
+  http_handler = urllib2.HTTPHandler()
+  https_handler = urllib2.HTTPSHandler()
+  opener.add_handler(http_handler)
+  opener.add_handler(https_handler)
+  req = urllib2.Request(url)
+  for (name, val) in _header.items():
+    req.add_header(name, val)
+  try:
+    response = opener.open(req, timeout=5)
+  except:
+    return 2
+  content = response.read()
+  try:
+    gz = gzdecode(content)
+  except:
+    print content
+  bs_page =  BeautifulSoup(gz)
+  a = bs_page.find_all('tr', 'detail-wrapper')
+  usps_info = list()
+  usps_dict = dict()
+  for index, usps in enumerate(a, start=0):
+    usps_item = usps.find_all('p');
+    for i in range(0,3):
+      usps_dict[_usps_format[i]] = usps_item[i].get_text().strip("\r\n\t")
+      usps_dict[_usps_format[i]] = usps_dict[_usps_format[i]].replace("\r\n\t", "")
+      usps_dict[_usps_format[i]] = usps_dict[_usps_format[i]].replace("\t", "")
+      usps_dict[_usps_format[i]] = usps_dict[_usps_format[i]].replace(u'\xa0', '')
+    usps_info.append(copy.copy(usps_dict))
+  return usps_info
+  print usps_info
+
 def try_code(proxy):
   opener = urllib2.OpenerDirector()
-  print proxy
   if _use_proxy is True:
-    handler = urllib2.ProxyHandler({'http': '218.90.174.167:3128'})
-    # handler = urllib2.ProxyHandler({'http': proxy['ip']+':'+proxy['port']})
+    handler = urllib2.ProxyHandler({'http': proxy['ip']+':'+proxy['port']})
     opener.add_handler(handler)
-  handler = urllib2.HTTPHandler()
-  opener.add_handler(handler)
+  http_handler = urllib2.HTTPHandler()
+  https_handler = urllib2.HTTPSHandler()
+  opener.add_handler(http_handler)
+  opener.add_handler(https_handler)
   req = urllib2.Request(_url)
   for (name, val) in _header.items():
     req.add_header(name, val)
@@ -65,13 +108,43 @@ def try_code(proxy):
     print content
     return 2
   bs_page =  BeautifulSoup(gz)
-  sxm = json.loads(bs_page.p.get_text())
-  if sxm['message'] == 'ok':
-    print sxm['message']
-    return 1
-  else:
-    print sxm['message']
-    return 0
+  a = bs_page.find_all('tr', 'detail-wrapper')
+  usps_info = list()
+  usps_dict = dict()
+  for index, usps in enumerate(a, start=0):
+  # for usps in a:
+    usps_item = usps.find_all('p');
+    # print usps_info
+    # print '\n'
+    # print usps_item
+    for i in range(0,3):
+      # usps_dict[_usps_format[i]] = usps_item[i].get_text().strip("\r\n\t", "")
+      usps_dict[_usps_format[i]] = usps_item[i].get_text().strip("\r\n\t")
+      usps_dict[_usps_format[i]] = usps_dict[_usps_format[i]].replace("\r\n\t", "")
+      usps_dict[_usps_format[i]] = usps_dict[_usps_format[i]].replace("\t", "")
+    # print usps_dict
+    # print '\n'
+    # print usps_info
+    # print '\n'
+    usps_info.append(copy.copy(usps_dict))
+    # usps_info.insert(index, usps_dict)
+    # print 'fsddfdsfsdf'
+    # print usps_info
+    # print '\n'
+    # 
+  print usps_info
+  # print a[0]
+  # print a[0].find_all('p')
+  # print bs_page
+
+  return 0
+  # sxm = json.loads(bs_page.p.get_text())
+  # if sxm['message'] == 'ok':
+    # print sxm['message']
+    # return 1
+  # else:
+    # print sxm['message']
+    # return 0
 
 def code_write(fp, num):
   fp.writelines(num)
@@ -105,6 +178,8 @@ def  get_proxy_list(url, num):
       return proxy_list
 
 def main():
+  print usps_query('LN633399366CN')
+  return 0
   proxy_num = 1
   info_num = 0
   faile_cnt = 0
