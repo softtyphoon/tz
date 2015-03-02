@@ -9,6 +9,8 @@ import re
 import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
 
+from xml_parser import xml_parser
+
 import httplib
 import StringIO, gzip
 import random
