@@ -1,0 +1,3 @@
+CPO_SSID_PRD10_UI_CPO=R1406373914; path=/, CPO_JSESSIONID=NsroWROMkSleLVhFq0j5ATMgkqMy_4u-N-nS5kH0I2P-DCz9O-MI!-64440545; path=/; HttpOnly
+['CPO_SSID_PRD10_UI_CPO=']
+http://www.canadapost.ca/cpotools/apps/track/personal/findByTrackNumber?execution=e1s1
