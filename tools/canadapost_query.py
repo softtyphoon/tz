@@ -105,9 +105,27 @@ class canadapost_query():
     self.use_proxy = use_proxy
     # self.header = header
   def get_express(self, content):
+    info_temp = dict()
+    exp_info = list()
     bs = BeautifulSoup(content)
-    info = bs.find_all(attrs={u"class":"even"})
-    print info
+    info_even = bs.find_all(attrs={u"class":"even"})
+    info_odd = bs.find_all(attrs={u"class":"odd"})
+    info = list(range(1, len(info_even) + len(info_odd) + 1))
+    info[0::2] = info_odd
+    info[1::2] = info_even
+    for a in info:
+      str = u''
+      if a.contents[0].string is not None:
+        str = a.contents[0].string
+      if a.contents[1].string is not None:
+        str = str + a.contents[1].string
+      info_temp[u'date'] = str
+      info_temp[u'location'] = a.contents[2].contents[0]
+      # info_temp[u'description'] = a.contents[3].contents[0].replace(u'\r\n\t', '')
+      info_temp[u'description'] = a.contents[3].contents[0].strip(u'\n\t')
+      exp_info.append(copy.copy(info_temp))
+    print repr(exp_info)
+    return exp_info
 
   # get 304 and cookie
   def get_session(self, url, header):
@@ -134,7 +152,7 @@ class canadapost_query():
       print u"flase"
       return 2
 
-    print response.info().getheader('Set-Cookie')
+    # print response.info().getheader('Set-Cookie')
     set_cookie = response.info().getheader('Set-Cookie')
     search_pat = re.compile(r'CPO_SSID_PRD10_UI_CPO=(.+?);')
     info[u'CPO_SSID_PRD10_UI_CPO'] = search_pat.search(set_cookie).group(1)
@@ -142,7 +160,7 @@ class canadapost_query():
     info[u'CPO_JSESSIONID'] = search_pat.search(set_cookie).group(1)
     content = response.read()
     body =  BeautifulSoup(content)
-    print body
+    # print body
     info[u'addr'] = body.find_all('a')[0].get_text()
     return info
 
@@ -186,6 +204,7 @@ class canadapost_query():
       print 'gz false'
       return 0
 
+    # print gz
     return gz
   # ---
   def query_a(self, url, header, cookie_dict, sn):
@@ -231,7 +250,6 @@ class canadapost_query():
 def main():
   a = canadapost_query(_use_proxy)
   info = a.get_session(u'http://www.canadapost.ca/cpotools/apps/track/personal/findByTrackNumber', _start_header)
-  print repr(info)
   cookie_dict = dict()
   cookie_dict[u'CPO_SSID_PRD10_UI_CPO'] = info[u'CPO_SSID_PRD10_UI_CPO']
   cookie_dict[u'CPO_JSESSIONID'] = info[u'CPO_JSESSIONID']
