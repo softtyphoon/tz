@@ -49,12 +49,6 @@ _start_header = {
 
 # trackingNumber=LM922612242CN&x=35&y=12
 
-def gzdecode(data):
-  compressedstream = StringIO.StringIO(data)
-  gziper = gzip.GzipFile(fileobj=compressedstream)
-  data2 = gziper.read()
-  return data2
-
 def get_cookie(url, header, cookie_dict):
   info = dict()
   cookie = cookielib.CookieJar()
@@ -101,8 +95,34 @@ def get_cookie(url, header, cookie_dict):
 
 
 class canadapost_query():
-  def __init__(self, use_proxy):
+  def __init__(self, use_proxy=False):
     self.use_proxy = use_proxy
+    # self.start_header = start_header
+    self.start_header = {
+      u'Origin': u'http://www.canadapost.ca',
+      u'Accept': u'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+      u'Content-Type': u'application/x-www-form-urlencoded',
+      u'Accept-Language': u'zh-CN,zh;q=0.8',
+      u'Referer': u'http://www.canadapost.ca/cpo/mc/default.jsf?LOCALE=en',
+      u'Host': u'www.canadapost.ca',
+      u'User-Agent': u'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.48 Safari/537.36 QQBrowser/8.0.3197.400',
+      u'Accept-Encoding': u'gzip, deflate',
+      u'Content-Length': u'38',
+      u'Proxy-Connection': u'Keep-Alive',
+      u'Pragma': u'no-cache',
+      u'Cookie': u'LANG=e; style=0; languageset=t; ct=true; homeReferrer='
+    }
+    # self.query_header = query_header
+    self.query_header = {
+      u'Accept-Language': u'zh-CN,zh;q=0.8',
+      u'Accept': u'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+      u'Referer': u'http://www.canadapost.ca/cpo/mc/default.jsf',
+      u'Host': u'www.canadapost.ca',
+      u'User-Agent': u'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.48 Safari/537.36 QQBrowser/8.0.3345.400',
+      u'Accept-Encoding': u'gzip, deflate',
+      u'Proxy-Connection': u'Keep-Alive',
+      u'Cookie': u'LANG=e; style=0; languageset=t; ct=true; homeReferrer='
+    }
     # self.header = header
   def get_express(self, content):
     info_temp = dict()
@@ -124,8 +144,14 @@ class canadapost_query():
       # info_temp[u'description'] = a.contents[3].contents[0].replace(u'\r\n\t', '')
       info_temp[u'description'] = a.contents[3].contents[0].strip(u'\n\t')
       exp_info.append(copy.copy(info_temp))
-    print repr(exp_info)
+    # print repr(exp_info)
     return exp_info
+    
+  def gzdecode(self, data):
+    compressedstream = StringIO.StringIO(data)
+    gziper = gzip.GzipFile(fileobj=compressedstream)
+    data2 = gziper.read()
+    return data2
 
   # get 304 and cookie
   def get_session(self, url, header):
@@ -133,7 +159,7 @@ class canadapost_query():
     cookie = cookielib.CookieJar()
     # opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookie))
     opener = urllib2.OpenerDirector()
-    if _use_proxy is True:
+    if self.use_proxy is True:
       handler = urllib2.ProxyHandler({'http': proxy['ip']+':'+proxy['port']})
       opener.add_handler(handler)
     http_handler = urllib2.HTTPHandler()
@@ -198,7 +224,7 @@ class canadapost_query():
 
     # return 0
     try:
-      gz = gzdecode(content)
+      gz = self.gzdecode(content)
     except:
       print content
       print 'gz false'
@@ -239,22 +265,24 @@ class canadapost_query():
       print 'Value = '+item.value
     # return 0
     try:
-      gz = gzdecode(content)
+      gz = self.gzdecode(content)
     except:
       print content
       print 'gz false'
       return 0
     print gz
     return 0
+  def express_track(self, track_num):
+    info = self.get_session(u'http://www.canadapost.ca/cpotools/apps/track/personal/findByTrackNumber', self.start_header)
+    cookie_dict = dict()
+    cookie_dict[u'CPO_SSID_PRD10_UI_CPO'] = info[u'CPO_SSID_PRD10_UI_CPO']
+    cookie_dict[u'CPO_JSESSIONID'] = info[u'CPO_JSESSIONID']
+    content = self.query(info[u'addr'], self.query_header, cookie_dict, u'LM922612242CN')
+    return self.get_express(content)
 
 def main():
-  a = canadapost_query(_use_proxy)
-  info = a.get_session(u'http://www.canadapost.ca/cpotools/apps/track/personal/findByTrackNumber', _start_header)
-  cookie_dict = dict()
-  cookie_dict[u'CPO_SSID_PRD10_UI_CPO'] = info[u'CPO_SSID_PRD10_UI_CPO']
-  cookie_dict[u'CPO_JSESSIONID'] = info[u'CPO_JSESSIONID']
-  content = a.query(info[u'addr'], _query_header, cookie_dict, u'LM922612242CN')
-  a.get_express(content)
+  a = canadapost_query()
+  print a.express_track(u'LM922612242CN')
   # a.query_a(u'http://www.canadapost.ca/cpotools/apps/track/personal/findByTrackNumber', _start_header, None, u'LM922612242CN')
   # get_cookie(u'http://www.canadapost.ca/cpo/mc/languageswitcher.jsf', _start_header, None)
   # get_cookie(u'http://www.canadapost.ca/cpotools/apps/track/personal/findByTrackNumber?execution=e2s1', _start_header, None)
