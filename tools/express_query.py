@@ -20,29 +20,36 @@ import json
 
 from canadapost_query import canadapost_query
 from usps_query import usps_query
+from aus_query import aus_query
 
 _code_file = u'track_number.txt'
 
 def main():
   cq = canadapost_query()
   uq = usps_query()
+  aq = aus_query()
   fn = open(_code_file)
-  count = 0;
+  count = 1;
   for code in fn.readlines():
+    code = code[0:13]
     if code[0:2].lower() == u'ln':
-      print u'------------------------------------------------------------------'
-      print code + u':'
-      print uq.express_track(code)
+      info = uq.express_track(code)
+      info_final = uq.info_extractor(info)
+      print count, code, info_final
       count += 1
     if code[0:2].lower() == u'lx':
-      print u'------------------------------------------------------------------'
-      print code + u':'
-      print cq.express_track(code)
+      continue
+      info = aq.express_track(code)
+      print code + u':' + info
       count += 1
     if code[0:2].lower() == u'lm':
-      pass
-    if count == 10:
-      break
+      info = cq.express_track(code)
+      info_final = cq.info_extractor(info)
+      print count, code, info_final
+      count += 1
+    # if count == 100:
+      # break
+    # time.sleep(3)
 
   fn.close()
   return 0

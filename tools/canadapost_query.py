@@ -71,7 +71,7 @@ def get_cookie(url, header, cookie_dict):
       opener.addheaders.append(u'Cookie', name+u'='+val)
 
   try:
-    response = opener.open(req, timeout=5)
+    response = opener.open(req, timeout = self.timeout)
   except:
     print u"flase"
     return 2
@@ -93,10 +93,15 @@ def get_cookie(url, header, cookie_dict):
   print repr(info)
   return info
 
+# LX905296899CN
+# :
+# [{u'date': u'2014/12/23AM', u'location': u'ATIKAMEG', u'description': u'Item successfully delivered'}, {u'date': u'2014/12/2109:17', u'location': u'EDMONTON', u'description': u'In transit '}, {u'date': u'06:27', u'location': u'EDMONTON', u'description': u'Item processed'}, {u'date': u'2014/12/2001:38', u'location': u'RICHMOND', u'description': u'Item processed'}, {u'date': u'2014/12/1922:16', u'location': u'RICHMOND', u'description': u'Item processed at postal facility'}, {u'date': u'22:16', u'location': u'RICHMOND', u'description': u'Item was released by Customs and is now with Canada Post for processing'}, {u'date': u'20:04', u'location': u'RICHMOND', u'description': u'Item has arrived in Canada and was sent for further processing.'}, {u'date': u'01:17', u'location': u'CNCAND,China', u'description': u'International item has left originating country and is en route to Canada'}, {u'date': u'2014/12/1819:41', u'location': u'510321,China', u'description': u'International item mailed in originating country'}]
 
 class canadapost_query():
-  def __init__(self, use_proxy=False):
+  def __init__(self, use_proxy=False, timeout = 60):
     self.use_proxy = use_proxy
+    self.timeout = timeout
+    self.name = u'canadapost'
     # self.start_header = start_header
     self.start_header = {
       u'Origin': u'http://www.canadapost.ca',
@@ -146,7 +151,18 @@ class canadapost_query():
       exp_info.append(copy.copy(info_temp))
     # print repr(exp_info)
     return exp_info
-    
+
+  def info_extractor(self, exp_info):
+    if exp_info[0][u'description'].lower().find(u'delivered') == -1:
+       for a in exp_info:
+        if a[u'location'] == u'':
+          pass
+        else:
+          return a[u'location']
+      # return exp_info[0][u'location']
+    else:
+      return u'delivered'
+
   def gzdecode(self, data):
     compressedstream = StringIO.StringIO(data)
     gziper = gzip.GzipFile(fileobj=compressedstream)
@@ -154,7 +170,7 @@ class canadapost_query():
     return data2
 
   # get 304 and cookie
-  def get_session(self, url, header):
+  def get_session(self, url, header, ln):
     info = dict()
     cookie = cookielib.CookieJar()
     # opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookie))
@@ -167,16 +183,24 @@ class canadapost_query():
     opener.add_handler(http_handler)
     opener.add_handler(https_handler)
     req = urllib2.Request(url)
-    req.add_data(u'trackingNumber=LM922612242CN&x=35&y=12')
+    req.add_data(u'trackingNumber='+ln+u'&x=35&y=12')
     for (name, val) in header.items():
       if name is not u'Cookie':
         req.add_header(name, val)
-
-    try:
-      response = opener.open(req, timeout=5)
-    except:
-      print u"flase"
-      return 2
+    
+    try_times = 0;
+    # response = opener.open(req, timeout = self.timeout)
+    while True:
+      try_times = try_times + 1
+      try:
+        response = opener.open(req, timeout = self.timeout)
+      except:
+        if try_times > 5:
+          return False
+        else:
+          opener.close()
+        continue
+      break
 
     # print response.info().getheader('Set-Cookie')
     set_cookie = response.info().getheader('Set-Cookie')
@@ -185,6 +209,8 @@ class canadapost_query():
     search_pat = re.compile(r'CPO_JSESSIONID=(.+?);')
     info[u'CPO_JSESSIONID'] = search_pat.search(set_cookie).group(1)
     content = response.read()
+    response.close()
+    opener.close()
     body =  BeautifulSoup(content)
     # print body
     info[u'addr'] = body.find_all('a')[0].get_text()
@@ -213,15 +239,32 @@ class canadapost_query():
         cookie = cookie + ';' + name + u'=' + val
         # opener.addheaders.append(u'Cookie', name+u'='+val)
     req.add_header(u'Cookie', cookie)
-    try:
-      response = opener.open(req, timeout=5)
-    except:
-      print u"flase"
-      return 2
-
-    # print response.info().getheader('Set-Cookie')
+    
+    try_times = 0;
+    # response = opener.open(req, timeout = self.timeout)
+    while True:
+      try_times = try_times + 1
+      try:
+        response = opener.open(req, timeout = self.timeout)
+      except:
+        if try_times > 5:
+          return False
+        else:
+          opener.close()
+        continue
+      break
+      
+    # try:
+      # response = opener.open(req, timeout = self.timeout)
+    # except:
+      # print self.name + u":" + u"flase"
+      # return 2
+      
     content = response.read()
+    # print response.info().getheader('Set-Cookie')
 
+    response.close()
+    opener.close()
     # return 0
     try:
       gz = self.gzdecode(content)
@@ -253,7 +296,7 @@ class canadapost_query():
         opener.addheaders.append(u'Cookie', name+u'='+val)
 
     try:
-      response = opener.open(req, timeout=5)
+      response = opener.open(req, timeout = self.timeout)
     except:
       print u"flase"
       return 2
@@ -272,12 +315,13 @@ class canadapost_query():
       return 0
     print gz
     return 0
+
   def express_track(self, track_num):
-    info = self.get_session(u'http://www.canadapost.ca/cpotools/apps/track/personal/findByTrackNumber', self.start_header)
+    info = self.get_session(u'http://www.canadapost.ca/cpotools/apps/track/personal/findByTrackNumber', self.start_header, track_num)
     cookie_dict = dict()
     cookie_dict[u'CPO_SSID_PRD10_UI_CPO'] = info[u'CPO_SSID_PRD10_UI_CPO']
     cookie_dict[u'CPO_JSESSIONID'] = info[u'CPO_JSESSIONID']
-    content = self.query(info[u'addr'], self.query_header, cookie_dict, u'LM922612242CN')
+    content = self.query(info[u'addr'], self.query_header, cookie_dict, track_num)
     return self.get_express(content)
 
 def main():

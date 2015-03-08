@@ -39,9 +39,10 @@ _header = {'Accept': '*/*',
 
 _usps_format = ['date', 'status', 'location']
 
+# [{'date': u'March 5, 2015,12:52 pm', 'status': u'Delivered, In/At Mailbox', 'location': u'OAK RIDGE,TN37830'}, {'date': u'March 5, 2015,8:39 am', 'status': u' Out for Delivery ', 'location': u'OAK RIDGE,TN37830'}, {'date': u'March 5, 2015,8:29 am', 'status': u' Sorting Complete ', 'location': u'OAK RIDGE,TN37830'}, {'date': u'March 5, 2015,8:16 am', 'status': u' Arrived at Unit ', 'location': u'OAK RIDGE,TN37830'}, {'date': u'February 26, 2015,10:36 am', 'status': u' Processed Through Sort Facility ', 'location': u'ISC CHICAGO IL (USPS)'}, {'date': u'', 'status': u' Origin Post is Preparing Shipment ', 'location': u''}, {'date': u'February 24, 2015,10:25 pm', 'status': u' Processed Through Sort Facility ', 'location': u'GUANGZHOU EMS,CHINA'}, {'date': u'February 24, 2015,9:18 pm', 'status': u' Acceptance ', 'location': u'CHINA'}]
 
 class usps_query():
-  def __init__(self, use_proxy=False, format=['date', 'status', 'location']):
+  def __init__(self, use_proxy=False, format=['date', 'status', 'location'], timeout = 60):
     self.header = {'Accept': '*/*',
       'X-Requested-With': 'XMLHttpRequest',
       'Accept-Language': 'zh-CN,zh;q=0.8',
@@ -53,6 +54,9 @@ class usps_query():
     }
     self.use_proxy = use_proxy
     self.format = format
+    self.timeout = timeout
+    self.name = u'usps'
+    self.url = u'https://tools.usps.com/go/TrackConfirmAction?qtc_tLabels1='
 
   def gzdecode(self, data):
     compressedstream = StringIO.StringIO(data)
@@ -62,7 +66,7 @@ class usps_query():
 
 
   def express_track(self, ln):
-    url = _usps_url + ln
+    url = self.url + ln
     opener = urllib2.OpenerDirector()
     if self.use_proxy is True:
       handler = urllib2.ProxyHandler({'http': proxy['ip']+':'+proxy['port']})
@@ -74,11 +78,28 @@ class usps_query():
     req = urllib2.Request(url)
     for (name, val) in self.header.items():
       req.add_header(name, val)
-    try:
-      response = opener.open(req, timeout=5)
-    except:
-      return 2
+
+    try_times = 0;
+    # response = opener.open(req, timeout = self.timeout)
+    while True:
+      try_times = try_times + 1
+      try:
+        response = opener.open(req, timeout = self.timeout)
+      except:
+        if try_times > 5:
+          return False
+        else:
+          opener.close()
+        continue
+      break
+
+    # try:
+      # response = opener.open(req, timeout = self.timeout)
+    # except:
+      # return self.name + u':' + u'time out'
     content = response.read()
+    response.close()
+    opener.close()
     try:
       gz = self.gzdecode(content)
     except:
@@ -97,7 +118,19 @@ class usps_query():
       usps_info.append(copy.copy(usps_dict))
     return usps_info
     # print usps_info
-0
+
+  def info_extractor(self, exp_info):
+    # print exp_info
+    if exp_info[0][u'status'].lower().find(u'delivered') == -1:
+      for a in exp_info:
+        if a[u'location'] == u'':
+          pass
+        else:
+          return a[u'location']
+      # return exp_info[0][u'location']
+    else:
+      return u'delivered'
+
 def main():
   a = usps_query()
   print a.express_track('LN633399366CN')
