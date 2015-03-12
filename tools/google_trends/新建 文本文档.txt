@@ -1,0 +1,7 @@
+Accept	text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Encoding	gzip, deflate
+Accept-Language	zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3
+Connection	keep-alive
+Cookie	I4SUserLocale=zh_CN; __utma=173272373.642123419.1426128500.1426128500.1426128500.1; __utmb=173272373.6.10.1426128500; __utmc=173272373; __utmz=173272373.1426128500.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); S=izeitgeist-ad-metrics=u8K4qLhQ6eg
+Host	www.google.com
+User-Agent	Mozilla/5.0 (Windows NT 5.1; rv:36.0) Gecko/20100101 Firefox/36.0
