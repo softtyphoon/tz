@@ -1,0 +1,487 @@
+<div class="switchDiv">
+    <div class="subSwitch">
+        <a href="javascript:;" onclick="game.prevday();" class="prev" title="\u524d\u4e00\u5929">\u524d\u4e00\u5929<\/a>
+        <span class="curTime">03\u670819\u65e5<\/span>
+        <a href="javascript:;" onclick="game.nextday();" class="next" title="\u540e\u4e00\u5929">\u540e\u4e00\u5929<\/a>
+    <\/div>
+    <a class="r topad" href="http:\/\/goto.hupu.com\/?a=goClick&id=9965" target="_blank">\u7403\u661f\u6218\u9774\u6700\u65b0\u6298\u6263<\/a>
+<\/div>
+<div class="listBox" id="nbaScoreTab_div0">
+                
+    
+    
+        <div class="gamespace_list_no">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+                <tr>
+                                        <td >
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/76ers" title="76\u4eba" target="_blank"><span class="teamlogo n6"> <\/span><\/a>
+                                            <\/td>
+                    <td align="right">
+                        <span class="nameText">
+                                                        <a target="_blank" title="76\u4eba" href = "http:\/\/g.hupu.com\/nba\/teams\/76ers">76\u4eba<\/a>
+                                                    <\/span>
+                    <\/td>		
+                    <td>
+                        <span class="bifen">
+                            <a target='_blank' href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25354.html" title="76\u4eba94:83\u6d3b\u585e" > 94:83  <\/a>
+                        <\/span>
+                    <\/td>
+                    <td align="left">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u6d3b\u585e" href = "http:\/\/g.hupu.com\/nba\/teams\/pistons">\u6d3b\u585e<\/a>
+                                  
+                        <\/span>
+                    <\/td>
+                    <td align="right">
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/pistons" title="\u6d3b\u585e" target="_blank"><span class="teamlogo n11"><\/span><\/a>
+                                            <\/td>
+                                    <\/tr>
+                <tr valign="top">
+                    <td colspan="3">
+                                                <a href="http:\/\/g.hupu.com\/nba\/daily\/recap_25354.html" onclick="ga('boxscore-NBA-2015-03-19-\u6218\u62a5-76\u4eba-\u6d3b\u585e-\u96f7\u5409\u4e09\u53cc\u96be\u963b\u6d3b\u585e\u4e0d\u654c76\u4eba-1')" target="_blank" title="\u96f7\u5409\u4e09\u53cc\u96be\u963b\u6d3b\u585e\u4e0d\u654c76\u4eba">\u96f7\u5409\u4e09\u53cc\u96be\u963b\u6d3b\u585e\u4e0d\u654c76\u4eba<\/a>
+                                <\/td>
+                    <td align="right" colspan="2">
+                        <a href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25354.html" target="_blank"  title="76\u4eba-\u6d3b\u585e\u6bd4\u8d5b\u6570\u636e">\u6570\u636e<\/a>
+                                                |  <a href="http:\/\/v.opahnet.com\/nba\/v738993.html" target="_blank"  title="76\u4eba-\u6d3b\u585e\u6bd4\u8d5b\u89c6\u9891">\u89c6\u9891<\/a>
+                                            <\/td>
+                 <\/tr>
+            <\/tbody>
+        <\/table>
+    <\/div>
+            
+    
+    
+        <div class="gamespace_list_no">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+                <tr>
+                                        <td >
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/cavaliers" title="\u9a91\u58eb" target="_blank"><span class="teamlogo n10"> <\/span><\/a>
+                                            <\/td>
+                    <td align="right">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u9a91\u58eb" href = "http:\/\/g.hupu.com\/nba\/teams\/cavaliers">\u9a91\u58eb<\/a>
+                                                    <\/span>
+                    <\/td>		
+                    <td>
+                        <span class="bifen">
+                            <a target='_blank' href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25355.html" title="\u9a91\u58eb117:92\u7bee\u7f51" > 117:92  <\/a>
+                        <\/span>
+                    <\/td>
+                    <td align="left">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u7bee\u7f51" href = "http:\/\/g.hupu.com\/nba\/teams\/nets">\u7bee\u7f51<\/a>
+                                  
+                        <\/span>
+                    <\/td>
+                    <td align="right">
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/nets" title="\u7bee\u7f51" target="_blank"><span class="teamlogo n3"><\/span><\/a>
+                                            <\/td>
+                                    <\/tr>
+                <tr valign="top">
+                    <td colspan="3">
+                                                <a href="http:\/\/g.hupu.com\/nba\/daily\/recap_25355.html" onclick="ga('boxscore-NBA-2015-03-19-\u6218\u62a5-\u9a91\u58eb-\u7bee\u7f51-JR\u6b21\u8282\u4e2d4\u8bb0\u4e09\u5206\u7ec8\u7ed3\u60ac\u5ff5-2')" target="_blank" title="JR\u6b21\u8282\u4e2d4\u8bb0\u4e09\u5206\u7ec8\u7ed3\u60ac\u5ff5">JR\u6b21\u8282\u4e2d4\u8bb0\u4e09\u5206\u7ec8\u7ed3\u60ac\u5ff5<\/a>
+                                <\/td>
+                    <td align="right" colspan="2">
+                        <a href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25355.html" target="_blank"  title="\u9a91\u58eb-\u7bee\u7f51\u6bd4\u8d5b\u6570\u636e">\u6570\u636e<\/a>
+                                                |  <a href="http:\/\/v.opahnet.com\/nba\/v738980.html" target="_blank"  title="\u9a91\u58eb-\u7bee\u7f51\u6bd4\u8d5b\u89c6\u9891">\u89c6\u9891<\/a>
+                                            <\/td>
+                 <\/tr>
+            <\/tbody>
+        <\/table>
+    <\/div>
+            
+    
+    
+        <div class="gamespace_list_no">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+                <tr>
+                                        <td >
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/heat" title="\u70ed\u706b" target="_blank"><span class="teamlogo n2"> <\/span><\/a>
+                                            <\/td>
+                    <td align="right">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u70ed\u706b" href = "http:\/\/g.hupu.com\/nba\/teams\/heat">\u70ed\u706b<\/a>
+                                                    <\/span>
+                    <\/td>		
+                    <td>
+                        <span class="bifen">
+                            <a target='_blank' href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25356.html" title="\u70ed\u706b108:104\u5f00\u62d3\u8005" > 108:104  <\/a>
+                        <\/span>
+                    <\/td>
+                    <td align="left">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u5f00\u62d3\u8005" href = "http:\/\/g.hupu.com\/nba\/teams\/blazers">\u5f00\u62d3\u8005<\/a>
+                                  
+                        <\/span>
+                    <\/td>
+                    <td align="right">
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/blazers" title="\u5f00\u62d3\u8005" target="_blank"><span class="teamlogo n25"><\/span><\/a>
+                                            <\/td>
+                                    <\/tr>
+                <tr valign="top">
+                    <td colspan="3">
+                                                <a href="http:\/\/g.hupu.com\/nba\/daily\/recap_25356.html" onclick="ga('boxscore-NBA-2015-03-19-\u6218\u62a5-\u70ed\u706b-\u5f00\u62d3\u8005-\u97e6\u5fb732\u5206\u52a9\u70ed\u706b\u7ec8\u573a\u524d\u9006\u8f6c-3')" target="_blank" title="\u97e6\u5fb732\u5206\u52a9\u70ed\u706b\u7ec8\u573a\u524d\u9006\u8f6c">\u97e6\u5fb732\u5206\u52a9\u70ed\u706b\u7ec8\u573a\u524d\u9006\u8f6c<\/a>
+                                <\/td>
+                    <td align="right" colspan="2">
+                        <a href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25356.html" target="_blank"  title="\u70ed\u706b-\u5f00\u62d3\u8005\u6bd4\u8d5b\u6570\u636e">\u6570\u636e<\/a>
+                                                |  <a href="http:\/\/v.opahnet.com\/nba\/v739017.html" target="_blank"  title="\u70ed\u706b-\u5f00\u62d3\u8005\u6bd4\u8d5b\u89c6\u9891">\u89c6\u9891<\/a>
+                                            <\/td>
+                 <\/tr>
+            <\/tbody>
+        <\/table>
+    <\/div>
+            
+    
+    
+        <div class="gamespace_list_no">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+                <tr>
+                                        <td >
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/raptors" title="\u731b\u9f99" target="_blank"><span class="teamlogo n15"> <\/span><\/a>
+                                            <\/td>
+                    <td align="right">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u731b\u9f99" href = "http:\/\/g.hupu.com\/nba\/teams\/raptors">\u731b\u9f99<\/a>
+                                                    <\/span>
+                    <\/td>		
+                    <td>
+                        <span class="bifen">
+                            <a target='_blank' href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25357.html" title="\u731b\u9f99105:100\u68ee\u6797\u72fc" > 105:100  <\/a>
+                        <\/span>
+                    <\/td>
+                    <td align="left">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u68ee\u6797\u72fc" href = "http:\/\/g.hupu.com\/nba\/teams\/timberwolves">\u68ee\u6797\u72fc<\/a>
+                                  
+                        <\/span>
+                    <\/td>
+                    <td align="right">
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/timberwolves" title="\u68ee\u6797\u72fc" target="_blank"><span class="teamlogo n20"><\/span><\/a>
+                                            <\/td>
+                                    <\/tr>
+                <tr valign="top">
+                    <td colspan="3">
+                                                <a href="http:\/\/g.hupu.com\/nba\/daily\/recap_25357.html" onclick="ga('boxscore-NBA-2015-03-19-\u6218\u62a5-\u731b\u9f99-\u68ee\u6797\u72fc-\u9a6c\u4e0137+7\u68ee\u6797\u72fc\u61be\u8d1f\u731b\u9f99-4')" target="_blank" title="\u9a6c\u4e0137+7\u68ee\u6797\u72fc\u61be\u8d1f\u731b\u9f99">\u9a6c\u4e0137+7\u68ee\u6797\u72fc\u61be\u8d1f\u731b\u9f99<\/a>
+                                <\/td>
+                    <td align="right" colspan="2">
+                        <a href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25357.html" target="_blank"  title="\u731b\u9f99-\u68ee\u6797\u72fc\u6bd4\u8d5b\u6570\u636e">\u6570\u636e<\/a>
+                                                |  <a href="http:\/\/v.opahnet.com\/nba\/v739018.html" target="_blank"  title="\u731b\u9f99-\u68ee\u6797\u72fc\u6bd4\u8d5b\u89c6\u9891">\u89c6\u9891<\/a>
+                                            <\/td>
+                 <\/tr>
+            <\/tbody>
+        <\/table>
+    <\/div>
+            
+    
+    
+        <div class="gamespace_list_no">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+                <tr>
+                                        <td >
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/thunder" title="\u96f7\u9706" target="_blank"><span class="teamlogo n27"> <\/span><\/a>
+                                            <\/td>
+                    <td align="right">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u96f7\u9706" href = "http:\/\/g.hupu.com\/nba\/teams\/thunder">\u96f7\u9706<\/a>
+                                                    <\/span>
+                    <\/td>		
+                    <td>
+                        <span class="bifen">
+                            <a target='_blank' href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25358.html" title="\u96f7\u9706122:118\u51ef\u5c14\u7279\u4eba" > 122:118  <\/a>
+                        <\/span>
+                    <\/td>
+                    <td align="left">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u51ef\u5c14\u7279\u4eba" href = "http:\/\/g.hupu.com\/nba\/teams\/celtics">\u51ef\u5c14\u7279\u4eba<\/a>
+                                  
+                        <\/span>
+                    <\/td>
+                    <td align="right">
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/celtics" title="\u51ef\u5c14\u7279\u4eba" target="_blank"><span class="teamlogo n1"><\/span><\/a>
+                                            <\/td>
+                                    <\/tr>
+                <tr valign="top">
+                    <td colspan="3">
+                                                <a href="http:\/\/g.hupu.com\/nba\/daily\/recap_25358.html" onclick="ga('boxscore-NBA-2015-03-19-\u6218\u62a5-\u96f7\u9706-\u51ef\u5c14\u7279\u4eba-\u5a01\u5c11\u780d36+10\u96f7\u9706\u9669\u80dc\u7eff\u519b-5')" target="_blank" title="\u5a01\u5c11\u780d36+10\u96f7\u9706\u9669\u80dc\u7eff\u519b">\u5a01\u5c11\u780d36+10\u96f7\u9706\u9669\u80dc\u7eff\u519b<\/a>
+                                <\/td>
+                    <td align="right" colspan="2">
+                        <a href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25358.html" target="_blank"  title="\u96f7\u9706-\u51ef\u5c14\u7279\u4eba\u6bd4\u8d5b\u6570\u636e">\u6570\u636e<\/a>
+                                                |  <a href="http:\/\/v.opahnet.com\/nba\/v739048.html" target="_blank"  title="\u96f7\u9706-\u51ef\u5c14\u7279\u4eba\u6bd4\u8d5b\u89c6\u9891">\u89c6\u9891<\/a>
+                                            <\/td>
+                 <\/tr>
+            <\/tbody>
+        <\/table>
+    <\/div>
+            
+    
+    
+        <div class="gamespace_list_no">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+                <tr>
+                                        <td >
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/bucks" title="\u96c4\u9e7f" target="_blank"><span class="teamlogo n13"> <\/span><\/a>
+                                            <\/td>
+                    <td align="right">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u96c4\u9e7f" href = "http:\/\/g.hupu.com\/nba\/teams\/bucks">\u96c4\u9e7f<\/a>
+                                                    <\/span>
+                    <\/td>		
+                    <td>
+                        <span class="bifen">
+                            <a target='_blank' href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25359.html" title="\u96c4\u9e7f103:114\u9a6c\u523a" > 103:114  <\/a>
+                        <\/span>
+                    <\/td>
+                    <td align="left">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u9a6c\u523a" href = "http:\/\/g.hupu.com\/nba\/teams\/spurs">\u9a6c\u523a<\/a>
+                                  
+                        <\/span>
+                    <\/td>
+                    <td align="right">
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/spurs" title="\u9a6c\u523a" target="_blank"><span class="teamlogo n21"><\/span><\/a>
+                                            <\/td>
+                                    <\/tr>
+                <tr valign="top">
+                    <td colspan="3">
+                                                <a href="http:\/\/g.hupu.com\/nba\/daily\/recap_25359.html" onclick="ga('boxscore-NBA-2015-03-19-\u6218\u62a5-\u96c4\u9e7f-\u9a6c\u523a-\u9093\u80af19\u52067\u52a9\u653b\u5ba2\u573a\u64d2\u96c4\u9e7f-6')" target="_blank" title="\u9093\u80af19\u52067\u52a9\u653b\u5ba2\u573a\u64d2\u96c4\u9e7f">\u9093\u80af19\u52067\u52a9\u653b\u5ba2\u573a\u64d2\u96c4\u9e7f<\/a>
+                                <\/td>
+                    <td align="right" colspan="2">
+                        <a href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25359.html" target="_blank"  title="\u96c4\u9e7f-\u9a6c\u523a\u6bd4\u8d5b\u6570\u636e">\u6570\u636e<\/a>
+                                                |  <a href="http:\/\/v.opahnet.com\/nba\/v739021.html" target="_blank"  title="\u96c4\u9e7f-\u9a6c\u523a\u6bd4\u8d5b\u89c6\u9891">\u89c6\u9891<\/a>
+                                            <\/td>
+                 <\/tr>
+            <\/tbody>
+        <\/table>
+    <\/div>
+            
+    
+    
+        <div class="gamespace_list_no">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+                <tr>
+                                        <td >
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/bulls" title="\u516c\u725b" target="_blank"><span class="teamlogo n9"> <\/span><\/a>
+                                            <\/td>
+                    <td align="right">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u516c\u725b" href = "http:\/\/g.hupu.com\/nba\/teams\/bulls">\u516c\u725b<\/a>
+                                                    <\/span>
+                    <\/td>		
+                    <td>
+                        <span class="bifen">
+                            <a target='_blank' href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25360.html" title="\u516c\u725b103:86\u6b65\u884c\u8005" > 103:86  <\/a>
+                        <\/span>
+                    <\/td>
+                    <td align="left">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u6b65\u884c\u8005" href = "http:\/\/g.hupu.com\/nba\/teams\/pacers">\u6b65\u884c\u8005<\/a>
+                                  
+                        <\/span>
+                    <\/td>
+                    <td align="right">
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/pacers" title="\u6b65\u884c\u8005" target="_blank"><span class="teamlogo n12"><\/span><\/a>
+                                            <\/td>
+                                    <\/tr>
+                <tr valign="top">
+                    <td colspan="3">
+                                                <a href="http:\/\/g.hupu.com\/nba\/daily\/recap_25360.html" onclick="ga('boxscore-NBA-2015-03-19-\u6218\u62a5-\u516c\u725b-\u6b65\u884c\u8005-\u52a0\u7d22\u5c1419\u520612\u677f\u51fb\u9000\u6b65\u884c\u8005-7')" target="_blank" title="\u52a0\u7d22\u5c1419\u520612\u677f\u51fb\u9000\u6b65\u884c\u8005">\u52a0\u7d22\u5c1419\u520612\u677f\u51fb\u9000\u6b65\u884c\u8005<\/a>
+                                <\/td>
+                    <td align="right" colspan="2">
+                        <a href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25360.html" target="_blank"  title="\u516c\u725b-\u6b65\u884c\u8005\u6bd4\u8d5b\u6570\u636e">\u6570\u636e<\/a>
+                                                |  <a href="http:\/\/v.opahnet.com\/nba\/v739035.html" target="_blank"  title="\u516c\u725b-\u6b65\u884c\u8005\u6bd4\u8d5b\u89c6\u9891">\u89c6\u9891<\/a>
+                                            <\/td>
+                 <\/tr>
+            <\/tbody>
+        <\/table>
+    <\/div>
+            
+    
+    
+        <div class="gamespace_list_no">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+                <tr>
+                                        <td >
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/mavericks" title="\u5c0f\u725b" target="_blank"><span class="teamlogo n16"> <\/span><\/a>
+                                            <\/td>
+                    <td align="right">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u5c0f\u725b" href = "http:\/\/g.hupu.com\/nba\/teams\/mavericks">\u5c0f\u725b<\/a>
+                                                    <\/span>
+                    <\/td>		
+                    <td>
+                        <span class="bifen">
+                            <a target='_blank' href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25361.html" title="\u5c0f\u725b107:102\u9b54\u672f" > 107:102  <\/a>
+                        <\/span>
+                    <\/td>
+                    <td align="left">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u9b54\u672f" href = "http:\/\/g.hupu.com\/nba\/teams\/magic">\u9b54\u672f<\/a>
+                                  
+                        <\/span>
+                    <\/td>
+                    <td align="right">
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/magic" title="\u9b54\u672f" target="_blank"><span class="teamlogo n5"><\/span><\/a>
+                                            <\/td>
+                                    <\/tr>
+                <tr valign="top">
+                    <td colspan="3">
+                                                <a href="http:\/\/g.hupu.com\/nba\/daily\/recap_25361.html" onclick="ga('boxscore-NBA-2015-03-19-\u6218\u62a5-\u5c0f\u725b-\u9b54\u672f-\u5fb7\u514b\u4e09\u52066\u4e2d5\u4e3b\u573a\u9669\u80dc\u9b54\u672f-8')" target="_blank" title="\u5fb7\u514b\u4e09\u52066\u4e2d5\u4e3b\u573a\u9669\u80dc\u9b54\u672f">\u5fb7\u514b\u4e09\u52066\u4e2d5\u4e3b\u573a\u9669\u80dc\u9b54\u672f<\/a>
+                                <\/td>
+                    <td align="right" colspan="2">
+                        <a href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25361.html" target="_blank"  title="\u5c0f\u725b-\u9b54\u672f\u6bd4\u8d5b\u6570\u636e">\u6570\u636e<\/a>
+                                                |  <a href="http:\/\/v.opahnet.com\/nba\/v739043.html" target="_blank"  title="\u5c0f\u725b-\u9b54\u672f\u6bd4\u8d5b\u89c6\u9891">\u89c6\u9891<\/a>
+                                            <\/td>
+                 <\/tr>
+            <\/tbody>
+        <\/table>
+    <\/div>
+            
+    
+    
+        <div class="gamespace_list_no">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+                <tr>
+                                        <td >
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/kings" title="\u56fd\u738b" target="_blank"><span class="teamlogo n23"> <\/span><\/a>
+                                            <\/td>
+                    <td align="right">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u56fd\u738b" href = "http:\/\/g.hupu.com\/nba\/teams\/kings">\u56fd\u738b<\/a>
+                                                    <\/span>
+                    <\/td>		
+                    <td>
+                        <span class="bifen">
+                            <a target='_blank' href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25362.html" title="\u56fd\u738b105:116\u5feb\u8239" > 105:116  <\/a>
+                        <\/span>
+                    <\/td>
+                    <td align="left">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u5feb\u8239" href = "http:\/\/g.hupu.com\/nba\/teams\/clippers">\u5feb\u8239<\/a>
+                                  
+                        <\/span>
+                    <\/td>
+                    <td align="right">
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/clippers" title="\u5feb\u8239" target="_blank"><span class="teamlogo n29"><\/span><\/a>
+                                            <\/td>
+                                    <\/tr>
+                <tr valign="top">
+                    <td colspan="3">
+                                                <a href="http:\/\/g.hupu.com\/nba\/daily\/recap_25362.html" onclick="ga('boxscore-NBA-2015-03-19-\u6218\u62a5-\u56fd\u738b-\u5feb\u8239-\u4fdd\u7f5730\u520611\u52a9\u5feb\u8239\u63a8\u7ffb\u56fd\u738b-9')" target="_blank" title="\u4fdd\u7f5730\u520611\u52a9\u5feb\u8239\u63a8\u7ffb\u56fd\u738b">\u4fdd\u7f5730\u520611\u52a9\u5feb\u8239\u63a8\u7ffb\u56fd\u738b<\/a>
+                                <\/td>
+                    <td align="right" colspan="2">
+                        <a href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25362.html" target="_blank"  title="\u56fd\u738b-\u5feb\u8239\u6bd4\u8d5b\u6570\u636e">\u6570\u636e<\/a>
+                                                |  <a href="http:\/\/v.opahnet.com\/nba\/v739062.html" target="_blank"  title="\u56fd\u738b-\u5feb\u8239\u6bd4\u8d5b\u89c6\u9891">\u89c6\u9891<\/a>
+                                            <\/td>
+                 <\/tr>
+            <\/tbody>
+        <\/table>
+    <\/div>
+            
+    
+    
+        <div class="gamespace_list_no">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+                <tr>
+                                        <td >
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/warriors" title="\u52c7\u58eb" target="_blank"><span class="teamlogo n28"> <\/span><\/a>
+                                            <\/td>
+                    <td align="right">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u52c7\u58eb" href = "http:\/\/g.hupu.com\/nba\/teams\/warriors">\u52c7\u58eb<\/a>
+                                                    <\/span>
+                    <\/td>		
+                    <td>
+                        <span class="bifen">
+                            <a target='_blank' href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25363.html" title="\u52c7\u58eb114:95\u8001\u9e70" > 114:95  <\/a>
+                        <\/span>
+                    <\/td>
+                    <td align="left">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u8001\u9e70" href = "http:\/\/g.hupu.com\/nba\/teams\/hawks">\u8001\u9e70<\/a>
+                                  
+                        <\/span>
+                    <\/td>
+                    <td align="right">
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/hawks" title="\u8001\u9e70" target="_blank"><span class="teamlogo n8"><\/span><\/a>
+                                            <\/td>
+                                    <\/tr>
+                <tr valign="top">
+                    <td colspan="3">
+                                                <a href="http:\/\/g.hupu.com\/nba\/daily\/recap_25363.html" onclick="ga('boxscore-NBA-2015-03-19-\u6218\u62a5-\u52c7\u58eb-\u8001\u9e70-\u4e1c\u897f\u90e8\u699c\u9996\u5bf9\u51b3\u7adf\u53d8\u6210\u540a\u6253-10')" target="_blank" title="\u4e1c\u897f\u90e8\u699c\u9996\u5bf9\u51b3\u7adf\u53d8\u6210\u540a\u6253">\u4e1c\u897f\u90e8\u699c\u9996\u5bf9\u51b3\u7adf\u53d8\u6210\u540a\u6253<\/a>
+                                <\/td>
+                    <td align="right" colspan="2">
+                        <a href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25363.html" target="_blank"  title="\u52c7\u58eb-\u8001\u9e70\u6bd4\u8d5b\u6570\u636e">\u6570\u636e<\/a>
+                                                |  <a href="http:\/\/v.opahnet.com\/nba\/v739064.html" target="_blank"  title="\u52c7\u58eb-\u8001\u9e70\u6bd4\u8d5b\u89c6\u9891">\u89c6\u9891<\/a>
+                                            <\/td>
+                 <\/tr>
+            <\/tbody>
+        <\/table>
+    <\/div>
+            
+    
+    
+        <div class="gamespace_list_no">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+                <tr>
+                                        <td >
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/jazz" title="\u7235\u58eb" target="_blank"><span class="teamlogo n22"> <\/span><\/a>
+                                            <\/td>
+                    <td align="right">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u7235\u58eb" href = "http:\/\/g.hupu.com\/nba\/teams\/jazz">\u7235\u58eb<\/a>
+                                                    <\/span>
+                    <\/td>		
+                    <td>
+                        <span class="bifen">
+                            <a target='_blank' href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25364.html" title="\u7235\u58eb84:88\u5947\u624d" > 84:88  <\/a>
+                        <\/span>
+                    <\/td>
+                    <td align="left">
+                        <span class="nameText">
+                                                        <a target="_blank" title="\u5947\u624d" href = "http:\/\/g.hupu.com\/nba\/teams\/wizards">\u5947\u624d<\/a>
+                                  
+                        <\/span>
+                    <\/td>
+                    <td align="right">
+                                                <a href="http:\/\/g.hupu.com\/nba\/teams\/wizards" title="\u5947\u624d" target="_blank"><span class="teamlogo n7"><\/span><\/a>
+                                            <\/td>
+                                    <\/tr>
+                <tr valign="top">
+                    <td colspan="3">
+                                                <a href="http:\/\/g.hupu.com\/nba\/daily\/recap_25364.html" onclick="ga('boxscore-NBA-2015-03-19-\u6218\u62a5-\u7235\u58eb-\u5947\u624d-\u6c83\u5c1426\u52069\u677f\u80dc\u7235\u58eb\u53d65\u8fde\u80dc-11')" target="_blank" title="\u6c83\u5c1426\u52069\u677f\u80dc\u7235\u58eb\u53d65\u8fde\u80dc">\u6c83\u5c1426\u52069\u677f\u80dc\u7235\u58eb\u53d65\u8fde\u80dc<\/a>
+                                <\/td>
+                    <td align="right" colspan="2">
+                        <a href="http:\/\/g.hupu.com\/nba\/daily\/boxscore_25364.html" target="_blank"  title="\u7235\u58eb-\u5947\u624d\u6bd4\u8d5b\u6570\u636e">\u6570\u636e<\/a>
+                                                |  <a href="http:\/\/v.opahnet.com\/nba\/v739065.html" target="_blank"  title="\u7235\u58eb-\u5947\u624d\u6bd4\u8d5b\u89c6\u9891">\u89c6\u9891<\/a>
+                                            <\/td>
+                 <\/tr>
+            <\/tbody>
+        <\/table>
+    <\/div>
+                
+            <ul class="newsList">
+                        <li><a href="http:\/\/v.opahnet.com\/nba\/v738973.html" target="_blank">\u5e15\u91d1\u65af\u7bee\u4e0b\u62a2\u677f\u9ca8\u9c7c\u5f0f\u5f3a\u8d77\u989c\u6263\u4e24\u4eba<\/a><\/li>
+                                <li><a href="http:\/\/v.opahnet.com\/nba\/v738909.html" target="_blank">\u54c8\u6851\u8fce\u9762\u5927\u5e3d\u5361\u66fc\uff0c\u5fb7\u62c9\u5b63\u5947\u53cd\u51fb\u4e0a\u7bee<\/a><\/li>
+                                <li><a href="http:\/\/v.opahnet.com\/nba\/v738950.html" target="_blank">\u5c11\u4fa0\u597d\u8f7b\u529f\uff01\u62c9\u6587\u7a81\u7834\u53cc\u624b\u6298\u53e0\u66b4\u6263<\/a><\/li>
+                                <li><a href="http:\/\/v.opahnet.com\/nba\/v738966.html" target="_blank">\u5a01\u5c11\u75af\u72c2\u62a2\u65ad\u53cd\u51fb\u65e0\u89c6\u8ffd\u8eab\u6ed1\u7fd4\u5288\u6263<\/a><\/li>
+                                <li><a href="http:\/\/v.opahnet.com\/nba\/v738946.html" target="_blank">\u5c0f\u5e03\u7a81\u7834\u8f6c\u8eab\u9762\u5bf9\u5e0c\u4f2f\u7279\u52fe\u624b\u60ca\u5446\u89e3\u8bf4<\/a><\/li>
+                                <li><a href="http:\/\/v.opahnet.com\/nba\/v738962.html" target="_blank">\u9707\u60ca\u4e86\uff01\u9686\u591a\u8fd9\u662f\u628a\u6bd4\u8d5b\u5f53\u8857\u7403\u8d5b\u4e48\uff1f<\/a><\/li>
+                                <li><a href="http:\/\/v.opahnet.com\/nba\/v738958.html" target="_blank">\u9686\u591a\u7bee\u4e0b\u63a5\u8bfa\u7ef4\u8328\u57fa\u5999\u4f20\u5355\u81c2\u6263\u7bee<\/a><\/li>
+                    <\/ul>
+     
+        <\/div>
+    <div class="bottom">
+        <a title="2014-15\u8d5b\u5b63NBA\u8d5b\u7a0b" target="_blank" href="http:\/\/g.hupu.com\/nba\/schedule">2014-15\u8d5b\u5b63NBA\u8d5b\u7a0b<\/a>
+            <\/div>
+
