@@ -7,6 +7,8 @@ import StringIO
 import sys
 import os
 import re
+import time
+import random
 from bs4 import BeautifulSoup
 
 
@@ -42,7 +44,6 @@ def get_urls(start_url):
         r.close()
         sys.exit(0)
     # Make sure everything is working ;)
-
     if r.info().get('Content-Encoding') == 'gzip':
         buf = StringIO.StringIO(r.read())
         f = gzip.GzipFile(fileobj=buf)
@@ -79,6 +80,18 @@ def get_vote(url):
         r.close()
         sys.exit(0)
     # Make sure everything is working ;)
+    jump = r.info().get('Location')
+    if jump is not None:
+        req = urllib2.Request(jump)
+        for (name, val) in _header.items():
+            req.add_header(name, val)
+        try:
+            r = opener.open(req, timeout = 60)
+        except:
+            print 'failed'
+            opener.close()
+            r.close()
+            sys.exit(0)
 
     if r.info().get('Content-Encoding') == 'gzip':
         buf = StringIO.StringIO(r.read())
@@ -91,18 +104,39 @@ def get_vote(url):
     page = BeautifulSoup(data)
     info = dict()
     ccc = page.find_all('span', attrs={'class':'dot-irecommendthis-count'})
+    print ccc[0].get_text()
+    if ccc is None:
+        print data
+        return None
     info['vote'] =  ccc[0].get_text()
     ccc = page.find_all('h1', attrs={'class':'page-introduce-title'})
-    info['name'] =  ccc[0].get_text().encode('gbk')
-    print ccc[0].get_text().encode('gbk')
+    info['name'] =  ccc[0].get_text()
     return info
 
 
 
 if __name__ == "__main__":
-    # print get_urls('http://chinabang.technode.com/vote/')
-    print get_vote('http://chinabang.technode.com/nominees/zengguanqing/')
-
+    # info = get_vote('http://chinabang.technode.com/nominees/themakers/')
+    # info = get_vote('http://chinabang.technode.com/nominees/taidi/')
+    # sys.exit(0)
+    urls = get_urls('http://chinabang.technode.com/vote/')
+    print urls
+    fn = open(u'vote.csv', 'w+')
+    index = 0;
+    for a in urls:
+        print index, ' of ', len(urls)
+        url = 'http://chinabang.technode.com/nominees/' + a + '/'
+        d = random.uniform(1, 6)
+        time.sleep(int(d))
+        info = get_vote(url)
+        # print repr(info)
+        if info is None:
+            print 'failed'
+            sys.exit(0)
+        else:
+            fn.write(info['vote']+',\n')
+        index += 1
+    fn.close()
 
 
 
