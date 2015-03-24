@@ -1,0 +1,33 @@
+13:18:48.699[837ms][total 837ms] Status: 200[OK]
+POST http://onlinelibrary.wiley.com/documentcitationdownloadformsubmit Load Flags[LOAD_DOCUMENT_URI  LOAD_INITIAL_DOCUMENT_URI  ] Content Size[1833] Mime Type[application/x-research-info-systems]
+   Request Headers:
+      Host[onlinelibrary.wiley.com]
+      User-Agent[Mozilla/5.0 (Windows NT 5.1; rv:36.0) Gecko/20100101 Firefox/36.0]
+      Accept[text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8]
+      Accept-Language[zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3]
+      Accept-Encoding[gzip, deflate]
+      Referer[http://onlinelibrary.wiley.com/doi/10.1029/2012GL053876/abstract]
+      Cookie[OLProdServerID=1026; JSESSIONID=9A569ADD726ED039DEB50D1FE9868529.f03t02; WOLSIGNATURE=d1cffd0b-78af-40d7-af71-2ce8870a3309; REPORTINGWOLSIGNATURE=7300633201452515634; EuCookie="this site uses cookies"; s_cc=true; s_fid=037D17620E30C94F-14796CCD48E6DFB7; s_vnum=1429766274124%26vn%3D1; s_invisit=true; s_visit=1; s_prevChannel=JOURNALS; s_prevProp1=ABSTRACT; s_prevProp2=ABSTRACT; s_sq=wileyonlinelibrary-production%3D%2526pid%253DAttribution%252520of%252520the%252520Arctic%252520ozone%252520column%252520deficit%252520in%252520March%2525202011%252520-%252520Isaksen%252520-%2525202012%252520-%252520Geophysical%252520Research%252520Letters%2526pidt%253D1%2526oid%253DSubmit%2526oidt%253D3%2526ot%253DSUBMIT; __utma=235730399.566878191.1427174276.1427174276.1427174276.1; __utmb=235730399.1.10.1427174276; __utmc=235730399; __utmz=235730399.1427174276.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utmt=1; __atuvc=1%7C12; __atuvs=5510f38aad66a057000]
+      Connection[keep-alive]
+   Post Data:
+      doi[10.1029%252F2012GL053876]
+      fileFormat[ENDNOTE]
+      hasAbstract[CITATION_AND_ABSTRACT]
+   Response Headers:
+      Date[Tue, 24 Mar 2015 05:18:47 GMT]
+      Server[Apache-Coyote/1.1]
+      X-dynaTrace[PT=3678313;PA=-1854140967;RS=WOLPROD/20150323221702_0.session;SP=WOLPROD;PS=-200342975]
+      dynaTrace[PT=3678313;PA=-1854140967;RS=WOLPROD/20150323221702_0.session;SP=WOLPROD;PS=-200342975]
+      Content-Disposition[attachment; filename=10.1029%2F2012GL053876.enw]
+      Content-Type[application/x-research-info-systems;charset=UTF-8]
+      Content-Length[1833]
+      ServerID[olprodfe03.wiley.com]
+      Connection[close]
+
+http://onlinelibrary.wiley.com/journal/10.1002/(ISSN)1944-8007/issues?activeyear2011
+
+http://onlinelibrary.wiley.com/journal/10.1002/(ISSN)1944-8007/issues/fragment?activeYear=1974&SKIP_DECORATION=true
+
+
+
+
