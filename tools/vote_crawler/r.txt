@@ -12,3 +12,8 @@
 {'vote': u'1103', 'name': u'iBoss'}
 {'vote': u'112', 'name': u'\u9ea6\u5ba2CRM'}
 {'vote': u'61', 'name': u'\u94dc\u677f\u8857'}
+
+
+
+<div style=" margin-bottom:25px;text-align: center;" class="mk-text-block   mk-animate-element top-to-bottom "><a href="#" class="dot-irecommendthis mk-icon-circle-blank" id="dot-irecommendthis-6560" title="Recommend this"><span class="dot-irecommendthis-count">4</span> <span class="dot-irecommendthis-suffix">Ʊ</span></a>
+<div style=" margin-bottom:25px;text-align: center;" class="mk-text-block   mk-animate-element top-to-bottom "><a href="#" class="dot-irecommendthis active mk-icon-ok-sign" id="dot-irecommendthis-6560" title="You already recommended this"><span class="dot-irecommendthis-count">5</span> <span class="dot-irecommendthis-suffix">Ʊ</span></a>
