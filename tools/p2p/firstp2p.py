@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import sys
 import urllib2
 import re
+import gzip
 
 type = {
     'crd':u'产融贷',         # icon_melting
@@ -23,10 +24,126 @@ _header = {
     u'Accept-Language':u'zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3',
     u'Accept-Encoding':u'gzip, deflate',
     u'Referer':u'http://www.firstp2p.com/',
-    u'Cookie':u'PHPSESSID=emk4jof8co8osccrrfao3vu0b0; _ncfdm=; _ncftr=; _ncf1=1427351222717.6764.0003.0002.0003.0002.0; _ncf2=1427351222717.8047.0003.0002; _ncf3=1427351254278.3.31561.6574.1.61744; mlta=%7B%22mltn%22%3A%7B%22250582%22%3A%5B%226729839450975941527%3E2%3E1427351254237%3E1%3E1427351254180%3E6729839450949563443%3E1427351228421%22%2C1442903254393%5D%7D%2C%22mlti%22%3A%7B%22250582%22%3A%5B%22142735122633671481%22%2C1442903226336%5D%7D%2C%22mltmapping%22%3A%7B%220%22%3A%5B1%2C1429943254395%5D%7D%2C%22mlts%22%3A%7B%22250582%22%3A%5B%225%22%2C1442903254334%5D%7D%7D; fpid=449038',
+    # u'Cookie':u'PHPSESSID=emk4jof8co8osccrrfao3vu0b0; _ncfdm=; _ncftr=; _ncf1=1427351222717.6764.0003.0002.0003.0002.0; _ncf2=1427351222717.8047.0003.0002; _ncf3=1427351254278.3.31561.6574.1.61744; mlta=%7B%22mltn%22%3A%7B%22250582%22%3A%5B%226729839450975941527%3E2%3E1427351254237%3E1%3E1427351254180%3E6729839450949563443%3E1427351228421%22%2C1442903254393%5D%7D%2C%22mlti%22%3A%7B%22250582%22%3A%5B%22142735122633671481%22%2C1442903226336%5D%7D%2C%22mltmapping%22%3A%7B%220%22%3A%5B1%2C1429943254395%5D%7D%2C%22mlts%22%3A%7B%22250582%22%3A%5B%225%22%2C1442903254334%5D%7D%7D; fpid=449038',
     u'Connection':u'keep-alive'
 }
 
+class firstp2p():
+
+    def __init__(self, url=None, header=None, data=None):
+        self.set_param(url, header, data)
+
+    def set_param(self, url=None, header=None, data=None):
+        self.url = url
+        self.header = header
+        self.data = data
+
+    def get_page(self):
+        opener = urllib2.OpenerDirector()
+        http_handler = urllib2.HTTPHandler()
+        https_handler = urllib2.HTTPSHandler()
+        opener.add_handler(http_handler)
+        opener.add_handler(https_handler)
+        req = urllib2.Request(self.url)
+        for (name, val) in self.header.items():
+            req.add_header(name, val)
+        if self.data is not None:
+            req.add_data(self.data)
+
+        try:
+            r = opener.open(req, timeout = 60)
+        except:
+            print 'failed'
+            opener.close()
+            return False
+        # Make sure everything is working ;)
+        if r.info().get('Content-Encoding') == 'gzip':
+            buf = StringIO.StringIO(r.read())
+            f = gzip.GzipFile(fileobj=buf)
+            data = f.read()
+        else:
+            data = r.read()
+
+        return data
+
+    def get_status(self, content=None):
+        '''
+          解析主页，得到各个项目的信息
+          返回列表数据，依次为：项目地址，投资总额，可投金额，剩余时间
+        '''
+        funds = list()
+        if content is None:
+            page = self.get_page()
+        else:
+            page = content
+
+        bs = BeautifulSoup(page)
+        fund_url = list()
+        tbody = bs.find_all('tbody', attrs={'class':'j_index_tbody'})
+        trs = tbody[0].find_all('tr')
+        for tr in trs:
+            sub = list()
+            atag =  tr.find('a')
+            if atag is None:
+                continue
+            sub.append(atag['href'])
+            print atag['href']
+
+            atag =  tr.find_all('div', attrs={'class':'pro_links'})
+            str = atag[0].get_text()
+            c = repr(str)
+            pat = re.compile(r'(?<=1a).*(?=\\u4e07)')
+            b = pat.findall(c)
+            sub.append(int(float(b[0]))*10000)
+            print b[0]
+
+
+            atag =  tr.find_all('div', attrs={'class':'pl20'})
+            text = atag[0].get_text().strip('\n')
+            a = atag[0].get_text().strip('\n')
+            text = repr(text)
+            pat = re.compile(r'(?<=ff1a).*(?=\\u5143)')
+            st = pat.findall(text)
+            st = st[0].replace(',', '')
+            sub.append(int(float(st)))
+            print atag[0].get_text().strip('\n')
+
+            day = 0
+            hour = 0
+            min = 0
+            pat = re.compile(u'(?<=：).*(?=天)')
+            try:
+                day = pat.search(a).group()
+            except:
+                day = 0
+
+            pat = re.compile(u'(?<=天).*(?=时)')
+            try:
+                hour = pat.search(a).group()
+            except:
+                pat = re.compile(u'(?<=：).*(?=时)')
+                try:
+                    hour = pat.search(a).group()
+                except:
+                    hour = 0
+
+            pat = re.compile(u'(?<=时)\d*(?=分)')
+            try:
+                min = pat.search(a).group()
+            except:
+                pat = re.compile(u'(?<=：)\d*(?=分)')
+                try:
+                    min = pat.search(a).group()
+                except:
+                    min = 0
+            print day, hour, min
+            
+            time_left = int(day)*24*60 + int(hour)*60 + int(min)
+            print time_left
+            sub.append(time_left)
+
+            funds.append(sub)
+        print funds
 
 def get_primary_table(url = main_url, header = _header, data = None):
     opener = urllib2.OpenerDirector()
@@ -80,6 +197,9 @@ if __name__ == "__main__":
     # sys.exit(0)
     fn = open('rer.txt', 'r+')
     c = fn.read()
+    a = firstp2p(main_url, _header)
+    a.get_status()
+    sys.exit(0)
     bs = BeautifulSoup(c)
     fund_url = list()
     tbody = bs.find_all('tbody', attrs={'class':'j_index_tbody'})
@@ -97,13 +217,13 @@ if __name__ == "__main__":
         b = pat.findall(c)
         print b[0]
 
-        
+
         atag =  tr.find_all('div', attrs={'class':'pl20'})
         text = atag[0].get_text().strip('\n')
         text = repr(text)
         pat = re.compile(r'')
         print repr(text) #.split('\n')
-        
+
         # atag =  tr.find_all('em', attrs={'class':'color-yellow1'})
         # str = atag[0].get_text()
         # print str
