@@ -10,6 +10,9 @@ import time
 class fund_info(threading.Thread):
     def __init__(self, url=None, header=None, data=None):
         self.set_param(url, header, data)
+        self.req_cookie = False         # relogin account
+        self.hold = False               # wait for new cookie
+
 
     def set_param(self, url=None, header=None, data=None):
         self.url = url
@@ -31,7 +34,7 @@ class fund_info(threading.Thread):
             req.add_header(name, val)
         if self.data is not None:
             req.add_data(self.data)
-        
+
         try:
             r = opener.open(req, timeout = 60)
         except:
@@ -45,7 +48,7 @@ class fund_info(threading.Thread):
             data = f.read()
         else:
             data = r.read()
-        
+
         return data
 
     def get_status(self, page):
@@ -64,7 +67,7 @@ class fund_info(threading.Thread):
         for a in r:
             c = int(float((a.replace(',', ''))))
             info.append(c)
-        
+
         pat = re.compile(r'(?<=<span class="color-black f16">)[^<.*]*(?=</span>)', re.DOTALL)
         r = pat.findall(page)
         if r is not None:
@@ -88,6 +91,36 @@ class fund_info(threading.Thread):
 
         info.append(None)
         return info
+
+    def strategy():
+        '''
+          分析
+        '''
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

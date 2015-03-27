@@ -2,6 +2,7 @@
 from bs4 import BeautifulSoup
 import sys
 import urllib2
+import re
 
 type = {
     'crd':u'产融贷',         # icon_melting
@@ -54,6 +55,9 @@ def get_primary_table(url = main_url, header = _header, data = None):
     else:
         data = r.read()
 
+    # t = open('rer.txt', 'w+')
+    # t.write(data)
+    # t.close()
     # extract valid URLs
     fund_url = list()
     bs = BeautifulSoup(data)
@@ -71,21 +75,70 @@ def get_sub_table():
     return 0
 
 if __name__ == "__main__":
-    fund_list = get_primary_table()
-    print repr(fund_list)
-    sys.exit(0)
-    fn = open('a.txt', 'r+')
+    # fund_list = get_primary_table()
+    # print repr(fund_list)
+    # sys.exit(0)
+    fn = open('rer.txt', 'r+')
     c = fn.read()
     bs = BeautifulSoup(c)
     fund_url = list()
+    tbody = bs.find_all('tbody', attrs={'class':'j_index_tbody'})
+    trs = tbody[0].find_all('tr')
+    for tr in trs:
+        atag =  tr.find('a')
+        if atag is None:
+            continue
+        print atag['href']
+
+        atag =  tr.find_all('div', attrs={'class':'pro_links'})
+        str = atag[0].get_text()
+        c = repr(str)
+        pat = re.compile(r'(?<=1a).*(?=\\u4e07)')
+        b = pat.findall(c)
+        print b[0]
+
+        
+        atag =  tr.find_all('div', attrs={'class':'pl20'})
+        text = atag[0].get_text().strip('\n')
+        text = repr(text)
+        pat = re.compile(r'')
+        print repr(text) #.split('\n')
+        
+        # atag =  tr.find_all('em', attrs={'class':'color-yellow1'})
+        # str = atag[0].get_text()
+        # print str
+
+        # t = atag[0].parent
+        # print t
+        # p = t.next_sibling
+        # print p.string
+        # print t.get_text()
+
+    sys.exit(0)
+
     fund_div = bs.find_all('div', attrs={'id':'index_list_tab'})
     fund_div_s = fund_div[0].find_all('div', attrs={'class':'pro_name'})
     for a in fund_div_s:
+      print repr(a)
       atag =  a.find('a')
       if atag is None:
           continue
-      fund_url.append(atag['href'])
-    print fund_url
+      print atag['href']
+      atag =  a.find_all('div', attrs={'class':'pro_links'})
+      str = atag[0].get_text()
+      c = repr(str)
+      pat = re.compile(r'(?<=1a).*(?=\\u4e07)')
+      b = pat.findall(c)
+      print b[0]
+
+      atag =  a.find_all('em', attrs={'class':'color-yellow1'})
+      str = atag[0].get_text()
+      # c = repr(str)
+      # pat = re.compile(r'(?<=1a).*(?=\\u4e07)')
+      # b = pat.findall(c)
+      print str
+
+
     sys.exit(0)
     b = bs.find_all('div', attrs={'id':'index_list_tab'})
     # d = b[0].find_all('div', attrs={'class':'tc'})
@@ -99,9 +152,19 @@ if __name__ == "__main__":
     print '+'
 
 
-
-
-
+# total: tbody, j_index_tbody
+# 可投金额：<em class="color-yellow1">737,682.86元</em>
+# 总额：<div class="pro_links">
+                                # 总额：100.00万
+                                                                # <i class="badge"
+      # atag =  a.find_all('div', attrs={'class':'pro_links'})
+      # str = atag[0].get_text()
+      # c = repr(str)
+      # pat = re.compile(r'(?<=1a).*(?=\\u4e07)')
+      # b = pat.findall(c)
+      # print b[0]
+# 剩余时间：<p>可投金额：<em class="color-yellow1">997,412.84元</em></p>
+                            # <p>剩余时间：6天23时57分</p>
 
 
 
