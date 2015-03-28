@@ -2,16 +2,22 @@
 
 import urllib2
 import re
-import threading
+import multiprocessing
 import time
+import sys
+from bs4 import BeautifulSoup
 
 
-
-class fund_info(threading.Thread):
-    def __init__(self, url=None, header=None, data=None):
+# class fund_info(threading.Thread):
+class fund_info(multiprocessing.Process):
+    def __init__(self, url=None, header=None, data=None, page=None, funds=None):
         self.set_param(url, header, data)
         self.req_cookie = False         # relogin account
         self.hold = False               # wait for new cookie
+        self.page = page
+        self.funds = funds
+        self.no = 0
+        self.banner = '编号,ID,姓,性别,投资金额,投资日期,投资时间,'
 
 
     def set_param(self, url=None, header=None, data=None):
@@ -40,6 +46,7 @@ class fund_info(threading.Thread):
         except:
             print 'failed'
             opener.close()
+            self.page = None
             return False
         # Make sure everything is working ;)
         if r.info().get('Content-Encoding') == 'gzip':
@@ -49,95 +56,136 @@ class fund_info(threading.Thread):
         else:
             data = r.read()
 
-        return data
+        self.page = data
 
-    def get_status(self, page):
+
+    def get_primary(self):
         '''
+          得到主表信息
+            类型，
+        '''
+        page = self.page
+        # 得到类型，名称
+        pat = re.compile(r'(?<=\<title>).*(?=</title>)')
+        catch = pat.search(page)
+        # print catch.group().decode('utf-8').encode('gbk')
+        catch = catch.group().decode('utf-8')#.encode('gbk')
+        catch = catch.split(u'，')
+        a = catch[0].split(u'-')
+        b = catch[1].split(u'-')
+        type = a[0]
+        name = b[0]
+        print type, name
+
+        # 得到编号
+        pat = re.compile(r'/\d+')
+        no = pat.findall(self.url)
+        no = no[0][1:]
+        self.no = no
+        print no
+
+        # 总额
+        total = self.funds[1]
+
+        # 年化收益率，期限
+        profit = self.funds[6][0]
+        date = self.funds[6][1]
+        bonus = self.funds[6][2]
+        bonus_name = self.funds[6][3]
+
+
+        no2 = name.find('\d')
+        # print no2
+        return [no, type, name, no2, total, profit, date, bonus, bonus_name]
+
+    def get_investor(self):
+        '''
+          得到投资人信息
+        '''
+        infos = list()
+        page = self.page
+        bs = BeautifulSoup(page)
+        r = bs.find_all('div', attrs={"class":"shadow clearfix mb30 pb20"})     # <div  class="shadow clearfix mb30 pb20">
+        div = r[0]
+        r = div.find_all('tbody')
+        tbody = r[0]
+        trs = tbody.find_all('tr')
+        for tr in trs[1:]:
+            l = list()
+            info = tr.get_text()
+            info = info.strip('\n')
+            info = info.split('\n')
+            a = info[0]
+            a = a.replace(u'（', ' ')
+            a = a.replace(u'）', ' ')
+            a = a.strip(u' ')
+            p = a.split(' ')
+            l.append(p[0])      # id get
+            pp = p[1]
+            l.append(pp[0])     # name get
+            l.append(pp[1:])     # sex get
+            a = info[1].replace(u',', '')
+            l.append(a)          # jine get
+            a = info[2]
+            a = a.split(' ')
+            l.append(a[0])      # date get
+            l.append(a[1])      # time get
+            infos.append(l)
+
+        return infos
+
+    def get_status(self):
+        '''
+          项目地址，投资总额，可投金额，剩余时间，可投金额差值，可投金额差值是否比上次的大(1)，[年化收益率，期限，收益方式，优惠]
           依次返回：目前投资总额、剩余投资总额、剩余投资天数。
           返回格式：列表
           目前投资总额/剩余投资总额：精确到元
           剩余投资天数：以分钟表示
         '''
-        info = list()
-        pat = re.compile(r'(?<=<span class="color-yellow1 f16">)[\d\,\.]*(?=</span>)')
-        r = pat.findall(page)
-        if r is None:
+        page = self.page
+        # 是否需要重新登陆        URL=/user/login
+        pat = re.compile(r'URL=/user/login')
+        relogin = pat.findall(page)
+        if len(relogin) != 0:
+            print 'relogin please'
             return False
-
-        for a in r:
-            c = int(float((a.replace(',', ''))))
-            info.append(c)
-
-        pat = re.compile(r'(?<=<span class="color-black f16">)[^<.*]*(?=</span>)', re.DOTALL)
-        r = pat.findall(page)
-        if r is not None:
-            b = r[0].replace('\n', '')
-            b = b.replace(' ', '')
-            b = b.decode('utf-8').encode('gbk')
-            # print b
-            c = b
-            # info.append(c)              # xx天xx时xx分
-            c = c.replace('\xb7\xd6', "]")
-            c = c.replace('\xca\xb1', ',')
-            c = c.replace('\xcc\xec', ',')
-            c = "["+c
-            b = eval(c)
-            min = 0
-            for a in range(len(b)):
-                min = min + b[-1-a]*(60**a)
-            # print min, 'minites'
-            info.append(min)
-            return info
-
-        info.append(None)
-        return info
-
-    def strategy():
-        '''
-          分析
-        '''
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        # 不用重新登陆，提取信息
+        fn = str(self.no)+'.csv'
+        fund_file = open(fn, 'w+')
+        print self.banner
+        a = self.banner
+        a = a.decode('utf-8').encode('gbk')
+        # fund_file.write('编号，ID，姓，性别，投资金额，投资日期，投资时间，')
+        fund_file.write(a)
+        fund_file.write('\n')
+        info = self.get_investor()
+        for l in info:
+            fund_file.write(u'25698,')
+            for ll in l:
+                print ll
+                a = ll.encode('gbk')
+                print a
+                fund_file.write(a)
+                fund_file.write(',')
+            fund_file.write('\n')
+        # try:
+            # for l in info:
+                # fund_file.write('25698,')
+                # for ll in l:
+                    # print ll
+                    # a = ll.decode('utf-8').encode('gbk')
+                    # fund_file.write(a)
+                    # fund_file.write(',')
+                # fund_file.write('\n')
+        # except:
+            # fund_file.close()
+        fund_file.close()
+        return self.get_primary()         # 返回主表信息 
 
 '''
     测试用例
 '''
-_url = 'http://www.firstp2p.com/deal/20337'
+_url = 'http://www.firstp2p.com/deal/20459'
 _header = {
     u'Host':u'www.firstp2p.com',
     u'User-Agent':u'Mozilla/5.0 (Windows NT 5.1; rv:36.0) Gecko/20100101 Firefox/36.0',
@@ -146,27 +194,29 @@ _header = {
     u'Accept-Encoding':u'gzip, deflate',
     # u'Referer':u'http://www.firstp2p.com/',
     # u'Cookie':u'PHPSESSID=emk4jof8co8osccrrfao3vu0b0; _ncfdm=; _ncftr=; _ncf1=1427351222717.6764.0003.0002.0003.0002.0; _ncf2=1427351222717.8047.0003.0002; _ncf3=1427351254278.3.31561.6574.1.61744; mlta=%7B%22mltn%22%3A%7B%22250582%22%3A%5B%226729839450975941527%3E2%3E1427351254237%3E1%3E1427351254180%3E6729839450949563443%3E1427351228421%22%2C1442903254393%5D%7D%2C%22mlti%22%3A%7B%22250582%22%3A%5B%22142735122633671481%22%2C1442903226336%5D%7D%2C%22mltmapping%22%3A%7B%220%22%3A%5B1%2C1429943254395%5D%7D%2C%22mlts%22%3A%7B%22250582%22%3A%5B%225%22%2C1442903254334%5D%7D%7D; fpid=449038',
-    u'Cookie':u'_ncf1=1427281175480.2552.0042.0027.0004.0002.1; mlta=%7B%22mltn%22%3A%7B%22250582%22%3A%5B%226729839474450228134%3E2%3E1427374176901%3E1%3E1427374176932%3E4613147466355709634%3E1427281173830%22%2C1442926186803%5D%7D%2C%22mlti%22%3A%7B%22250582%22%3A%5B%22142728117549330967%22%2C1442833175493%5D%7D%2C%22mlts%22%3A%7B%22250582%22%3A%5B%225%22%2C1442833175698%5D%7D%2C%22mltmapping%22%3A%7B%220%22%3A%5B1%2C1429966186804%5D%7D%7D; __utma=11121699.127153641.1427288139.1427288139.1427288139.1; __utmz=11121699.1427288139.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); ag_fid=jsATN6DIlyGFuiVF; __ag_cm_=1427288139015; _ga=GA1.2.127153641.1427288139; PHPSESSID=qc7nibvkktsbuaa0urguseou40; _ncfdm=; _ncftr=; _ncf2=1427370006554.8573.0004.0002; _ncf3=1427376214400.3.111752.110328.0.0',
+    u'Cookie':u'_ncf1=1427281175480.2552.0048.0029.0005.0002.3; mlta=%7B%22mltn%22%3A%7B%22250582%22%3A%5B%226720832428303710354%3E4%3E1427523712179%3E2%3E1427523712106%3E4613147466355709634%3E1427281173830%22%2C1443075723865%5D%7D%2C%22mlti%22%3A%7B%22250582%22%3A%5B%22142728117549330967%22%2C1442833175493%5D%7D%2C%22mlts%22%3A%7B%22250582%22%3A%5B%225%22%2C1442833175698%5D%7D%2C%22mltmapping%22%3A%7B%220%22%3A%5B1%2C1430115723867%5D%7D%7D; __utma=11121699.127153641.1427288139.1427288139.1427288139.1; __utmz=11121699.1427288139.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); ag_fid=jsATN6DIlyGFuiVF; __ag_cm_=1427288139015; _ga=GA1.2.127153641.1427288139; PHPSESSID=10hcj6tcjjbagaagp5crjg0ga4; _ncfdm=; _ncftr=; _ncf2=1427523708979.2816.0003.0001; _ncf3=1427523723717.3.14738.9116.0.0; fpid=449038',
     u'Connection':u'keep-alive'
 }
 
 
 
 
-
-
-
-
 if __name__ == "__main__":        # 用于测试
-    c = fund_info(_url, _header)
-    d = c.get_page()
-    # d = True
+    a = open('data.txt', 'r+')
+    d = a.read()
+    a.close()
+    c = fund_info(_url, _header, None, d)
+    c.get_status()
+    sys.exit(0)
+    # d = c.get_page()
+    d = True
     if d is False:
         print 'open page: %s --- failed' % (c.url)
     else:
-        a = open('test1.txt', 'w+')
-        a.write(d)
-        # d = a.read()
+        # a = open('data.txt', 'w+')
+        a = open('data.txt', 'r+')
+        # a.write(d)
+        d = a.read()
         a.close()
         e = c.get_status(d)
         if e is not False:

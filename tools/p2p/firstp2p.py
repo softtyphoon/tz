@@ -4,6 +4,8 @@ import sys
 import urllib2
 import re
 import gzip
+import types
+import random
 
 type = {
     'crd':u'产融贷',         # icon_melting
@@ -32,6 +34,10 @@ class firstp2p():
 
     def __init__(self, url=None, header=None, data=None):
         self.set_param(url, header, data)
+        self.last = [0, 0, 0, 0, 0, 0]         # 依次为：项目地址，投资总额，可投金额，剩余时间，可投金额差值，可投金额差值是否比上次的大(1)，年化收益率
+        self.delay_level = 0                # 爬取间隔等级，0=[5-15], 1=[15-25], 2=[25, 35], 3=[35, 45], 4=[45, 55], 5=[55, 65]...
+        self.delay_max_level = 100          # 爬取的间隔等级最大值
+        self.level_up = 0                   # 0.步长不变，1.步长增加，2.步长减少
 
     def set_param(self, url=None, header=None, data=None):
         self.url = url
@@ -69,7 +75,7 @@ class firstp2p():
     def get_status(self, content=None):
         '''
           解析主页，得到各个项目的信息
-          返回列表数据，依次为：项目地址，投资总额，可投金额，剩余时间
+          返回列表数据，依次为：项目地址，投资总额，可投金额，剩余时间，可投金额差值，可投金额差值是否比上次的大(1)，[年化收益率，期限，收益方式，优惠]
         '''
         funds = list()
         if content is None:
@@ -82,20 +88,20 @@ class firstp2p():
         tbody = bs.find_all('tbody', attrs={'class':'j_index_tbody'})
         trs = tbody[0].find_all('tr')
         for tr in trs:
-            sub = list()
+            sub = list(range(7))
             atag =  tr.find('a')
             if atag is None:
                 continue
-            sub.append(atag['href'])
-            print atag['href']
+            sub[0] = (atag['href'])                  # 获得项目地址
+            # print atag['href']
 
             atag =  tr.find_all('div', attrs={'class':'pro_links'})
             str = atag[0].get_text()
             c = repr(str)
             pat = re.compile(r'(?<=1a).*(?=\\u4e07)')
             b = pat.findall(c)
-            sub.append(int(float(b[0]))*10000)
-            print b[0]
+            sub[1] = (int(float(b[0])*10000))        # 获得项目资金
+            # print b[0]
 
 
             atag =  tr.find_all('div', attrs={'class':'pl20'})
@@ -105,8 +111,8 @@ class firstp2p():
             pat = re.compile(r'(?<=ff1a).*(?=\\u5143)')
             st = pat.findall(text)
             st = st[0].replace(',', '')
-            sub.append(int(float(st)))
-            print atag[0].get_text().strip('\n')
+            sub[2] = (int(float(st)))                # 获得已投金额
+            # print atag[0].get_text().strip('\n')
 
             day = 0
             hour = 0
@@ -136,142 +142,142 @@ class firstp2p():
                     min = pat.search(a).group()
                 except:
                     min = 0
-            print day, hour, min
-            
-            time_left = int(day)*24*60 + int(hour)*60 + int(min)
-            print time_left
-            sub.append(time_left)
+            # print day, hour, min
 
+            time_left = int(day)*24*60 + int(hour)*60 + int(min)      # 获得项目剩余时间，分钟为单位
+            # print time_left
+            sub[3] = (time_left)
+
+            # 添加，年化收益率      "btm f14 tc">8.50<em>%</em>
+            subb = list(range(5))
+            pat = re.compile(u'(?<=btm f14 tc">).*(?=<em>%</em>)')
+            atag =  tr.find_all('p', attrs={'class':'btm f14 tc'})
+            subb[0] = atag[0].get_text().strip('\n')
+            subb[1] = atag[1].get_text().strip('\n')
+            subb[1] = subb[1].strip(' ')
+            atag =  tr.find_all('p', attrs={'class':'date tc'})              #<p class="date tc">按月付息到期还本</p>
+            subb[2] = atag[0].get_text().strip('\n')
+            atag =  tr.find_all('span', attrs={'class':'icon_new j_tips'})
+            if len(atag) == 0:
+                subb[3] = 0
+                subb[4] = u''
+            else:
+                subb[3] = 1
+                subb[4] = atag[0].get_text()
+            sub[6] = subb
+            # print subb[4]
             funds.append(sub)
-        print funds
 
-def get_primary_table(url = main_url, header = _header, data = None):
-    opener = urllib2.OpenerDirector()
-    http_handler = urllib2.HTTPHandler()
-    https_handler = urllib2.HTTPSHandler()
-    opener.add_handler(http_handler)
-    opener.add_handler(https_handler)
-    req = urllib2.Request(url)
-    for (name, val) in header.items():
-        req.add_header(name, val)
-    if data is not None:
-        req.add_data(self.data)
+        if self.last[0] == 0:       # self.last 并没有有效数据
+            self.last = funds
 
-    try:
-        r = opener.open(req, timeout = 60)
-    except:
-        print 'failed'
-        opener.close()
-        r.close()
-        sys.exit(0)
-    # Make sure everything is working ;)
-    if r.info().get('Content-Encoding') == 'gzip':
-        buf = StringIO.StringIO(r.read())
-        f = gzip.GzipFile(fileobj=buf)
-        data = f.read()
-    else:
-        data = r.read()
+        for (i, j) in  enumerate(funds):
+            j[4] = self.last[i][2] - j[2]
 
-    # t = open('rer.txt', 'w+')
-    # t.write(data)
-    # t.close()
-    # extract valid URLs
-    fund_url = list()
-    bs = BeautifulSoup(data)
-    fund_div = bs.find_all('div', attrs={'id':'index_list_tab'})
-    fund_div_s = fund_div[0].find_all('div', attrs={'class':'pro_name'})
-    for a in fund_div_s:
-      atag =  a.find('a')
-      if atag is None:
-          continue
-      fund_url.append(atag['href'])
-    return fund_url
+            if j[4] > self.last[i][4]:
+                j[5] = 1           # 差值变大，说明买的人增多
+            else:
+                j[5] = 0           # 差值变小，说明买的人减少
+
+            funds[i] = j
+        return funds
+
+    def decision_maker(self, funds=None):
+        '''
+          根据项目状态，决定是否进行数据爬取
+          传入参数funds，为函数get_status()的返回值，列表数据，依次为：项目地址，投资总额，可投金额，剩余时间，可投金额差值，可投金额差值是否比上次的大(1)
+          判断策略：
+            1. 剩余可投金额：少于总额的20%；两次减少的间隔超过了总金额的10%
+            2. 剩余时间：少于30分钟
+        '''
+        # 先进行下次采样步长的判定，降低步长有最大优先级
+        thr = funds[1]*0.01
+        if self.level_up != 2:      # 尚未被设置为减少步长
+            if funds[4] > (funds[1]*0.1):   #这次采样期间，已经被买走了超过10%
+                self.level_up = 2
+            elif (funds[5] == 1) and (self.last[5] == 1):   # 连续两次间隔期间，减少的投资额成增加趋势，买的人越来越多
+                self.level_up = 2
+            elif (funds[5] == 0) and (self.last[5] == 0):   # 连续两次间隔期间，减少的投资额成减少趋势，买的人越来越少
+                self.level_up = 1
+            elif (funds[4] <thr) and (self.last[4] <thr):   # 连续两次，买的金额都少于总额的1/100
+                self.level_up = 1
+            else:
+                self.level_up = 0
 
 
-def get_sub_table():
-    return 0
+        # 本项目是否需要采样的判定
+        if funds is None or len(funds) == 0:
+            return False
+
+        part = float(funds[2])/funds[1]
+        if part < 0.2:
+            return True
+
+        if funds[3] < 30:
+            return True
+
+        if self.last[2] != 0:
+            sub = self.last[2] - funds[2]
+            part = float(sub)/funds[1]
+            if part >= 0.1:
+                return True
+        return False
+
+    def run(self):
+        '''
+          主函数
+        '''
+        # 首先，得到所有可投项目的信息
+        funds = self.get_status(None)
+        while True:
+            for f in funds:       # 逐个进行判定
+                go = decision_maker(f)
+                if go:
+                    # 启动一个进程，进行该项目的爬取
+
+                    pass
+            # 爬取间隔控制
+            if self.level_up == 2:      # 步长减少
+                if self.delay_level > 20:
+                    self.delay_level = self.delay_level - 10
+                else:
+                    self.delay_level = self.delay_level - 1
+            elif self.level_up == 1:    # 步长增加
+                if self.delay_level > 10:
+                    self.delay_level = self.delay_level + 10
+                else:
+                    self.delay_level = self.delay_level + 1
+
+            if self.delay_level > self.delay_max_level:
+                self.delay_level = self.delay_max_level
+            elif self.delay_level < 0:
+                self.delay_level = 0
+
+            delay_time = self.delay_level*10+5
+            delay_sec = random.uniform(delay_time, delay_time + 10)
+            timer.sleep(int(delay_sec))
+            funds = self.get_status(None)
+
+        print 'done, never reach here'
+
+
 
 if __name__ == "__main__":
-    # fund_list = get_primary_table()
-    # print repr(fund_list)
-    # sys.exit(0)
-    fn = open('rer.txt', 'r+')
-    c = fn.read()
-    a = firstp2p(main_url, _header)
-    a.get_status()
-    sys.exit(0)
-    bs = BeautifulSoup(c)
-    fund_url = list()
-    tbody = bs.find_all('tbody', attrs={'class':'j_index_tbody'})
-    trs = tbody[0].find_all('tr')
-    for tr in trs:
-        atag =  tr.find('a')
-        if atag is None:
-            continue
-        print atag['href']
-
-        atag =  tr.find_all('div', attrs={'class':'pro_links'})
-        str = atag[0].get_text()
-        c = repr(str)
-        pat = re.compile(r'(?<=1a).*(?=\\u4e07)')
-        b = pat.findall(c)
-        print b[0]
-
-
-        atag =  tr.find_all('div', attrs={'class':'pl20'})
-        text = atag[0].get_text().strip('\n')
-        text = repr(text)
-        pat = re.compile(r'')
-        print repr(text) #.split('\n')
-
-        # atag =  tr.find_all('em', attrs={'class':'color-yellow1'})
-        # str = atag[0].get_text()
-        # print str
-
-        # t = atag[0].parent
-        # print t
-        # p = t.next_sibling
-        # print p.string
-        # print t.get_text()
-
-    sys.exit(0)
-
-    fund_div = bs.find_all('div', attrs={'id':'index_list_tab'})
-    fund_div_s = fund_div[0].find_all('div', attrs={'class':'pro_name'})
-    for a in fund_div_s:
-      print repr(a)
-      atag =  a.find('a')
-      if atag is None:
-          continue
-      print atag['href']
-      atag =  a.find_all('div', attrs={'class':'pro_links'})
-      str = atag[0].get_text()
-      c = repr(str)
-      pat = re.compile(r'(?<=1a).*(?=\\u4e07)')
-      b = pat.findall(c)
-      print b[0]
-
-      atag =  a.find_all('em', attrs={'class':'color-yellow1'})
-      str = atag[0].get_text()
-      # c = repr(str)
-      # pat = re.compile(r'(?<=1a).*(?=\\u4e07)')
-      # b = pat.findall(c)
-      print str
-
-
-    sys.exit(0)
-    b = bs.find_all('div', attrs={'id':'index_list_tab'})
-    # d = b[0].find_all('div', attrs={'class':'tc'})
-    d = b[0].find_all('div', attrs={'class':'pro_name'})
-    for a in d:
-      # print a.contents[0].contents[0]
-      atag =  a.find('a')
-      if atag is None:
-          continue
-      print atag['href']
-    print '+'
-
-
+    a = range(10)
+    a[2] = 53
+    for (i,b) in  enumerate(a):
+      print i, b
+    c = open('rer.txt', 'r+')
+    a = firstp2p()
+    b = a.get_status(c)
+    print type('a')
+    print type(b[0][0])
+    print type(b[0][6])
+    n = open('1.txt', 'w+')
+    
+    n.write(b[0])
+    n.close()
+    print b
 # total: tbody, j_index_tbody
 # 可投金额：<em class="color-yellow1">737,682.86元</em>
 # 总额：<div class="pro_links">
