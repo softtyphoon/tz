@@ -1,2 +1,2 @@
 cmd
-python sss.py
+python firstp2p.py

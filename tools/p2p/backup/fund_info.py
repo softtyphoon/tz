@@ -6,8 +6,7 @@ import multiprocessing
 import time
 import sys
 import copy
-import gzip
-# from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 
 
 # class fund_info(threading.Thread):
@@ -38,7 +37,7 @@ class fund_info(object):
         '''
           得到页面
         '''
-        # print self.url
+        print self.url
         opener = urllib2.OpenerDirector()
         http_handler = urllib2.HTTPHandler()
         https_handler = urllib2.HTTPSHandler()
@@ -53,7 +52,7 @@ class fund_info(object):
         try:
             r = opener.open(req, timeout = 60)
         except:
-            # print 'failed'
+            print 'failed'
             opener.close()
             self.page = None
             return False
@@ -66,17 +65,6 @@ class fund_info(object):
             data = r.read()
 
         self.page = data
-        
-        pat = re.compile(r'/\d+')
-        no = pat.findall(self.url)
-        no = no[0][1:]
-        self.no = no
-        # fn = self.no + '.txt'
-        # ppp = open(fn, 'w+')
-        # ppp.write(self.page)
-        # ppp.close()
-        opener.close()
-        r.close()
         return data
 
 
@@ -86,34 +74,16 @@ class fund_info(object):
             类型，
         '''
         page = self.page
-        # 得到类型，名称     # <label>100起投<投资达人+1%>，e利宝025-11</label>  <label>公益标021</label>  名称和编号
-        # pat = re.compile(r'(?<=\<title>).*(?=</title>)')
-        
-        # 名称和编号
-        pat = re.compile(r'(?<=\<label>)[^"]+(?=</label>)')
+        # 得到类型，名称
+        pat = re.compile(r'(?<=\<title>).*(?=</title>)')
         catch = pat.search(page)
-        res = catch.group().decode('utf-8')
-        res = res.strip(u'\n')
-        res = res.strip(u' ')
-        pat = re.compile(u'\D+')
-        catch = pat.search(res)
-        name = catch.group().encode('gbk')
-        pat = re.compile(u'\d+')
-        catch = pat.search(res)
-        no2 = catch.group().encode('gbk')
-        
-        # 类型
-        if name == u'公益标'.encode('gbk'):
-            type = name
-        else:
-            pat = re.compile(r'(?<=\<title>).*(?=</title>)')
-            catch = pat.search(page)
-            res = catch.group().decode('utf-8')
-            res = res.split(u'-')
-            try:
-              type = res[0].encode('gbk')
-            except:
-                type = u'应收贷'.encode('gbk')
+        # print catch.group().decode('utf-8').encode('gbk')
+        catch = catch.group().decode('utf-8')#.encode('gbk')
+        catch = catch.split(u'，')
+        a = catch[0].split(u'-')
+        b = catch[1].split(u'-')
+        type = a[0]
+        name = b[0]
         # print type, name
 
         # 得到编号
@@ -121,8 +91,8 @@ class fund_info(object):
         no = pat.findall(self.url)
         no = no[0][1:]
         self.no = no
-        # print self.url
-        # print no
+        print self.url
+        print no
 
         # 总额
         total = self.funds[1]
@@ -134,7 +104,7 @@ class fund_info(object):
         bonus_name = self.funds[6][3]
 
 
-        # no2 = name.find('\d')
+        no2 = name.find('\d')
         # print no2
         return [no, type, name, no2, total, profit, date, bonus, bonus_name]
 
@@ -143,54 +113,41 @@ class fund_info(object):
           得到投资人信息
           20150329：改为正则，BS解析有bug
         '''
-        # fn = self.no + '_info.txt'
-        # ppp = open(fn, 'w+')
+        fn = self.no + '.txt'
+        ppp = open(fn, 'w+')
+        ppp.write(self.page)
+        ppp.close()
         infos = list()
         page = self.page
-        # print page
-        pat = re.compile(r'(?<=<tbody>).+(?=</tbody>)', re.DOTALL)
-        a = pat.findall(page)
-        pat = re.compile(r'(?<=<tbody>).+', re.DOTALL)
-        b = pat.findall(a[0])
-        pat = re.compile(r'(?<=<tbody>).+', re.DOTALL)
-        c = pat.findall(b[0])
-        # print c
-        # print len(c)
-        # return 0
-        tbody = c[0]
-        # ppp.write(tbody)
-        # ppp.write('\n')
+        bs = BeautifulSoup(page)
+        r = bs.find_all('div', attrs={"class":"shadow clearfix mb30 pb20"})     # <div  class="shadow clearfix mb30 pb20">
+        div = r[0]
+        r = div.find_all('tbody')
+        # tbody = r[0].get_text()
+        tbody = repr(r[0])
+        print tbody
         # pat = re.compile(r'(?<=\n)[0-9\\.]+(?=\n)')
-        pat = re.compile(r'(?<=<span>)[^<]+(?=</span>)')
+        pat = re.compile(r'(?<=<span>)[^\n^<]+(?=</span>)')
         namet =  pat.findall(tbody)
-        # print namet
-        # print len(str(namet))
-        # return 0
         pat = re.compile(r'(?<=">)[^\n^<]+(?=</span>)')
         jine =  pat.findall(tbody)
-        # print jine
-        # print len(str(jine))
-        # return 0
         pat = re.compile(r'(?<=<td>)[^<]+(?=</td>)')
         date =  pat.findall(tbody)
-        # print date
-        # print len((date))
-        # return 0
         name = copy.copy(namet[1:])
         for (i, j) in enumerate(name):
             l = list()
-            # print '--------------------------------'
-            # print name[i].decode('utf-8')
-            # print jine[i].decode('utf-8')
-            # print date[i].decode('utf-8')
-            a = name[i].decode('utf-8')
+            print name[i].decode('utf-8')
+            print jine[i].decode('utf-8')
+            print date[i].decode('utf-8')
+            a = name[i]
             # print a
-            a = a.replace(u'（', ' ')
-            a = a.replace(u'）', ' ')
-            a = a.strip(u' ')
-            p = a.split(u' ')
-            # print p
-            pp = p[1]
+            a = a.replace('（', ' ')
+            a = a.replace('）', ' ')
+            a = a.strip(' ')
+            p = a.split(' ')
+            print 'name', p
+            pp = p[1].decode('utf-8')
+            # print info
             l.append(p[0])      # id get
             l.append(pp[0])     # name get
             l.append(pp[1:])     # sex get
@@ -200,12 +157,75 @@ class fund_info(object):
             a = a.split(' ')
             l.append(a[0])      # date get
             l.append(a[1])      # time get
+            print '-----------------'
+            for k in l:
+                print k
+            print '-----------------'
+            continue
+            # print j.decode('utf-8')
+            info = trb.get_text()
+            info = info.strip('\n')
+            info = info.split('\n')
+            a = info[0]
+            a = a.replace(u'（', ' ')
+            a = a.replace(u'）', ' ')
+            a = a.strip(u' ')
+            p = a.split(' ')
+            # print info
+            l.append(p[0])      # id get
+            pp = p[1]
+            l.append(pp[0])     # name get
+            l.append(pp[1:])     # sex get
+            a = info[1].replace(u',', '')
+            l.append(a)          # jine get
+            a = info[2]
+            a = a.split(' ')
+            l.append(a[0])      # date get
+            l.append(a[1])      # time get
+        # for i in pat.findall(tbody):
+            # print i.decode('utf-8')
+        # print len(pat.findall(tbody))
+        # trs = tbody.find_all('tr')
+        # tra = copy.copy(trs[0])
+        # trs = None
+        # print tbody
+        # print trs[0]
+        return False
+        # for tr in trs[1:]:
+        while True:
+            l = list()
+            while True:
+              trb = copy.copy(tra.next_sibling)
+              tra = copy.copy(tra)
+              print '-', trb
+              if trb == '\n':
+                  continue
+              else:
+                  break
+            if trb is None:
+                break
+            print trb
+            info = trb.get_text()
+            info = info.strip('\n')
+            info = info.split('\n')
+            a = info[0]
+            a = a.replace(u'（', ' ')
+            a = a.replace(u'）', ' ')
+            a = a.strip(u' ')
+            p = a.split(' ')
+            # print info
+            l.append(p[0])      # id get
+            pp = p[1]
+            l.append(pp[0])     # name get
+            l.append(pp[1:])     # sex get
+            a = info[1].replace(u',', '')
+            l.append(a)          # jine get
+            a = info[2]
+            a = a.split(' ')
+            l.append(a[0])      # date get
+            l.append(a[1])      # time get
             infos.append(l)
-            # for lim in l:
-                # lim = lim.encode('gbk')
-                # ppp.write(lim)
-            # ppp.write('\n')
-        # ppp.close()
+            tra = copy.copy(trb)
         return infos
 
     def get_status(self):
@@ -225,7 +245,8 @@ class fund_info(object):
             return False
         primary_info = self.get_primary()         # 主表信息 
         # 不用重新登陆，提取信息
-        fn = 'csv\\' + str(self.no)+'.csv'
+        fn = str(self.no)+'.csv'
+        print fn
         fund_file = open(fn, 'w+')
         # print self.banner
         a = self.banner
@@ -236,10 +257,8 @@ class fund_info(object):
         info = self.get_investor()
         for l in info:
             fund_file.write(u'25698,')
-            # print l
             for ll in l:
                 # print ll
-                # a = ll.decode('utf-8').encode('gbk')
                 a = ll.encode('gbk')
                 # print a
                 fund_file.write(a)
@@ -294,10 +313,9 @@ if __name__ == "__main__":        # 用于测试
     if d is False:
         print 'open page: %s --- failed' % (c.url)
     else:
-        # a = open('20582.txt', 'w+')
+        # a = open('20572.txt', 'w+')
         # a.write(d)
-        # a = open('20332.txt', 'r+')       # 公益带
-        a = open('19795.txt', 'r+')
+        a = open('data.txt', 'r+')
         d = a.read()
         a.close()
         c.page = d

@@ -1,11 +1,14 @@
 ﻿#codng:utf-8
 from bs4 import BeautifulSoup
+# from task_exec import task_exec
+from fund_info import fund_info
 import sys
 import urllib2
 import re
 import gzip
 import types
 import random
+import time
 
 type = {
     'crd':u'产融贷',         # icon_melting
@@ -38,6 +41,7 @@ class firstp2p():
         self.delay_level = 0                # 爬取间隔等级，0=[5-15], 1=[15-25], 2=[25, 35], 3=[35, 45], 4=[45, 55], 5=[55, 65]...
         self.delay_max_level = 100          # 爬取的间隔等级最大值
         self.level_up = 0                   # 0.步长不变，1.步长增加，2.步长减少
+        self.f_header = header
 
     def set_param(self, url=None, header=None, data=None):
         self.url = url
@@ -190,6 +194,7 @@ class firstp2p():
             1. 剩余可投金额：少于总额的20%；两次减少的间隔超过了总金额的10%
             2. 剩余时间：少于30分钟
         '''
+        return True     # 用于测试
         # 先进行下次采样步长的判定，降低步长有最大优先级
         thr = funds[1]*0.01
         if self.level_up != 2:      # 尚未被设置为减少步长
@@ -226,16 +231,38 @@ class firstp2p():
     def run(self):
         '''
           主函数
+          20150329：撤出了多进程方法
         '''
         # 首先，得到所有可投项目的信息
         funds = self.get_status(None)
+        # 启动进程
+        # tasks = multiprocessing.JoinableQueue()
+        # results = multiprocessing.Queue()
+        # num_proc = 3        # 启动三个进程
+        # procs = [ task_exec(tasks, results)
+                  # for i in range(num_proc) ]
+        # for p in procs:
+            # p.start()
+        # 主循环
         while True:
+            num_jobs = 0
             for f in funds:       # 逐个进行判定
-                go = decision_maker(f)
+            #返回列表数据，依次为：项目地址，投资总额，可投金额，剩余时间，可投金额差值，可投金额差值是否比上次的大(1)，[年化收益率，期限，收益方式，优惠]
+                go = self.decision_maker(f)
                 if go:
                     # 启动一个进程，进行该项目的爬取
-
-                    pass
+                    print 'go to: %s' % f[0]
+                    while True:     # 一直尝试，直到完成为止
+                        task = fund_info(url=f[0], header=self.f_header, data=None, page = None, funds=f)
+                        result = task.run()
+                        if result is False:
+                            # 重新登陆，获取新cookie
+                            print 'failed: relogin'
+                            break
+                        else:
+                            print 'success: %s' % (f[0])
+                            break
+                        # 等待所有任务完成
             # 爬取间隔控制
             if self.level_up == 2:      # 步长减少
                 if self.delay_level > 20:
@@ -254,30 +281,32 @@ class firstp2p():
                 self.delay_level = 0
 
             delay_time = self.delay_level*10+5
-            delay_sec = random.uniform(delay_time, delay_time + 10)
-            timer.sleep(int(delay_sec))
+            # delay_sec = random.uniform(delay_time, delay_time + 10)
+            delay_sec = random.uniform(40, 60)
+            print 'waiting ... ... ...'
+            time.sleep(int(delay_sec))
             funds = self.get_status(None)
+            
 
         print 'done, never reach here'
 
 
 
 if __name__ == "__main__":
-    a = range(10)
-    a[2] = 53
-    for (i,b) in  enumerate(a):
-      print i, b
-    c = open('rer.txt', 'r+')
-    a = firstp2p()
-    b = a.get_status(c)
-    print type('a')
-    print type(b[0][0])
-    print type(b[0][6])
-    n = open('1.txt', 'w+')
-    
-    n.write(b[0])
-    n.close()
-    print b
+    while True:
+        try:
+            a = firstp2p(main_url, _header)
+            a.run()
+            
+            if is_sigint_up:
+                print "Exit"
+                break
+        except KeyboardInterrupt:
+            print 'exit'
+            sys.exit(0)
+        except:
+            a = None
+    sys.exit(0)
 # total: tbody, j_index_tbody
 # 可投金额：<em class="color-yellow1">737,682.86元</em>
 # 总额：<div class="pro_links">

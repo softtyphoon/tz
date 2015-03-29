@@ -6,8 +6,7 @@ import multiprocessing
 import time
 import sys
 import copy
-import gzip
-# from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 
 
 # class fund_info(threading.Thread):
@@ -38,7 +37,7 @@ class fund_info(object):
         '''
           得到页面
         '''
-        # print self.url
+        print self.url
         opener = urllib2.OpenerDirector()
         http_handler = urllib2.HTTPHandler()
         https_handler = urllib2.HTTPSHandler()
@@ -53,7 +52,7 @@ class fund_info(object):
         try:
             r = opener.open(req, timeout = 60)
         except:
-            # print 'failed'
+            print 'failed'
             opener.close()
             self.page = None
             return False
@@ -66,17 +65,6 @@ class fund_info(object):
             data = r.read()
 
         self.page = data
-        
-        pat = re.compile(r'/\d+')
-        no = pat.findall(self.url)
-        no = no[0][1:]
-        self.no = no
-        # fn = self.no + '.txt'
-        # ppp = open(fn, 'w+')
-        # ppp.write(self.page)
-        # ppp.close()
-        opener.close()
-        r.close()
         return data
 
 
@@ -86,34 +74,16 @@ class fund_info(object):
             类型，
         '''
         page = self.page
-        # 得到类型，名称     # <label>100起投<投资达人+1%>，e利宝025-11</label>  <label>公益标021</label>  名称和编号
-        # pat = re.compile(r'(?<=\<title>).*(?=</title>)')
-        
-        # 名称和编号
-        pat = re.compile(r'(?<=\<label>)[^"]+(?=</label>)')
+        # 得到类型，名称
+        pat = re.compile(r'(?<=\<title>).*(?=</title>)')
         catch = pat.search(page)
-        res = catch.group().decode('utf-8')
-        res = res.strip(u'\n')
-        res = res.strip(u' ')
-        pat = re.compile(u'\D+')
-        catch = pat.search(res)
-        name = catch.group().encode('gbk')
-        pat = re.compile(u'\d+')
-        catch = pat.search(res)
-        no2 = catch.group().encode('gbk')
-        
-        # 类型
-        if name == u'公益标'.encode('gbk'):
-            type = name
-        else:
-            pat = re.compile(r'(?<=\<title>).*(?=</title>)')
-            catch = pat.search(page)
-            res = catch.group().decode('utf-8')
-            res = res.split(u'-')
-            try:
-              type = res[0].encode('gbk')
-            except:
-                type = u'应收贷'.encode('gbk')
+        # print catch.group().decode('utf-8').encode('gbk')
+        catch = catch.group().decode('utf-8')#.encode('gbk')
+        catch = catch.split(u'，')
+        a = catch[0].split(u'-')
+        b = catch[1].split(u'-')
+        type = a[0]
+        name = b[0]
         # print type, name
 
         # 得到编号
@@ -121,8 +91,8 @@ class fund_info(object):
         no = pat.findall(self.url)
         no = no[0][1:]
         self.no = no
-        # print self.url
-        # print no
+        print self.url
+        print no
 
         # 总额
         total = self.funds[1]
@@ -134,7 +104,7 @@ class fund_info(object):
         bonus_name = self.funds[6][3]
 
 
-        # no2 = name.find('\d')
+        no2 = name.find('\d')
         # print no2
         return [no, type, name, no2, total, profit, date, bonus, bonus_name]
 
@@ -143,8 +113,12 @@ class fund_info(object):
           得到投资人信息
           20150329：改为正则，BS解析有bug
         '''
-        # fn = self.no + '_info.txt'
+        # fn = self.no + '.txt'
         # ppp = open(fn, 'w+')
+        # ppp.write(self.page)
+        # ppp.close()
+        fn = self.no + '_info.txt'
+        ppp = open(fn, 'w+')
         infos = list()
         page = self.page
         # print page
@@ -158,8 +132,8 @@ class fund_info(object):
         # print len(c)
         # return 0
         tbody = c[0]
-        # ppp.write(tbody)
-        # ppp.write('\n')
+        ppp.write(tbody)
+        ppp.write('\n')
         # pat = re.compile(r'(?<=\n)[0-9\\.]+(?=\n)')
         pat = re.compile(r'(?<=<span>)[^<]+(?=</span>)')
         namet =  pat.findall(tbody)
@@ -190,7 +164,7 @@ class fund_info(object):
             a = a.strip(u' ')
             p = a.split(u' ')
             # print p
-            pp = p[1]
+            pp = p[1].decode('utf-8')
             l.append(p[0])      # id get
             l.append(pp[0])     # name get
             l.append(pp[1:])     # sex get
@@ -205,7 +179,7 @@ class fund_info(object):
                 # lim = lim.encode('gbk')
                 # ppp.write(lim)
             # ppp.write('\n')
-        # ppp.close()
+        ppp.close()
         return infos
 
     def get_status(self):
@@ -225,7 +199,7 @@ class fund_info(object):
             return False
         primary_info = self.get_primary()         # 主表信息 
         # 不用重新登陆，提取信息
-        fn = 'csv\\' + str(self.no)+'.csv'
+        fn = str(self.no)+'.csv'
         fund_file = open(fn, 'w+')
         # print self.banner
         a = self.banner
@@ -236,12 +210,12 @@ class fund_info(object):
         info = self.get_investor()
         for l in info:
             fund_file.write(u'25698,')
-            # print l
+            print l
             for ll in l:
-                # print ll
+                print ll
                 # a = ll.decode('utf-8').encode('gbk')
-                a = ll.encode('gbk')
-                # print a
+                a = ll
+                print a
                 fund_file.write(a)
                 fund_file.write(',')
             fund_file.write('\n')
@@ -296,8 +270,7 @@ if __name__ == "__main__":        # 用于测试
     else:
         # a = open('20582.txt', 'w+')
         # a.write(d)
-        # a = open('20332.txt', 'r+')       # 公益带
-        a = open('19795.txt', 'r+')
+        a = open('20518.txt', 'r+')
         d = a.read()
         a.close()
         c.page = d
