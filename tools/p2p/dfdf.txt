@@ -1,0 +1,133 @@
+http://www.firstp2p.com/deal/20659
+first time
+go to: http://www.firstp2p.com/deal/20659
+success: http://www.firstp2p.com/deal/20659
+http://www.firstp2p.com/deal/20626
+first time
+go to: http://www.firstp2p.com/deal/20626
+success: http://www.firstp2p.com/deal/20626
+http://www.firstp2p.com/deal/20640
+first time
+go to: http://www.firstp2p.com/deal/20640
+success: http://www.firstp2p.com/deal/20640
+http://www.firstp2p.com/deal/20651
+first time
+go to: http://www.firstp2p.com/deal/20651
+success: http://www.firstp2p.com/deal/20651
+http://www.firstp2p.com/deal/20646
+first time
+go to: http://www.firstp2p.com/deal/20646
+success: http://www.firstp2p.com/deal/20646
+http://www.firstp2p.com/deal/20605
+first time
+go to: http://www.firstp2p.com/deal/20605
+success: http://www.firstp2p.com/deal/20605
+waiting ... ... ... 14 second
+http://www.firstp2p.com/deal/20659
+1
+Pass: http://www.firstp2p.com/deal/20659
+http://www.firstp2p.com/deal/20626
+0
+1
+Pass: http://www.firstp2p.com/deal/20626
+http://www.firstp2p.com/deal/20640
+0
+0
+1
+Pass: http://www.firstp2p.com/deal/20640
+http://www.firstp2p.com/deal/20651
+0
+0
+0
+1
+total limit
+go to: http://www.firstp2p.com/deal/20651
+success: http://www.firstp2p.com/deal/20651
+http://www.firstp2p.com/deal/20646
+0
+0
+0
+0
+1
+Pass: http://www.firstp2p.com/deal/20646
+http://www.firstp2p.com/deal/20605
+0
+0
+0
+0
+0
+1
+Pass: http://www.firstp2p.com/deal/20605
+waiting ... ... ... 14 second
+http://www.firstp2p.com/deal/20659
+1
+Pass: http://www.firstp2p.com/deal/20659
+http://www.firstp2p.com/deal/20626
+0
+1
+Pass: http://www.firstp2p.com/deal/20626
+http://www.firstp2p.com/deal/20640
+0
+0
+1
+Pass: http://www.firstp2p.com/deal/20640
+http://www.firstp2p.com/deal/20651
+0
+0
+0
+1
+total limit
+go to: http://www.firstp2p.com/deal/20651
+success: http://www.firstp2p.com/deal/20651
+http://www.firstp2p.com/deal/20646
+0
+0
+0
+0
+1
+Pass: http://www.firstp2p.com/deal/20646
+http://www.firstp2p.com/deal/20605
+0
+0
+0
+0
+0
+1
+Pass: http://www.firstp2p.com/deal/20605
+waiting ... ... ... 14 second
+http://www.firstp2p.com/deal/20659
+1
+Pass: http://www.firstp2p.com/deal/20659
+http://www.firstp2p.com/deal/20626
+0
+1
+Pass: http://www.firstp2p.com/deal/20626
+http://www.firstp2p.com/deal/20640
+0
+0
+1
+Pass: http://www.firstp2p.com/deal/20640
+http://www.firstp2p.com/deal/20651
+0
+0
+0
+1
+total limit
+go to: http://www.firstp2p.com/deal/20651
+success: http://www.firstp2p.com/deal/20651
+http://www.firstp2p.com/deal/20646
+0
+0
+0
+0
+1
+Pass: http://www.firstp2p.com/deal/20646
+http://www.firstp2p.com/deal/20605
+0
+0
+0
+0
+0
+1
+Pass: http://www.firstp2p.com/deal/20605
+waiting ... ... ... 11 second

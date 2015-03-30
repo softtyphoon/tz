@@ -9,14 +9,7 @@ import gzip
 import types
 import random
 import time
-
-type = {
-    'crd':u'产融贷',         # icon_melting
-    'ysd':u'应收贷',         # icon_ysd'
-    'a':u'd'
-}
-
-
+import copy
 
 
 
@@ -37,7 +30,8 @@ class firstp2p():
 
     def __init__(self, url=None, header=None, data=None):
         self.set_param(url, header, data)
-        self.last = [0, 0, 0, 0, 0, 0]         # 依次为：项目地址，投资总额，可投金额，剩余时间，可投金额差值，可投金额差值是否比上次的大(1)，年化收益率
+        # self.last = [0, 0, 0, 0, 0, 0, [0, 0, 0, 0]]         # 依次为：项目地址，投资总额，可投金额，剩余时间，可投金额差值，可投金额差值是否比上次的大(1)，年化收益率
+        self.last = None         # 依次为：项目地址，投资总额，可投金额，剩余时间，可投金额差值，可投金额差值是否比上次的大(1)，年化收益率
         self.delay_level = 0                # 爬取间隔等级，0=[5-15], 1=[15-25], 2=[25, 35], 3=[35, 45], 4=[45, 55], 5=[55, 65]...
         self.delay_max_level = 100          # 爬取的间隔等级最大值
         self.level_up = 0                   # 0.步长不变，1.步长增加，2.步长减少
@@ -60,12 +54,16 @@ class firstp2p():
         if self.data is not None:
             req.add_data(self.data)
 
-        try:
-            r = opener.open(req, timeout = 60)
-        except:
-            print 'failed'
-            opener.close()
-            return False
+        while True:
+            try:
+                r = opener.open(req, timeout = 60)
+                break
+            except:
+                time.sleep(5)
+                continue
+                print 'failed'
+                opener.close()
+                return False
         # Make sure everything is working ;)
         if r.info().get('Content-Encoding') == 'gzip':
             buf = StringIO.StringIO(r.read())
@@ -74,6 +72,7 @@ class firstp2p():
         else:
             data = r.read()
 
+        opener.close()
         return data
 
     def get_status(self, content=None):
@@ -172,39 +171,60 @@ class firstp2p():
             # print subb[4]
             funds.append(sub)
 
-        if self.last[0] == 0:       # self.last 并没有有效数据
-            self.last = funds
-
+        # if self.last[0] == 0:       # self.last 并没有有效数据
+            # self.last = funds
         for (i, j) in  enumerate(funds):
-            j[4] = self.last[i][2] - j[2]
-
-            if j[4] > self.last[i][4]:
-                j[5] = 1           # 差值变大，说明买的人增多
+            if self.last is None:
+                j[4] = 0
+                j[5] = 0
             else:
-                j[5] = 0           # 差值变小，说明买的人减少
-
+                j[4] = self.last[i][2] - j[2]
+                
+                if j[4] > self.last[i][4]:
+                    j[5] = 1           # 差值变大，说明买的人增多
+                else:
+                    j[5] = 0           # 差值变小，说明买的人减少
             funds[i] = j
         return funds
 
     def decision_maker(self, funds=None):
         '''
           根据项目状态，决定是否进行数据爬取
-          传入参数funds，为函数get_status()的返回值，列表数据，依次为：项目地址，投资总额，可投金额，剩余时间，可投金额差值，可投金额差值是否比上次的大(1)
+          传入参数funds，为函数get_status()的返回值，列表数据，依次为：
+              项目地址，投资总额，可投金额，剩余时间，可投金额差值，可投金额差值是否比上次的大(1)，[年化收益率，期限，收益方式，优惠]
           判断策略：
             1. 剩余可投金额：少于总额的20%；两次减少的间隔超过了总金额的10%
             2. 剩余时间：少于30分钟
         '''
-        return True     # 用于测试
+        # return True     # 用于测试
+        # 找到对应的上次的funds信息
+        id = funds[0]
+        # print '------------------'
+        print id
+        if self.last is None:
+            print 'first time'
+            return True
+        funds_last = None
+        for i in self.last:
+            # print i
+            index = i.count(id)
+            print index
+            if index > 0:
+                funds_last = i
+                break
+        if funds_last is None:
+            print 'new item'
+            return True         # 新加入的项目
         # 先进行下次采样步长的判定，降低步长有最大优先级
         thr = funds[1]*0.01
         if self.level_up != 2:      # 尚未被设置为减少步长
             if funds[4] > (funds[1]*0.1):   #这次采样期间，已经被买走了超过10%
                 self.level_up = 2
-            elif (funds[5] == 1) and (self.last[5] == 1):   # 连续两次间隔期间，减少的投资额成增加趋势，买的人越来越多
+            elif (funds[5] == 1) and (funds_last[5] == 1):   # 连续两次间隔期间，减少的投资额成增加趋势，买的人越来越多
                 self.level_up = 2
-            elif (funds[5] == 0) and (self.last[5] == 0):   # 连续两次间隔期间，减少的投资额成减少趋势，买的人越来越少
+            elif (funds[5] == 0) and (funds_last[5] == 0):   # 连续两次间隔期间，减少的投资额成减少趋势，买的人越来越少
                 self.level_up = 1
-            elif (funds[4] <thr) and (self.last[4] <thr):   # 连续两次，买的金额都少于总额的1/100
+            elif (funds[4] <thr) and (funds_last[4] <thr):   # 连续两次，买的金额都少于总额的1/100
                 self.level_up = 1
             else:
                 self.level_up = 0
@@ -216,15 +236,19 @@ class firstp2p():
 
         part = float(funds[2])/funds[1]
         if part < 0.2:
+            print 'total limit'
             return True
 
         if funds[3] < 30:
+            print 'time limit'
             return True
 
-        if self.last[2] != 0:
-            sub = self.last[2] - funds[2]
+        # print self.last
+        if funds_last[2] != 0:
+            sub = funds_last[2] - funds[2]
             part = float(sub)/funds[1]
             if part >= 0.1:
+                print 'change limit'
                 return True
         return False
 
@@ -244,25 +268,57 @@ class firstp2p():
         # for p in procs:
             # p.start()
         # 主循环
+        pri_table = open('csv/main.csv', 'a+')
+        last_p = list()
+        times = 0
         while True:
+            cur_p = list()
             num_jobs = 0
             for f in funds:       # 逐个进行判定
             #返回列表数据，依次为：项目地址，投资总额，可投金额，剩余时间，可投金额差值，可投金额差值是否比上次的大(1)，[年化收益率，期限，收益方式，优惠]
                 go = self.decision_maker(f)
+                # go = True     # 由于测试
                 if go:
                     # 启动一个进程，进行该项目的爬取
                     print 'go to: %s' % f[0]
-                    while True:     # 一直尝试，直到完成为止
+                    fund_done = False
+                    while fund_done is False:     # 一直尝试，直到完成为止
                         task = fund_info(url=f[0], header=self.f_header, data=None, page = None, funds=f)
+                        # [no, type, name, no2, total, profit, date, bonus, bonus_name]
                         result = task.run()
                         if result is False:
                             # 重新登陆，获取新cookie
-                            print 'failed: relogin'
-                            break
+                            print 'relogin . . .'
+                            time.sleep(3)
+                            continue
                         else:
                             print 'success: %s' % (f[0])
-                            break
-                        # 等待所有任务完成
+                            # for i in result:
+                                # print i
+                            cur_p.append(result[0])
+                            if last_p.count(result[0]) == 0:
+                                # pri = ','.join(result)
+                                id = result[0]
+                                if self.last is None:
+                                    for i in result:
+                                         pri = i+ ','
+                                         pri_table.writelines(pri)
+                                    pri_table.writelines('\n')
+                                    pri_table.flush()
+                                else:
+                                    for i in self.last:
+                                      index = i.count(id)
+                                      if index == 0:
+                                          for i in result:
+                                              pri = i+ ','
+                                              pri_table.writelines(pri)
+                                          pri_table.writelines('\n')
+                                          pri_table.flush()
+                                          break
+                            fund_done = True
+                else:
+                    print 'Pass: %s' % (f[0])
+            # 等待所有任务完成
             # 爬取间隔控制
             if self.level_up == 2:      # 步长减少
                 if self.delay_level > 20:
@@ -282,11 +338,14 @@ class firstp2p():
 
             delay_time = self.delay_level*10+5
             # delay_sec = random.uniform(delay_time, delay_time + 10)
-            delay_sec = random.uniform(40, 60)
-            print 'waiting ... ... ...'
+            delay_sec = random.uniform(10, 15)
+            print 'waiting ... ... ... %d second' % delay_sec
             time.sleep(int(delay_sec))
+            self.last = copy.copy(funds)
             funds = self.get_status(None)
-            
+            times += 1
+            if times == 4:
+                sys.exit(0)
 
         print 'done, never reach here'
 
@@ -297,15 +356,15 @@ if __name__ == "__main__":
         try:
             a = firstp2p(main_url, _header)
             a.run()
-            
+
             if is_sigint_up:
                 print "Exit"
                 break
         except KeyboardInterrupt:
             print 'exit'
             sys.exit(0)
-        except:
-            a = None
+        # except:
+            # a = None
     sys.exit(0)
 # total: tbody, j_index_tbody
 # 可投金额：<em class="color-yellow1">737,682.86元</em>

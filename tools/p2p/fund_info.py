@@ -71,10 +71,10 @@ class fund_info(object):
         no = pat.findall(self.url)
         no = no[0][1:]
         self.no = no
-        # fn = self.no + '.txt'
-        # ppp = open(fn, 'w+')
-        # ppp.write(self.page)
-        # ppp.close()
+        fn = self.no + '.txt'
+        ppp = open(fn, 'w+')
+        ppp.write(self.page)
+        ppp.close()
         opener.close()
         r.close()
         return data
@@ -97,7 +97,12 @@ class fund_info(object):
         res = res.strip(u' ')
         pat = re.compile(u'\D+')
         catch = pat.search(res)
-        name = catch.group().encode('gbk')
+        name = catch.group()#.encode('gbk')
+        index = name.find(u'，')
+        if index == -1:
+          name = name.encode('gbk')
+        else:
+          name = name[index+1:].encode('gbk')
         pat = re.compile(u'\d+')
         catch = pat.search(res)
         no2 = catch.group().encode('gbk')
@@ -111,7 +116,12 @@ class fund_info(object):
             res = catch.group().decode('utf-8')
             res = res.split(u'-')
             try:
-              type = res[0].encode('gbk')
+                type = res[0]#.encode('gbk')
+                index = type.find(u'，')
+                if index == -1:
+                  type = type.encode('gbk')
+                else:
+                  type = type[index+1:].encode('gbk')
             except:
                 type = u'应收贷'.encode('gbk')
         # print type, name
@@ -125,13 +135,16 @@ class fund_info(object):
         # print no
 
         # 总额
-        total = self.funds[1]
+        total = str(self.funds[1])
 
         # 年化收益率，期限
         profit = self.funds[6][0]
+        profit = profit.replace(u'\n', '')
+        profit = profit.replace(u' ', '').encode('gbk')
         date = self.funds[6][1]
-        bonus = self.funds[6][2]
-        bonus_name = self.funds[6][3]
+        date = date.replace(u'\n', '').encode('gbk')
+        bonus = self.funds[6][2].encode('gbk')
+        bonus_name = str(self.funds[6][3])
 
 
         # no2 = name.find('\d')
@@ -157,7 +170,10 @@ class fund_info(object):
         # print c
         # print len(c)
         # return 0
-        tbody = c[0]
+        if len(c) == 0:
+            return u''          # 无人购买
+        else:
+          tbody = c[0]
         # ppp.write(tbody)
         # ppp.write('\n')
         # pat = re.compile(r'(?<=\n)[0-9\\.]+(?=\n)')
