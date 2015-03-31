@@ -23,7 +23,7 @@ class fund_info(object):
 
     def run(self):
         '''
-          
+
         '''
         self.get_page()
         r = self.get_status()
@@ -66,7 +66,7 @@ class fund_info(object):
             data = r.read()
 
         self.page = data
-        
+
         pat = re.compile(r'/\d+')
         no = pat.findall(self.url)
         no = no[0][1:]
@@ -88,14 +88,14 @@ class fund_info(object):
         page = self.page
         # 得到类型，名称     # <label>100起投<投资达人+1%>，e利宝025-11</label>  <label>公益标021</label>  名称和编号
         # pat = re.compile(r'(?<=\<title>).*(?=</title>)')
-        
+
         # 名称和编号
         pat = re.compile(r'(?<=\<label>)[^"]+(?=</label>)')
         catch = pat.search(page)
         res = catch.group().decode('utf-8')
         res = res.strip(u'\n')
         res = res.strip(u' ')
-        
+
         if res[0:2] == u'公益':
             name = res.encode('gbk')
             no2 = u''
@@ -120,7 +120,7 @@ class fund_info(object):
                     pat = re.compile(u'[-\d]+')
                     catch = pat.findall(res)[-1]
                     no2 = catch.encode('gbk')
-        
+
         # 类型
         if name == u'公益标'.encode('gbk'):
             type = name
@@ -159,7 +159,7 @@ class fund_info(object):
         date = date.replace(u'\n', '').encode('gbk')
         bonus_w = self.funds[6][2].encode('gbk')
         is_bonus = str(self.funds[6][3])
-        
+
         # <span class="icon_new j_tips" title="">月末特惠标</span>
         pat = re.compile(u'(?<=class="icon_new j_tips" title="">).+(?=</span>)')
         res = pat.findall(page)
@@ -167,7 +167,7 @@ class fund_info(object):
             bonus_name = u''
         else:
             bonus_name = res[0].decode('utf-8').encode('gbk')
-            
+
         if is_bonus == '0':
             bonus_name = u''
             # print bonus_name
@@ -175,7 +175,7 @@ class fund_info(object):
 
         # no2 = name.find('\d')
         # print no2
-        return [no, type, name, no2, total, profit, date, bonus_w, is_bonus, bonus_name]
+        return [no, type, name, no2, total, profit, date, bonus_w, is_bonus, bonus_name, self.funds[6][5]]
 
     def get_investor(self):
         '''
@@ -266,9 +266,9 @@ class fund_info(object):
         if len(relogin) != 0:
             # print 'relogin please'
             return False
-        primary_info = self.get_primary()         # 主表信息 
+        primary_info = self.get_primary()         # 主表信息
         # 不用重新登陆，提取信息
-        fn = 'csv\\' + str(self.no)+'.csv'
+        fn = 'csv/' + str(self.no)+'.csv'
         fund_file = open(fn, 'w+')
         # print self.banner
         a = self.banner
@@ -301,7 +301,7 @@ class fund_info(object):
         # except:
             # fund_file.close()
         fund_file.close()
-        return primary_info         # 返回主表信息 
+        return primary_info         # 返回主表信息
 
 '''
     测试用例

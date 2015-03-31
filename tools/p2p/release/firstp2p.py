@@ -99,7 +99,7 @@ class firstp2p():
     def get_status(self, content=None):
         '''
           解析主页，得到各个项目的信息
-          返回列表数据，依次为：项目地址，投资总额，可投金额，剩余时间，可投金额差值，可投金额差值是否比上次的大(1)，[年化收益率，期限，收益方式，优惠]
+          返回列表数据，依次为：项目地址，投资总额，可投金额，剩余时间，可投金额差值，可投金额差值是否比上次的大(1)，[年化收益率，期限，收益方式，优惠，优惠利率]
         '''
         funds = list()
         if content is None:
@@ -117,7 +117,14 @@ class firstp2p():
             if atag is None:
                 continue
             sub[0] = (atag['href'])                  # 获得项目地址
-            # print atag['href']
+            name = atag.get_text()#.decode('utf-8')
+            pat = re.compile(u'[\d.]+%')
+            lilv_l = pat.findall(name)
+            if len(lilv_l) == 0:
+                lilv = u'0'.encode('gbk')
+            else:
+                lilv = lilv_l[0].encode('gbk')
+            
 
             atag =  tr.find_all('div', attrs={'class':'pro_links'})
             str = atag[0].get_text()
@@ -173,7 +180,7 @@ class firstp2p():
             sub[3] = (time_left)
 
             # 添加，年化收益率      "btm f14 tc">8.50<em>%</em>
-            subb = list(range(5))
+            subb = list(range(6))
             pat = re.compile(u'(?<=btm f14 tc">).*(?=<em>%</em>)')
             atag =  tr.find_all('p', attrs={'class':'btm f14 tc'})
             subb[0] = atag[0].get_text().strip('\n')
@@ -188,6 +195,7 @@ class firstp2p():
             else:
                 subb[3] = 1
                 subb[4] = atag[0].get_text()
+            subb[5] = lilv
             sub[6] = subb
             # print subb[4]
             funds.append(sub)
@@ -385,7 +393,7 @@ class firstp2p():
 
             delay_time = self.delay_level*10+5
             # delay_sec = random.uniform(delay_time, delay_time + 10)
-            delay_sec = random.uniform(10, 15)
+            delay_sec = random.uniform(35, 65)
             print 'waiting ... ... ... %d second' % delay_sec
             time.sleep(int(delay_sec))
             self.last = copy.copy(funds)
@@ -399,6 +407,11 @@ class firstp2p():
 
 
 if __name__ == "__main__":
+    # name = u'辅导费-232.5%34-是的'
+    # pat = re.compile(u'[\d.]+%')
+    # lilv = pat.findall(name)
+    # print lilv[0]
+    # sys.exit(0)
     while True:
         try:
             a = firstp2p(main_url, _header)
