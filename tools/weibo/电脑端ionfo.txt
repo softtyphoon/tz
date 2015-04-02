@@ -1,0 +1,179 @@
+1.登陆
+POST /login/?rand=680324357&backURL=http%3A%2F%2Fweibo.cn%2F&backTitle=%E5%BE%AE%E5%8D%9A&vt=4&revalid=2&ns=1 HTTP/1.1
+Origin: http://login.weibo.cn
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Content-Type: application/x-www-form-urlencoded
+Accept-Language: zh-CN,zh;q=0.8
+Referer: http://login.weibo.cn/login/?ns=1&revalid=2&backURL=http%3A%2F%2Fweibo.cn%2F&backTitle=%CE%A2%B2%A9&vt=
+Host: login.weibo.cn
+User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.48 Safari/537.36 QQBrowser/8.0.3345.400
+Accept-Encoding: gzip, deflate
+Content-Length: 183
+Proxy-Connection: Keep-Alive
+Pragma: no-cache
+
+mobile=xinming_song%40sina.com&password_4285=14176596&backURL=http%253A%252F%252Fweibo.cn%252F&backTitle=%E5%BE%AE%E5%8D%9A&tryCount=&vk=4285_813c_1856403337&submit=%E7%99%BB%E5%BD%95
+
+
+2. 应答
+HTTP/1.1 302 Found
+Date: Wed, 01 Apr 2015 14:38:25 GMT
+Server: Apache
+Set-Cookie: _T_WM=cedb82b0168dc0be70299a78de3336c0; expires=Fri, 01-May-2015 14:38:25 GMT; path=/; domain=.weibo.cn; httponly
+Set-Cookie: SUB=_2A254GHKxDeTxGeRJ7FQZ8S_PyjiIHXVb4x75rDV6PUJbrdANLUHHkW1U9y9W_0udu0BAxv_FLeYPbWR7wQ..; path=/; domain=.weibo.cn; httponly
+Set-Cookie: gsid_CTandWM=4uq849b81T4ED1I2gaPePbEnh54; path=/; domain=.weibo.cn; httponly
+Set-Cookie: PHPSESSID=bf8f673f2f305111176e03f83aa9bf0d; path=/
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Pragma: no-cache
+X-Log-Uid: 2776811314
+Location: http://newlogin.sina.cn/crossDomain/?g=4uq849b81T4ED1I2gaPePbEnh54&t=1427899105&m=a923&r=&u=http%3A%2F%2Fweibo.cn%2F%3Fgsid%3D4uq849b81T4ED1I2gaPePbEnh54%26vt%3D4&cross=1&st=ST-Mjc3NjgxMTMxNA==-1427899105-yf-8B942ABB95EFEE2024260AFBF002CD3A,ST-Mjc3NjgxMTMxNA==-1427899105-yf-555F4914B63CD206A4F6410F5BB87B1D&vt=4
+Vary: Accept-Encoding
+x-debug: 172.16.140.196
+Content-Length: 0
+Connection: close
+Content-Type: text/html
+SINA-LB:aGEuMjEwLmcxLnlmLmxiLnNpbmFub2RlLmNvbQ==
+SINA-TS:MzU2ZWMzNjggMCAwIDAgMTIgNjYK
+
+
+3. 跳转
+GET /crossDomain/?g=4uq849b81T4ED1I2gaPePbEnh54&t=1427899105&m=a923&r=&u=http%3A%2F%2Fweibo.cn%2F%3Fgsid%3D4uq849b81T4ED1I2gaPePbEnh54%26vt%3D4&cross=1&st=ST-Mjc3NjgxMTMxNA==-1427899105-yf-8B942ABB95EFEE2024260AFBF002CD3A,ST-Mjc3NjgxMTMxNA==-1427899105-yf-555F4914B63CD206A4F6410F5BB87B1D&vt=4 HTTP/1.1
+Accept-Language: zh-CN,zh;q=0.8
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Referer: http://login.weibo.cn/login/?ns=1&revalid=2&backURL=http%3A%2F%2Fweibo.cn%2F&backTitle=%CE%A2%B2%A9&vt=
+Host: newlogin.sina.cn
+User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.48 Safari/537.36 QQBrowser/8.0.3345.400
+Accept-Encoding: gzip, deflate
+Proxy-Connection: Keep-Alive
+
+4. 应答
+HTTP/1.1 302 Found
+Date: Wed, 01 Apr 2015 14:39:21 GMT
+Server: Apache
+Set-Cookie: _T_WM=f3c6700569ad1f38feb05e748285af50; expires=Fri, 01-May-2015 14:39:21 GMT; path=/; domain=.sina.cn; httponly
+Set-Cookie: SUB=_2A254GHNJDeTxGeRJ7FQZ8S_PyjiIHXVb4x0BrDV9PUJbrdANLW75kW0k0zg-SQv_1jE-OLeNONJRKb7pOQ..; expires=Thursday, 31-Mar-16 14:39:21 GMT; path=/; domain=.sina.cn; httponly
+Set-Cookie: SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W5Oh6iPOv1W9gELkaqq4xZN5JpX5oz7; expires=Thursday, 31-Mar-16 14:39:21 GMT; path=/; domain=.sina.cn
+Set-Cookie: gsid_CTandWM=4uq849b81T4ED1I2gaPePbEnh54; expires=Fri, 07-Feb-2025 14:39:21 GMT; path=/; domain=.sina.cn; httponly
+Location: http://passport.weibo.com/sso/crossdomain?service=sinawap&entry=sinawap&action=login&ticket=ST-Mjc3NjgxMTMxNA%3D%3D-1427899105-yf-555F4914B63CD206A4F6410F5BB87B1D&proj=1&display=0&cdurl=http%3A%2F%2Fweibo.cn%2F%3Fgsid%3D4uq849b81T4ED1I2gaPePbEnh54%26vt%3D4
+Vary: Accept-Encoding
+x-debug: 172.16.140.198
+Content-Length: 0
+Connection: close
+Content-Type: text/html
+SINA-LB:aGEuMjA1LmcxLnlmLmxiLnNpbmFub2RlLmNvbQ==
+SINA-TS:Mzc2ZWMzNjggMCAwIDAgNSA0OQo=
+
+5. 跳转
+GET /sso/crossdomain?service=sinawap&entry=sinawap&action=login&ticket=ST-Mjc3NjgxMTMxNA%3D%3D-1427899105-yf-555F4914B63CD206A4F6410F5BB87B1D&proj=1&display=0&cdurl=http%3A%2F%2Fweibo.cn%2F%3Fgsid%3D4uq849b81T4ED1I2gaPePbEnh54%26vt%3D4 HTTP/1.1
+Accept-Language: zh-CN,zh;q=0.8
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Referer: http://login.weibo.cn/login/?ns=1&revalid=2&backURL=http%3A%2F%2Fweibo.cn%2F&backTitle=%CE%A2%B2%A9&vt=
+Host: passport.weibo.com
+User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.48 Safari/537.36 QQBrowser/8.0.3345.400
+Accept-Encoding: gzip, deflate
+Proxy-Connection: Keep-Alive
+Cookie: SSOLoginState=1427898873; SUS=SID-2776811314-1427898873-GZ-13gxn-955cc089f2cda433ad2f5a1a972fc138; SUE=es%3D6a274fc6e504e4ec73917794b0450dc6%26ev%3Dv1%26es2%3D979e33899ca80cff79258a700c15759f%26rs0%3DK06AUn%252B5mXuK45XdTLvavh%252BWLKO8Fsw2N%252FpqqcMpI4EMhPYw%252Bh%252Bzccv9Brf8rAcFzSv1j%252FNElFlG5e0V33vzkLLzUyxY%252B5pGupWZdl8mawki7b2Yu7CLWwzoceIL3mBwAL9%252BfALAZcdsVf2taTLGFs2JBlbv6d54XShLO0XyilU%253D%26rv%3D0; SUP=cv%3D1%26bt%3D1427898873%26et%3D1427985273%26d%3Dc909%26i%3Dc138%26us%3D1%26vf%3D%26vt%3D%26ac%3D%26st%3D0%26uid%3D2776811314%26name%3Dxinming_song%2540sina.com%26nick%3Dhi%25E5%25AE%258B%25E6%2596%25B0%25E6%2598%258E%26fmp%3D%26lcp%3D
+
+
+6. 应答
+HTTP/1.1 302 Moved Temporarily
+Server: nginx
+Date: Wed, 01 Apr 2015 14:40:03 GMT
+Content-Type: text/html
+Connection: close
+Cache-Control: no-cache, must-revalidate
+Expires: Sat, 26 Jul 1997 05:00:00 GMT
+Pragma: no-cache
+P3P: CP="CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR"
+Pragma: no-cache
+Set-Cookie: SSOLoginState=1427899203; path=/; domain=.weibo.com
+Set-Cookie: SUS=SID-2776811314-1427899203-GZ-g4mn6-ae5406344b94b80be643ac204a00c138; path=/; domain=.weibo.com; httponly
+Set-Cookie: SUE=es%3D1ecbcf2a85df1d1c7355701b926ce8bc%26ev%3Dv1%26es2%3D4a36ab6a114335df09afbb8ca24297ac%26rs0%3DXlkjRidEMHieymj7nwCZrocW4SnmsQ3Rgnxyr4Or9YiKyHD4I64qF9q6cu0wYytqUh1xRKRrpeRHQn3tL17b0qZP7SuhpSRc1ym8JgF9RVn%252BIy7Tnfr%252F68%252Fal5ml7D47nmU8F1qDe8o6zrxOVi2Ch8XIfyDmHI%252FPAqy1RwzAI5Q%253D%26rv%3D0;path=/;domain=.weibo.com;Httponly
+Set-Cookie: SUP=cv%3D1%26bt%3D1427899203%26et%3D1427985603%26d%3Dc909%26i%3Dc138%26us%3D1%26vf%3D%26vt%3D%26ac%3D%26st%3D0%26uid%3D2776811314%26name%3Dxinming_song%2540sina.com%26nick%3Dhi%25E5%25AE%258B%25E6%2596%25B0%25E6%2598%258E%26fmp%3D%26lcp%3D;path=/;domain=.weibo.com
+Set-Cookie: SUB=_2A254GHMTDeTxGeRJ7FQZ8S_PyjiIHXVb4x1brDV8PEJb6dN5ZiGXHfK6lFLyRO-uiJ0DGG7sg75K46M.; expires=Thursday, 31-Mar-16 14:40:03 GMT; path=/; domain=.weibo.com; httponly
+Set-Cookie: SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W5Oh6iPOv1W9gELkaqq4xZN; expires=Thursday, 31-Mar-16 14:40:03 GMT; path=/; domain=.weibo.com
+Location: http://weibo.cn/?gsid=4uq849b81T4ED1I2gaPePbEnh54&vt=4
+DPOOL_HEADER: dryad38
+SINA-LB:aGEuOTEuZzEucXhnLmxiLnNpbmFub2RlLmNvbQ==
+SINA-TS:ZDdjYTk0Y2UgMCAwIDAgMTUgMzMK
+Content-Length: 0
+
+7. 跳转
+GET /?gsid=4uq849b81T4ED1I2gaPePbEnh54&vt=4 HTTP/1.1
+Accept-Language: zh-CN,zh;q=0.8
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Referer: http://login.weibo.cn/login/?ns=1&revalid=2&backURL=http%3A%2F%2Fweibo.cn%2F&backTitle=%CE%A2%B2%A9&vt=
+Host: weibo.cn
+User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.48 Safari/537.36 QQBrowser/8.0.3345.400
+Accept-Encoding: gzip, deflate
+Proxy-Connection: Keep-Alive
+Cookie: _T_WM=cedb82b0168dc0be70299a78de3336c0; SUB=_2A254GHKxDeTxGeRJ7FQZ8S_PyjiIHXVb4x75rDV6PUJbrdANLUHHkW1U9y9W_0udu0BAxv_FLeYPbWR7wQ..; gsid_CTandWM=4uq849b81T4ED1I2gaPePbEnh54
+
+8. 应答
+
+HTTP/1.1 302 Found
+Date: Wed, 01 Apr 2015 14:41:53 GMT
+Server: Apache
+Vary: Host,Accept-Encoding
+Location: http://weibo.cn/?vt=4
+x-debug: 10.13.113.101
+Content-Length: 0
+Connection: close
+Content-Type: text/html
+SINA-LB:aGEuMjQ4LmcxLnlmLmxiLnNpbmFub2RlLmNvbQ==
+SINA-TS:OTQ5M2RlY2UgMCAxIDEgMTAgNTQK
+
+9. 跳转
+
+GET /?vt=4 HTTP/1.1
+Accept-Language: zh-CN,zh;q=0.8
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Referer: http://login.weibo.cn/login/?ns=1&revalid=2&backURL=http%3A%2F%2Fweibo.cn%2F&backTitle=%CE%A2%B2%A9&vt=
+Host: weibo.cn
+User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.48 Safari/537.36 QQBrowser/8.0.3345.400
+Accept-Encoding: gzip, deflate
+Proxy-Connection: Keep-Alive
+Cookie: _T_WM=cedb82b0168dc0be70299a78de3336c0; SUB=_2A254GHKxDeTxGeRJ7FQZ8S_PyjiIHXVb4x75rDV6PUJbrdANLUHHkW1U9y9W_0udu0BAxv_FLeYPbWR7wQ..; gsid_CTandWM=4uq849b81T4ED1I2gaPePbEnh54
+
+
+10. 最终内容
+
+HTTP/1.1 200 OK
+Date: Wed, 01 Apr 2015 14:42:28 GMT
+Server: Apache
+Vary: Host,Accept-Encoding
+X-Log-Uid: 2776811314
+x-debug: 10.13.113.215
+Content-Length: 20647
+Connection: close
+Content-Type: text/html; charset=utf-8
+SINA-LB:aGEuMjA1LmcxLnlmLmxiLnNpbmFub2RlLmNvbQ==
+SINA-TS:MjY5M2RlY2UgMCAxIDEgMTEgNDY3Cg==
+
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Cache-Control" content="no-cache"/><meta id="viewport" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=2.0" /><meta name="MobileOptimized" content="240"/><title>??????é|?é?μ</title><style type="text/css" id="internalStyle">html,body,p,form,div,table,textarea,input,span,select{font-size:12px;word-wrap:break-word;}body{background:#F8F9F9;color:#000;padding:1px;margin:1px;}table,tr,td{border-width:0px;margin:0px;padding:0px;}form{margin:0px;padding:0px;border:0px;}textarea{border:1px solid #96c1e6}textarea{width:95%;}a,.tl{color:#2a5492;text-decoration:underline;}/*a:link {color:#023298}*/.k{color:#2a5492;text-decoration:underline;}.kt{color:#F00;}.ib{border:1px solid #C1C1C1;}.pm,.pmy{clear:both;background:#ffffff;color:#676566;border:1px solid #b1cee7;padding:3px;margin:2px 1px;overflow:hidden;}.pms{clear:both;background:#c8d9f3;color:#666666;padding:3px;margin:0 1px;overflow:hidden;}.pmst{margin-top: 5px;}.pmsl{clear:both;padding:3px;margin:0 1px;overflow:hidden;}.pmy{background:#DADADA;border:1px solid #F8F8F8;}.t{padding:0px;margin:0px;height:35px;}.b{background:#e3efff;text-align:center;color:#2a5492;clear:both;padding:4px;}.bl{color:#2a5492;}.n{clear:both;background:#436193;color:#FFF;padding:4px; margin: 1px;}.nt{color:#b9e7ff;}.nl{color:#FFF;text-decoration:none;}.nfw{clear:both;border:1px solid #BACDEB;padding:3px;margin:2px 1px;}.s{border-bottom:1px dotted #666666;margin:3px;clear:both;}.tip{clear:both; background:#c8d9f3;color:#676566;border:1px solid #BACDEB;padding:3px;margin:2px 1px;}.tip2{color:#000000;padding:2px 3px;clear:both;}.ps{clear:both;background:#FFF;color:#676566;border:1px solid #BACDEB;padding:3px;margin:2px 1px;}.tm{background:#feffe5;border:1px solid #e6de8d;padding:4px;}.tm a{color:#ba8300;}.tmn{color:#f00}.tk{color:#ffffff}.tc{color:#63676A;}.c{padding:2px 5px;}.c div a img{border:1px solid #C1C1C1;}.ct{color:#9d9d9d;font-style:italic;}.cmt{color:#9d9d9d;}.ctt{color:#000;}.cc{color:#2a5492;}.nk{color:#2a5492;}.por {border: 1px solid #CCCCCC;height:50px;width:50px;}.me{color:#000000;background:#FEDFDF;padding:2px 5px;}.pa{padding:2px 4px;}.nm{margin:10px 5px;padding:2px;}.hm{padding:5px;background:#FFF;color:#63676A;}.u{margin:2px 1px;background:#ffffff;border:1px solid #b1cee7;}.ut{padding:2px 3px;}.cd{text-align:center;}.r{color:#F00;}.g{color:#0F0;}.bn{background: transparent;border: 0 none;text-align: left;padding-left: 0;}</style><script>if(top != self){top.location = self.location;}</script></head><body><div class="tm"><a href="http://weibo.cn/msg/?unread=1&amp;vt=4"><span class="tmn">1</span>?§????</a>&nbsp;&nbsp;<a href="http://weibo.cn/msg/clearAllUnread?type=dcm&amp;rl=0&amp;vt=4"><img src="http://u1.sinaimg.cn/upload/2011/08/01/5366.gif" alt="[X]" /></a><br/></div><div class="c"><a href="/pub/?tf=5_005&amp;vt=4" id="top" class="tl">?1???o</a>.<a href="http://game.weibo.cn/?fcode=100110001003&amp;vt=4">??????</a>.<a href="/find/?tf=5_007&amp;vt=4">????oo</a>.<a href="/page/523?tf=5_008&amp;vt=4" class="tl">??′?¤?</a></div><div class="n" style="padding: 6px 4px;"><a href="http://weibo.cn/?tf=5_009&amp;vt=4" class="nl">é|?é?μ</a>|<a href="http://weibo.cn/msg/?tf=5_010&amp;vt=4" class="nl">?????ˉ</a>|<a href="http://huati.weibo.cn?vt=4" class="nl">èˉ?é￠?</a>|<a href="http://weibo.cn/search/?tf=5_012&amp;vt=4" class="nl">????′￠</a>|<a href="/?rand=1522&amp;p=r&amp;vt=4" class="nl">??·??°</a></div><div class="u"><div class="ut">hi?????°???<a href="http://vip2.weibo.cn/member/pay?F=W_tq_zsbs_01&amp;vt=4"><img alt="M" src="http://u1.sinaimg.cn/upload/h5/img/members/hy_gray_s2.png"></a>&nbsp;<a href="/2776811314/info?vt=4">èμ????85%</a>&nbsp;<a  href="/account/customize/?from=home&amp;vt=4&amp;st=5b3a54">è?????</a>    </div><div class="tip2"><a href="/2776811314/profile?vt=4">??????[24]</a>&nbsp;<a href="/2776811314/follow?vt=4">??3?3¨[43]</a>&nbsp;<a href="/2776811314/fans?vt=4">?2????[11]</a>&nbsp;<a href="/at/weibo?uid=2776811314&amp;vt=4">@??????</a></div></div><div class="pms" ><form action="/mblog/sendmblog?vt=4&amp;st=5b3a54" accept-charset="UTF-8" method="post"><div><input type="hidden" name="rl" value="0" /><textarea name="content" rows="2" cols="20">?·±?¤???????</textarea><br/><input type="submit" value="??????" /><input type="submit" name="friends" value="?￥???????" /><input type="submit" name="composer" value="é???o§" /></div></form></div><div class="pms" style="margin-top: 2px;"><span class="tc">??¨é?¨</span>-<a href="/?feed=bilateral&amp;gid=10009&amp;vt=4">?￥???????</a>-<a href="/attgroup/index?vt=4">??????</a>-<a href="/fav/?vt=4">???è??</a>-<a href="/2776811314/search?f=h&amp;rl=0&amp;vt=4">?-?é??</a></div><div class="c" id="M_Cbj1G00Fv"><div><a class="nk" href="http://weibo.cn/hubeicmcc?vt=4">??-????§???¨?1??????????</a><img src="http://u1.sinaimg.cn/upload/2011/07/28/5337.gif" alt="V"/><span class="ctt">:<a href="http://weibo.cn/pages/100808topic?extparam=%E6%99%9A%E5%AE%89%E6%B9%96%E5%8C%97&amp;from=feed&amp;vt=4">#???????1????#</a>?|????????1??????￠???è?????è??????????????é?￡?°±è????§?????????????￠|èˉ???-??￥????????￥?¤??°?????°?é?¨è????-é?¨~</span></div><div><a href="http://weibo.cn/mblog/pic/Cbj1G00Fv?rl=0&amp;vt=4"><img src="http://ww1.sinaimg.cn/wap180/6c979093gw1eqpucqkdk9j20c80c6wft.jpg" alt="??????" class="ib" /></a>&nbsp;<a href="http://weibo.cn/mblog/oripic?id=Cbj1G00Fv&amp;u=6c979093gw1eqpucqkdk9j20c80c6wft&amp;vt=4">??????</a>&nbsp;<a href="http://weibo.cn/attitude/Cbj1G00Fv/add?uid=2776811314&amp;rl=0&amp;gid=10001&amp;vt=4&amp;st=5b3a54">èμ?[3]</a>&nbsp;<a href="http://weibo.cn/repost/Cbj1G00Fv?uid=1821872275&amp;rl=0&amp;gid=10001&amp;vt=4">è?????[0]</a>&nbsp;<a href="http://weibo.cn/comment/Cbj1G00Fv?uid=1821872275&amp;rl=0&amp;gid=10001&amp;vt=4#cmtfrm" class="cc">èˉ?è?o[1]</a>&nbsp;<a href="http://weibo.cn/fav/addFav/Cbj1G00Fv?rl=0&amp;vt=4&amp;st=5b3a54">???è??</a><!---->&nbsp;<span class="ct">9???é?????&nbsp;??￥è?a?????? weibo.com</span></div></div><div class="s"></div><div class="c" id="M_Cbj03dAVb"><div><a class="nk" href="http://weibo.cn/u/2418542712?vt=4">?13????-|?±?</a><img src="http://u1.sinaimg.cn/upload/2011/07/28/5337.gif" alt="V"/><span class="ctt">:????????3??|èo????é?′è?¨[é??]?????aè|???¨?ˉ1??????é?′???????ˉ1????o?????°±è??è?????è????°??|èo?????????????è????????è?????[???è??]?￥??o??????°??¨èˉ￥????o???|?????????[??????]</span>&nbsp;[<a href="http://weibo.cn/mblog/picAll/Cbj03dAVb?rl=1&amp;vt=4">????????±9???</a>]</div><div><a href="http://weibo.cn/mblog/pic/Cbj03dAVb?rl=0&amp;vt=4"><img src="http://ww2.sinaimg.cn/wap180/90280878gw1eqq0nrokqmj20c80c875m.jpg" alt="??????" class="ib" /></a>&nbsp;<a href="http://weibo.cn/mblog/oripic?id=Cbj03dAVb&amp;u=90280878gw1eqq0nrokqmj20c80c875m&amp;vt=4">??????</a>&nbsp;<a href="http://weibo.cn/attitude/Cbj03dAVb/add?uid=2776811314&amp;rl=0&amp;gid=10001&amp;vt=4&amp;st=5b3a54">èμ?[6]</a>&nbsp;<a href="http://weibo.cn/repost/Cbj03dAVb?uid=2418542712&amp;rl=0&amp;gid=10001&amp;vt=4">è?????[11]</a>&nbsp;<a href="http://weibo.cn/comment/Cbj03dAVb?uid=2418542712&amp;rl=0&amp;gid=10001&amp;vt=4#cmtfrm" class="cc">èˉ?è?o[1]</a>&nbsp;<a href="http://weibo.cn/fav/addFav/Cbj03dAVb?rl=0&amp;vt=4&amp;st=5b3a54">???è??</a><!---->&nbsp;<span class="ct">13???é?????&nbsp;??￥è?a?????? weibo.com</span></div></div><div class="s"></div><div class="c" id="M_CbiY1lc3P"><div><a class="nk" href="http://weibo.cn/u/2418542712?vt=4">?13????-|?±?</a><img src="http://u1.sinaimg.cn/upload/2011/07/28/5337.gif" alt="V"/><span class="ctt">:????1????????oa?§???ˉ?1|è?°é??????????￥?????????è°???￥???è?°è???????-?¤??oa?§?è?·???????1????????oa?§???ˉ?1|è?°??????????ˉ???????é????????é￠?é?2è??è′￥?±??±?é??é????????????????￥é??è???oaè???3???????????-￡??￥?????????è°???￥???</span></div><div><a href="http://weibo.cn/mblog/pic/CbiY1lc3P?rl=0&amp;vt=4"><img src="http://ww4.sinaimg.cn/wap180/90280878jw1eqqfkipfqjj20c8085dgf.jpg" alt="??????" class="ib" /></a>&nbsp;<a href="http://weibo.cn/mblog/oripic?id=CbiY1lc3P&amp;u=90280878jw1eqqfkipfqjj20c8085dgf&amp;vt=4">??????</a>&nbsp;<a href="http://weibo.cn/attitude/CbiY1lc3P/add?uid=2776811314&amp;rl=0&amp;gid=10001&amp;vt=4&amp;st=5b3a54">èμ?[2]</a>&nbsp;<a href="http://weibo.cn/repost/CbiY1lc3P?uid=2418542712&amp;rl=0&amp;gid=10001&amp;vt=4">è?????[1]</a>&nbsp;<a href="http://weibo.cn/comment/CbiY1lc3P?uid=2418542712&amp;rl=0&amp;gid=10001&amp;vt=4#cmtfrm" class="cc">èˉ?è?o[0]</a>&nbsp;<a href="http://weibo.cn/fav/addFav/CbiY1lc3P?rl=0&amp;vt=4&amp;st=5b3a54">???è??</a><!---->&nbsp;<span class="ct">18???é?????&nbsp;??￥è?a?????? weibo.com</span></div></div><div class="s"></div><div class="c" id="M_CbiX7eMSO"><div><a class="nk" href="http://weibo.cn/207444389?vt=4">?1??′??-|?±?</a><span class="ctt">:?-|?±????èμ????9?????￥????o??????????è???o§????????????è???????????[é|???′]via????1???????é￡?</span>&nbsp;[<a href="http://weibo.cn/mblog/picAll/CbiX7eMSO?rl=1&amp;vt=4">????????±9???</a>]</div><div><a href="http://weibo.cn/mblog/pic/CbiX7eMSO?rl=0&amp;vt=4"><img src="http://ww3.sinaimg.cn/wap180/7ccab52dgw1eqqfmq1otuj20c80nxwiu.jpg" alt="??????" class="ib" /></a>&nbsp;<a href="http://weibo.cn/mblog/oripic?id=CbiX7eMSO&amp;u=7ccab52dgw1eqqfmq1otuj20c80nxwiu&amp;vt=4">??????</a>&nbsp;<a href="http://weibo.cn/attitude/CbiX7eMSO/add?uid=2776811314&amp;rl=0&amp;gid=10001&amp;vt=4&amp;st=5b3a54">èμ?[42]</a>&nbsp;<a href="http://weibo.cn/repost/CbiX7eMSO?uid=2093659437&amp;rl=0&amp;gid=10001&amp;vt=4">è?????[83]</a>&nbsp;<a href="http://weibo.cn/comment/CbiX7eMSO?uid=2093659437&amp;rl=0&amp;gid=10001&amp;vt=4#cmtfrm" class="cc">èˉ?è?o[53]</a>&nbsp;<a href="http://weibo.cn/fav/addFav/CbiX7eMSO?rl=0&amp;vt=4&amp;st=5b3a54">???è??</a><!---->&nbsp;<span class="ct">20???é?????&nbsp;??￥è?a?????? weibo.com</span></div></div><div class="s"></div><div class="c" id="M_CbiW7bsee"><div><a class="nk" href="http://weibo.cn/u/2418542712?vt=4">?13????-|?±?</a><img src="http://u1.sinaimg.cn/upload/2011/07/28/5337.gif" alt="V"/><span class="ctt">:?????·?-?è???a?è′￥é?2????¤??￠? ????o?58?°????????o??????￥????·±??3????????¨5??1?¤????????????·?-?????a???μ????o???aé???????oèo2é???°?è-|????????????????????????é|?????¤??￠?????°?è-|??????é?2é?????èμ???°????????￡??′è§????????°?????1???¨?￥????é?oè???°?????????μ????o?58?°????????????·?-??????????????????ˉè￠?è-|??1???è§￡?????￥???<a href="http://weibo.cn/sinaurl?f=w&amp;u=http%3A%2F%2Ft.cn%2FRAqFtQu&amp;ep=CbiW7bsee%2C2418542712%2CCbiW7bsee%2C2418542712&amp;vt=4">http://t.cn/RAqFtQu</a>????????????è???-??ˉ????????12??1??￥????￥????[???é???±?]</span></div><div><a href="http://weibo.cn/mblog/pic/CbiW7bsee?rl=0&amp;vt=4"><img src="http://ww1.sinaimg.cn/wap180/90280878jw1eqqffmetnej208c05kgma.jpg" alt="??????" class="ib" /></a>&nbsp;<a href="http://weibo.cn/mblog/oripic?id=CbiW7bsee&amp;u=90280878jw1eqqffmetnej208c05kgma&amp;vt=4">??????</a>&nbsp;<a href="http://weibo.cn/attitude/CbiW7bsee/add?uid=2776811314&amp;rl=0&amp;gid=10001&amp;vt=4&amp;st=5b3a54">èμ?[2]</a>&nbsp;<a href="http://weibo.cn/repost/CbiW7bsee?uid=2418542712&amp;rl=0&amp;gid=10001&amp;vt=4">è?????[3]</a>&nbsp;<a href="http://weibo.cn/comment/CbiW7bsee?uid=2418542712&amp;rl=0&amp;gid=10001&amp;vt=4#cmtfrm" class="cc">èˉ?è?o[1]</a>&nbsp;<a href="http://weibo.cn/fav/addFav/CbiW7bsee?rl=0&amp;vt=4&amp;st=5b3a54">???è??</a><!---->&nbsp;<span class="ct">23???é?????&nbsp;??￥è?a?????? weibo.com</span></div></div><div class="s"></div><div class="c" id="M_CbiTXAhPL"><div><a class="nk" href="http://weibo.cn/u/2418542712?vt=4">?13????-|?±?</a><img src="http://u1.sinaimg.cn/upload/2011/07/28/5337.gif" alt="V"/><span class="ctt">:????o????BMI???????????￥è?¨???????o?a?|a?|</span></div><div><a href="http://weibo.cn/mblog/pic/CbiTXAhPL?rl=0&amp;vt=4"><img src="http://ww4.sinaimg.cn/wap180/90280878jw1eqqedq8682j20c80cg0vh.jpg" alt="??????" class="ib" /></a>&nbsp;<a href="http://weibo.cn/mblog/oripic?id=CbiTXAhPL&amp;u=90280878jw1eqqedq8682j20c80cg0vh&amp;vt=4">??????</a>&nbsp;<a href="http://weibo.cn/attitude/CbiTXAhPL/add?uid=2776811314&amp;rl=0&amp;gid=10001&amp;vt=4&amp;st=5b3a54">èμ?[6]</a>&nbsp;<a href="http://weibo.cn/repost/CbiTXAhPL?uid=2418542712&amp;rl=0&amp;gid=10001&amp;vt=4">è?????[7]</a>&nbsp;<a href="http://weibo.cn/comment/CbiTXAhPL?uid=2418542712&amp;rl=0&amp;gid=10001&amp;vt=4#cmtfrm" class="cc">èˉ?è?o[4]</a>&nbsp;<a href="http://weibo.cn/fav/addFav/CbiTXAhPL?rl=0&amp;vt=4&amp;st=5b3a54">???è??</a><!---->&nbsp;<span class="ct">28???é?????&nbsp;??￥è?a?????? weibo.com</span></div></div><div class="s"></div><div class="c" id="M_CbiTXy5H4"><div><a class="nk" href="http://weibo.cn/hoopchina?vt=4">è??????ˉ????</a><img src="http://u1.sinaimg.cn/upload/2011/07/28/5337.gif" alt="V"/><span class="ctt">:a????a???a???????????é????-??o???30+è????o??o?????? <a href="http://weibo.cn/pages/100808topic?extparam=%E8%99%8E%E6%89%91%E8%A7%86%E9%A2%91&amp;from=feed&amp;vt=4">#è?????è§?é￠?#</a> <a href="http://weibo.cn/sinaurl?f=w&amp;u=http%3A%2F%2Ft.cn%2FRA5pPeX&amp;ep=CbiTXy5H4%2C1642292081%2CCbiTXy5H4%2C1642292081&amp;vt=4">http://t.cn/RA5pPeX</a></span>&nbsp;<a href="http://weibo.cn/attitude/CbiTXy5H4/add?uid=2776811314&amp;rl=0&amp;gid=10001&amp;vt=4&amp;st=5b3a54">èμ?[38]</a>&nbsp;<a href="http://weibo.cn/repost/CbiTXy5H4?uid=1642292081&amp;rl=0&amp;gid=10001&amp;vt=4">è?????[10]</a>&nbsp;<a href="http://weibo.cn/comment/CbiTXy5H4?uid=1642292081&amp;rl=0&amp;gid=10001&amp;vt=4#cmtfrm" class="cc">èˉ?è?o[8]</a>&nbsp;<a href="http://weibo.cn/fav/addFav/CbiTXy5H4?rl=0&amp;vt=4&amp;st=5b3a54">???è??</a><!---->&nbsp;<span class="ct">28???é?????&nbsp;??￥è?a?????? weibo.com</span></div></div><div class="s"></div><div class="c" id="M_CbiOhDKpx"><div><a class="nk" href="http://weibo.cn/nbachannel?vt=4">??°?μaNBA</a><img src="http://u1.sinaimg.cn/upload/2011/07/28/5337.gif" alt="V"/><span class="cmt">&nbsp;è??????o?&nbsp;<a href="http://weibo.cn/u/2547129795?vt=4">???????￥-</a><img src="http://u1.sinaimg.cn/upload/2011/07/28/5338.gif" alt="V"/>&nbsp;?????????:</span><span class="ctt">??3é??èˉ???????è?1vs.????￡??????????vs.?o?é??????????????è?·vs.?????????è?·??????é??è???ˉ??????????????2?????????o????????????è§????è￠??????????????·?????????????é???????°???é?￡???????o????a?|è??????°±??ˉ??±????§??????§??????é?±??¨?????? ??￥?????????<a href="http://weibo.cn/sinaurl?f=w&amp;u=http%3A%2F%2Ft.cn%2FRA5TCvm&amp;ep=CbiOhDKpx%2C1736329970%2CCbhfOCsM7%2C2547129795&amp;vt=4">????????ˉ??¤???????￠°?¤′??????è?1é￥???¨è??????￡????</a></span>&nbsp;<span class="cmt">èμ?[5]</span>&nbsp;<span class="cmt">??????è?????[38]</span>&nbsp;<a href="http://weibo.cn/comment/CbhfOCsM7?rl=0&amp;vt=4#cmtfrm" class="cc">??????èˉ?è?o[9]</a><!----></div><div><span class="cmt">è??????????±:</span>???è?1???????￡????é?????????o????????????3é?????&nbsp;&nbsp;<a href="http://weibo.cn/attitude/CbiOhDKpx/add?uid=2776811314&amp;rl=0&amp;gid=10001&amp;vt=4&amp;st=5b3a54">èμ?[68]</a>&nbsp;<a href="http://weibo.cn/repost/CbiOhDKpx?uid=1736329970&amp;rl=0&amp;gid=10001&amp;vt=4">è?????[32]</a>&nbsp;<a href="http://weibo.cn/comment/CbiOhDKpx?uid=1736329970&amp;rl=0&amp;gid=10001&amp;vt=4#cmtfrm" class="cc">èˉ?è?o[25]</a>&nbsp;<a href="http://weibo.cn/fav/addFav/CbiOhDKpx?rl=0&amp;vt=4&amp;st=5b3a54">???è??</a><!---->&nbsp;<span class="ct">42???é?????&nbsp;??￥è?a<a href="http://weibo.cn/sinaurl?f=w&amp;u=http%3A%2F%2Fdown.sina.cn%2Fsinaclient%2Fweibo%2Findex%2Fgsid%2F0%2Fmid%2F0&amp;vt=4">iPhone??￠??·??ˉ</a></span></div></div><div class="s"></div><div class="c" id="M_CbiNRDpzi"><div><a class="nk" href="http://weibo.cn/nbachannel?vt=4">??°?μaNBA</a><img src="http://u1.sinaimg.cn/upload/2011/07/28/5337.gif" alt="V"/><span class="ctt">:è???o3è????ˉ????-??????μ??|[?±?]</span></div><div><a href="http://weibo.cn/mblog/pic/CbiNRDpzi?rl=0&amp;vt=4"><img src="http://ww1.sinaimg.cn/wap180/677e4af2jw1eqqez3tlp9g205k04ge5k.gif" alt="??????" class="ib" /></a>&nbsp;<a href="http://weibo.cn/mblog/oripic?id=CbiNRDpzi&amp;u=677e4af2jw1eqqez3tlp9g205k04ge5k&amp;vt=4">??????</a>&nbsp;<a href="http://weibo.cn/attitude/CbiNRDpzi/add?uid=2776811314&amp;rl=0&amp;gid=10001&amp;vt=4&amp;st=5b3a54">èμ?[103]</a>&nbsp;<a href="http://weibo.cn/repost/CbiNRDpzi?uid=1736329970&amp;rl=0&amp;gid=10001&amp;vt=4">è?????[54]</a>&nbsp;<a href="http://weibo.cn/comment/CbiNRDpzi?uid=1736329970&amp;rl=0&amp;gid=10001&amp;vt=4#cmtfrm" class="cc">èˉ?è?o[35]</a>&nbsp;<a href="http://weibo.cn/fav/addFav/CbiNRDpzi?rl=0&amp;vt=4&amp;st=5b3a54">???è??</a><!---->&nbsp;<span class="ct">43???é?????&nbsp;??￥è?a??°?μa???è?2</span></div></div><div class="s"></div><div class="c" id="M_CbiNt7XWm"><div><a class="nk" href="http://weibo.cn/u/2418542712?vt=4">?13????-|?±?</a><img src="http://u1.sinaimg.cn/upload/2011/07/28/5337.gif" alt="V"/><span class="ctt">:????·±??1??????é???-￠è′???°??￡é?????é??????1?è???13????¤???????????????-?¤???¨é?￠?·±?????1é??é￠??ˉ??°???????????????????è???1????è?¨è?2èˉ???????è???????o???????±??1???????è?2???è???ˉ???a?1?????-??-?é??è????￥???????13??????è′¨é????????è?2???é???-￠è′???°??°è±???￡é?????é???????ˉ?????¨?????￡????????¨????§?????¤§?o????è|?????1??????????é???????oè???????¨??????????±?????????￥?????????<a href="/n/%E6%96%B0%E5%8D%8E%E8%A7%86%E7%82%B9?vt=4">@??°???è§???1</a></span>&nbsp;[<a href="http://weibo.cn/mblog/picAll/CbiNt7XWm?rl=1&amp;vt=4">????????±4???</a>]</div><div><a href="http://weibo.cn/mblog/pic/CbiNt7XWm?rl=0&amp;vt=4"><img src="http://ww2.sinaimg.cn/wap180/90280878jw1eqqea9kt8vj20c8087dg4.jpg" alt="??????" class="ib" /></a>&nbsp;<a href="http://weibo.cn/mblog/oripic?id=CbiNt7XWm&amp;u=90280878jw1eqqea9kt8vj20c8087dg4&amp;vt=4">??????</a>&nbsp;<a href="http://weibo.cn/attitude/CbiNt7XWm/add?uid=2776811314&amp;rl=0&amp;gid=10001&amp;vt=4&amp;st=5b3a54">èμ?[5]</a>&nbsp;<a href="http://weibo.cn/repost/CbiNt7XWm?uid=2418542712&amp;rl=0&amp;gid=10001&amp;vt=4">è?????[3]</a>&nbsp;<a href="http://weibo.cn/comment/CbiNt7XWm?uid=2418542712&amp;rl=0&amp;gid=10001&amp;vt=4#cmtfrm" class="cc">èˉ?è?o[0]</a>&nbsp;<a href="http://weibo.cn/fav/addFav/CbiNt7XWm?rl=0&amp;vt=4&amp;st=5b3a54">???è??</a><!---->&nbsp;<span class="ct">44???é?????&nbsp;??￥è?a?????? weibo.com</span></div></div><div class="s"></div><div class="pa" id="pagelist"><form action="/?since_id=0&amp;max_id=CbiN6pntU&amp;prev_page=1&amp;vt=4" method="post"><div><a href="/?since_id=0&amp;max_id=CbiN6pntU&amp;prev_page=1&amp;page=2&amp;vt=4">???é?μ</a>&nbsp;<input name="mp" type="hidden" value="50" /><input type="text" name="page" size="2" style='-wap-input-format: "*N"' /><input type="submit" value="è·3é?μ" />&nbsp;1/50é?μ</div></form></div><div class="pm"><form action="/search/?vt=4" method="post"><div><input type="text" name="keyword" value="" size="15" /><input type="submit" name="smblog" value="?????????" /><input type="submit" name="suser" value="????oo" /><br/><span class="pmf"><a href="/search/mblog/?keyword=%E6%88%91%E6%98%AF%E6%AD%8C%E6%89%8B&amp;rl=0&amp;vt=4" class="k">?????ˉ?-????</a>&nbsp;<a href="/search/mblog/?keyword=%E5%B0%91%E5%A5%B3%E6%97%B6%E4%BB%A3&amp;rl=0&amp;vt=4" class="k">?°??￥3?????￡</a>&nbsp;<a href="/search/mblog/?keyword=%E4%BD%A0%E5%A4%A7%E5%AD%A6%E7%99%BD%E4%B8%8A%E4%BA%86%E4%B9%88&amp;rl=0&amp;vt=4" class="k">????¤§?-|???????o??1?</a></span></div></form></div><div class="cd"><a href="#top"><img src="http://u1.sinaimg.cn/3g/image/upload/0/62/203/18979/5e990ec2.gif" alt="TOP"/></a></div><div class="pms"> <a href="http://weibo.cn?vt=4">é|?é?μ</a>.<a href="http://weibo.cn/topic/240489?vt=4">???é|?</a>.<a href="http://weibo.cn/page/91?vt=4">??????</a>.<a  href="http://down.sina.cn/weibo/default/index/soft_id/1/mid/0?vt=4" >??￠??·??ˉ</a>.<a href="http://weibo.cn/spam/?rl=0&amp;type=3&amp;fuid=2776811314&amp;vt=4" class="kt">?????￥</a>.<a href="http://passport.sina.cn/sso/logout?r=http%3A%2F%2Fweibo.cn%2Fpub%2F%3Fvt%3D4&amp;entry=mweibo&amp;vt=4">é????o</a></div><div class="c">è?????:<a href="http://weibo.cn/account/customize/skin?tf=7_005&amp;vt=4&amp;st=5b3a54">???è?¤</a>.<a href="http://weibo.cn/account/customize/pic?tf=7_006&amp;vt=4&amp;st=5b3a54">??????</a>.<a href="http://weibo.cn/account/customize/pagesize?tf=7_007&amp;vt=4&amp;st=5b3a54">?????°</a>.<a href="http://weibo.cn/account/privacy/?tf=7_008&amp;vt=4&amp;st=5b3a54">é???§?</a></div><div class="c">??????|<a href="http://m.weibo.cn/?tf=7_010&amp;vt=4">è§|?±?</a>|<a href="http://weibo.cn/page/521?tf=7_011&amp;vt=4">èˉ-é?3</a></div><div class="b">weibo.cn[04-01 22:42]</div></body></html> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
