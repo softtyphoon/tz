@@ -240,11 +240,13 @@ _url = u'http://login.weibo.cn/login/?ns=1&revalid=2&backURL=http%3A%2F%2Fweibo.
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='XML parser')
-    parser.add_argument('-u', type=str, required=True, metavar='file', dest='username', help='weibo account')
-    parser.add_argument('-p', type=str, required=True, metavar='file', dest='pwd', help='weibo account password')
-    username = parser.parse_args().username
-    pwd = parser.parse_args().pwd
+    # parser = argparse.ArgumentParser(description='XML parser')
+    # parser.add_argument('-u', type=str, required=True, metavar='file', dest='username', help='weibo account')
+    # parser.add_argument('-p', type=str, required=True, metavar='file', dest='pwd', help='weibo account password')
+    # username = parser.parse_args().username
+    # pwd = parser.parse_args().pwd
+    username = '18817391791'    # 'xinming_song@sina.com'
+    pwd = 'Sz3205031993'        # '14176596'
     a = WBlogin(_url, _header, None, username, pwd)
     a.login()
     # fn = open('done.txt', 'r+')

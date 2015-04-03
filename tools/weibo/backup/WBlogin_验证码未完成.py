@@ -13,6 +13,8 @@ import argparse
 '''
   1. 打开登陆页面，获得用户名addr,vk,pwd
   2. 构造链接，POST数据
+  18817391791
+  Sz3205031993
 '''
 _header_a = {
     u'Host':u'newlogin.sina.cn',
@@ -32,7 +34,7 @@ class WBlogin():
       登陆首页: http://login.weibo.cn/login/?ns=1&revalid=2&backURL=http%3A%2F%2Fweibo.cn%2F&backTitle=%CE%A2%B2%A9&vt=
     '''
 
-    def __init__(self, url=None, header=None, data=None, username=None, pwd=None, header_a=None):
+    def __init__(self, url=None, header=None, data=None, username=None, pwd=None):
         self.username = username
         self.url = url
         self.pwd = pwd
@@ -41,7 +43,7 @@ class WBlogin():
         self.cookie_ext = list()
         self.location = u''
         self.code = u''
-        self.header_a = header_a
+        self.img_code = False
 
     def login(self):
         '''
@@ -60,25 +62,60 @@ class WBlogin():
                         '&tryCount=' + '&vk=' + login_info[1] + '&submit=%E7%99%BB%E5%BD%95'
 
         login_ok  = False
+        self.img_code = False
+        code_getted = False
         while True:
             login_page = self.get_page(self.url, None, data)        # 获得网页，并且更新cookie
 
-            if login_ok == False:
-                if str(self.code) != u'302':
-                    break
-                else:
-                    login_ok = True
-
-            if str(self.code) != u'302':
-                break
-
             data = None
+            if self.img_code is True:
+                fn = open('code.gif', 'wb+')
+                fn.write(login_page)
+                fn.close()
+                code = raw_input(u'打开code.gif，输入上面的字母：'.encode('gbk'))
+                code_getted = True
+                print code
+                data = urllib.urlencode({'mobile':self.username, login_info[2]:self.pwd})
+                data = data + '&backURL=http%253A%252F%252Fweibo.cn%252F' + '&backTitle=%E5%BE%AE%E5%8D%9A' + \
+                        '&tryCount=' + '&vk=' + login_info[1] + '&submit=%E7%99%BB%E5%BD%95' + '&code=' + code + '&capId=' + login_info[3]
+
+                self.url = u'http://login.weibo.cn/login/' + login_info[0]
+                self.img_code = False
+                # sys.exit(0)
+
+            if login_page.find('name="code"') > -1 and self.img_code is False and code_getted is False:
+                pat = re.compile(u'(?<=:<br/><img src=").+?(?=")')       # :<br/><img src="
+                res = pat.findall(login_page)
+                img_url = res[0]
+                print img_url
+                self.img_code = True
+                login_info = self.login_info_extractor(login_page)        # [addr, vk, pwd, capId]
+
+            fn = open('test.txt', 'w+')
+            fn.write(login_page)
+            fn.close()
+
+            if self.img_code is False:
+              if login_ok == False:
+                  if str(self.code) != u'302':
+                      break
+                  else:
+                      login_ok = True
+
+              if str(self.code) != u'302':
+                  break
+
             # 处理头部
-            self.header = self.header_a
-            self.url = self.location
+            self.header = _header_a
+            if self.img_code is True:
+                self.header['Referer'] = copy.copy(self.url)
+                self.url = img_url
+            # elif self.img_code is False and code_getted is False:
+            elif str(self.code) == '302':
+                self.url = self.location
             pat = re.compile(u'(?<=://).+?(?=/)')
-            if len(pat.findall(self.location)) > 0:
-                host = pat.findall(self.location)
+            if len(pat.findall(self.url)) > 0:
+                host = pat.findall(self.url)
                 self.header['Host'] = host[0]
             else:
                 self.header['Host'] = ''
@@ -99,35 +136,20 @@ class WBlogin():
 
             time.sleep(0.3)
 
+            print self.cookie_pool
+            print self.header['Cookie']
+
         fn = open('done.txt', 'w+')
         fn.write(login_page)
         fn.close()
-        # print 'done'
-        # for i in self.cookie_pool:
-            # print i
-
+        print 'done'
         if login_ok:
-            print u'登陆成功'.encode('gbk')
+            print u'登陆成功'
         else:
-            print u'错误的用户名或者密码'.encode('gbk')
+            print u'错误的用户名或者密码'
 
         self.account_info(login_page)
-        return self.cookie_for_spider()
 
-    def cookie_for_spider(self):
-        '''
-          提取用于爬取微博页面的cookie
-        '''
-        cookie_str = u''
-        for i in self.cookie_pool:
-            if i[2][1:] == u'weibo.cn':
-                cookie_str += i[0] + '=' + i[1] + ';'
-        
-        if len(cookie_str) > 0:
-            cookie_str = cookie_str[0:-1]
-        
-        return cookie_str
-        
     def account_info(self, page):
         '''
           登陆成功后提取账户基本资料
@@ -137,27 +159,6 @@ class WBlogin():
         if len(res) > 0:
             user_name = res[0].decode('utf-8').encode('gbk')
             print u'昵称：'.encode('gbk')+user_name
-
-        # profile?vt=4">微博[749]</a>
-        pat = re.compile(u'(?<=profile\?vt=4">).+?(?=</a>)')
-        res = pat.findall(page)
-        if len(res) > 0:
-            weibo = res[0].decode('utf-8').encode('gbk')
-            print weibo,
-
-        # /follow?vt=4">关注[78]</a>
-        pat = re.compile(u'(?<=/follow\?vt=4">).+?(?=</a>)')
-        res = pat.findall(page)
-        if len(res) > 0:
-            follow = res[0].decode('utf-8').encode('gbk')
-            print follow,
-
-        # /fans?vt=4">粉丝[22]</a>
-        pat = re.compile(u'(?<=/fans\?vt=4">).+?(?=</a>)')
-        res = pat.findall(page)
-        if len(res) > 0:
-            fans = res[0].decode('utf-8').encode('gbk')
-            print fans
 
     def cookie_analysis(self, cookie):
         '''
@@ -202,7 +203,7 @@ class WBlogin():
             # print name, ': ',  nal
         # print repr(data)
         try:
-            r = opener.open(req, timeout = 60)
+            r = opener.open(req, timeout=60)
         except:
             print 'failed'
             opener.close()
@@ -210,7 +211,7 @@ class WBlogin():
         self.cookie_analysis(cookie)
         self.code = r.getcode()
         self.location = r.info().get('Location')
-        # print r.info().get('Set-Cookie')
+        print r.info().get('Set-Cookie')
         # Make sure everything is working ;)
         if r.info().get('Content-Encoding') == 'gzip':
             buf = StringIO.StringIO(r.read())
@@ -218,6 +219,9 @@ class WBlogin():
             data = f.read()
         else:
             data = r.read()
+
+        # if self.img_code is True:
+            # data = r.read()
 
         return data
 
@@ -248,7 +252,14 @@ class WBlogin():
         else:
             pwd = res[0]
 
-        return [addr, vk, pwd]
+        pat = re.compile(u'(?<=name="capId" value=").+?(?=")')    # name="vk" value="3296_035e_1757547280"
+        res = pat.findall(pg)
+        if len(res) == 0:
+            capId = ''
+        else:
+            capId = res[0]
+
+        return [addr, vk, pwd, capId]
 
     def htmldecoder(self, content):
         return content.replace('&amp;', '&').replace('&lt;', '<').replace('&gt;', '>').replace('&quot;', '\"').replace("&#39;", '\'')
@@ -280,15 +291,16 @@ _url = u'http://login.weibo.cn/login/?ns=1&revalid=2&backURL=http%3A%2F%2Fweibo.
 
 
 if __name__ == "__main__":
-    # parser = argparse.ArgumentParser(description='XML parser')
-    # parser.add_argument('-u', type=str, required=True, metavar='file', dest='username', help='weibo account')
-    # parser.add_argument('-p', type=str, required=True, metavar='file', dest='pwd', help='weibo account password')
-    # username = parser.parse_args().username
-    # pwd = parser.parse_args().pwd
-    username = '18817391791'    # 'xinming_song@sina.com'
-    pwd = 'Sz3205031993'        # '14176596'
+    # a = raw_input('input:')
+    # print a
+    # sys.exit(0)
+    parser = argparse.ArgumentParser(description='XML parser')
+    parser.add_argument('-u', type=str, required=True, metavar='file', dest='username', help='weibo account')
+    parser.add_argument('-p', type=str, required=True, metavar='file', dest='pwd', help='weibo account password')
+    username = parser.parse_args().username
+    pwd = parser.parse_args().pwd
     a = WBlogin(_url, _header, None, username, pwd)
-    cookie_list = a.login()
+    a.login()
     # fn = open('done.txt', 'r+')
     # data = fn.write(page)
     # data = fn.read()
