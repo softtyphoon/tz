@@ -11,6 +11,7 @@ import copy
 import cookielib
 import time
 import argparse
+from bs4 import BeautifulSoup
 
 
 
@@ -30,9 +31,9 @@ class WBinfo():
       '''
       self.header['Cookie'] = self.cookie_str
       page = self.get_page()
-      # fn = open('weibo.txt', 'w+')
-      # fn.write(page)
-      # fn.close()
+      fn = open('weibo.txt', 'w+')
+      fn.write(page)
+      fn.close()
       self.info_extractor(page)
 
     def info_extractor(self, page):
@@ -40,45 +41,224 @@ class WBinfo():
           提取信息
           【姓名】【所在城市】【标签】【人物简介】【博客地址】【人物资料】【关注数】【粉丝数】【微博数】【博文1内容|转发数|评论数|点赞数】【博文2内容|转发数|评论数|点赞数】【博文3内容|转发数|评论数|点赞数】
         '''
-
+        page = page.decode('utf-8')
+        # page = page.encode('utf-8')
+        # print page
+        # sys.exit(0)
         # 姓名
         pat = re.compile(u'(?<=<span class="ctt">).+?(?=&nbsp;)')
         res = pat.findall(page)
         if len(res) > 0:
-            name = res[0].decode('utf-8').encode('gbk')
+            name = res[0].encode('gbk')
             print u'姓名：'.encode('gbk')+name
 
         # 城市
 
         # 标签
 
-        # 任务介绍
+        # 人物介绍
 
         # 博客地址
 
         # 人物资料      ?
+        # <a href="/1390399765/info?vt=4">资料</a>
+        pat = re.compile(u'(?<=\<a href=")[^<]+?(?=">资料</a>)')
+        res = pat.findall(page)
+        info_url = u'http://weibo.cn' + res[0]
+        self.url = info_url
+        [area, tag, intr, blog] = self.account_info()
+        print [area, tag, intr, blog]
 
         # 关注数
-        pat = re.compile(r'(?<=关注\[)\d+?(?=\])')
+        pat = re.compile(u'(?<=关注\[)\d+?(?=\])')
         res = pat.findall(page)
         if len(res) > 0:
-            follow = res[0].decode('utf-8').encode('gbk')
+            follow = res[0].encode('gbk')
             print u'关注：'.encode('gbk')+follow
 
         # 粉丝数
-        pat = re.compile(r'(?<=粉丝\[)\d+?(?=\])')
+        pat = re.compile(u'(?<=粉丝\[)\d+?(?=\])')
         res = pat.findall(page)
         if len(res) > 0:
-            fans = res[0].decode('utf-8').encode('gbk')
+            fans = res[0].encode('gbk')
             print u'粉丝：'.encode('gbk')+fans
 
         # 微博数
-        pat = re.compile(r'(?<=微博\[)\d+?(?=\])')
+        pat = re.compile(u'(?<=微博\[)\d+?(?=\])')
         res = pat.findall(page)
         if len(res) > 0:
-            weibo_num = res[0].decode('utf-8').encode('gbk')
+            weibo_num = res[0].encode('gbk')
             print u'微博数：'.encode('gbk')+weibo_num
 
+        weibo = self.get_weibo(page)
+        for i in weibo:
+            for j in i:
+                print j
+
+    def account_info(self):
+        '''
+          地区，标签，人物介绍，博客地址
+        '''
+        page = self.get_page()
+        page = page.decode('utf-8')
+
+        # 地区
+        pat = re.compile(u'(?<=地区:).+?(?=<br/>)', re.DOTALL)
+        res = pat.findall(page)
+        if len(res) == 0:
+            area = u''
+        else:
+            area = res[0]
+        
+        # 标签
+        pat = re.compile(u'(?<=标签:).+?(?=更多)', re.DOTALL)
+        res = pat.findall(page)
+        if len(res) == 0:
+            tag = u''
+        else:
+            tag = self.html_tag_remove(res[0])
+        
+        # 人物介绍
+        pat = re.compile(u'(?<=简介:).+?(?=<br/>)', re.DOTALL)
+        res = pat.findall(page)
+        if len(res) == 0:
+            intr = u''
+        else:
+            intr = self.html_tag_remove(res[0])
+            
+        # 博客地址    没发现有这一项
+        blog = u''
+        
+        return [area, tag, intr, blog]
+        
+        
+    def favors_num(self, str):
+        # print str
+        pat = re.compile(u'(?<=赞\[).+?(?=\])', re.DOTALL)
+        res = pat.findall(str)
+        if len(res) == 0:
+            favor = u''
+        else:
+            favor = res[0]
+
+        pat = re.compile(u'(?<=转发\[)\d+?(?=\])', re.DOTALL)
+        res = pat.findall(str)
+        if len(res) == 0:
+            forward = u''
+        else:
+            forward = res[0]
+
+        pat = re.compile(u'(?<=评论\[)\d+?(?=\])', re.DOTALL)
+        res = pat.findall(str)
+        if len(res) == 0:
+            comment = u''
+        else:
+            comment = res[0]
+
+        # print [favor, forward, comment]
+        return [favor, forward, comment]
+
+    def get_weibo(self, page):
+        '''
+          提取最前面的三条微博
+        '''
+        weibo = list()
+        pat = re.compile(u'(?<=<body>).+?(?=</body>)', re.DOTALL)
+        # pat = re.compile(u'<body>.+</body>', re.DOTALL)
+        res = pat.findall(page)
+        body = res[0]
+
+        pat = re.compile(u'(?<=class="c").+?(?=<div class="s">)', re.DOTALL)
+        res = pat.findall(body)
+        weibo_div = res
+
+        count = 0
+        for wb_div in weibo_div:
+            # pat = re.compile(u'(?<=<div>).+?(?=</div>)', re.DOTALL)
+            pat = re.compile(u'<div>.+?</div>', re.DOTALL)
+            div_cell = pat.findall(wb_div)
+            div_cnt = len(div_cell)
+
+            weibo_content = ''
+            favor = ''
+            forward = ''
+            comment = ''
+            # 如果长度为1，则为无图发微博
+            if div_cnt == 1:      #
+                weibo_content = div_cell[0]
+                weibo_content = self.html_tag_remove(weibo_content)
+                index = weibo_content.find(u'赞[')
+                weibo_content = weibo_content[0:index]
+                [favor, forward, comment] = self.favors_num(weibo_content)
+
+            # 如果长度为2，切第一个中找不到 转发了 字符，则为带图片发微博
+            if div_cnt == 2:
+                if div_cell[0].find('class="cmt"') == -1:
+                    weibo_content = div_cell[0]
+                    weibo_content = self.html_tag_remove(weibo_content)
+                    [favor, forward, comment] = self.favors_num(div_cell[1])
+                else:     # 否则为无图片转发
+                    forward_a = self.html_tag_remove(div_cell[0])
+                    forward_b = self.html_tag_remove(div_cell[1])
+                    index = forward_b.find(u'赞[')
+                    forward_b = forward_b[0:index]
+                    [favor, forward, comment] = self.favors_num(div_cell[1])
+                    weibo_content = forward_a + u'\n' + forward_b
+                    
+            if div_cnt == 3:    # 带图片转发
+                forward_a = self.html_tag_remove(div_cell[0])
+                forward_b = self.html_tag_remove(div_cell[2])
+                index = forward_b.find(u'赞[')
+                forward_b = forward_b[0:index]
+                [favor, forward, comment] = self.favors_num(div_cell[2])
+                weibo_content = forward_a + u'\n' + forward_b
+                
+                
+
+            weibo_content = weibo_content.replace(u'&nbsp;', u' ')
+            weibo.append([weibo_content, favor, forward, comment])
+            count += 1
+            if count == 3:
+                break
+        return weibo
+
+
+
+            # if div_cnt == 2:      #
+
+
+    def html_tag_remove(self, str):
+        str = str.strip(u' ')
+        str = str.strip(u'\n')
+        # print str
+        if str[0]!=u'<' or str[-1]!=u'>':
+            print 'make sure the string is in a HTML format!'
+            return False
+
+        while True:
+            indexl = str.find(u'<')
+            indexr = str.find(u'>')
+            if indexl == -1:
+                break
+
+            if indexr == -1:
+                print 'make sure the string is in a HTML format!'
+                return False
+
+            if indexl == 0:
+                if indexr == (len(str) - 1):
+                    str = u''
+                else:
+                    str = str[indexr+1:]
+                continue
+
+            if indexr == (len(str) - 1):
+                str = str[0:indexl]
+                break
+
+            str = str[0:indexl] + str[indexr+1:]
+
+        return str
 
 
     def get_page(self):
@@ -136,19 +316,27 @@ _header = {
     }
 
 _url = 'http://weibo.cn/lqszjx'# ?vt=4'
+# _url = 'http://weibo.cn/FreedomKZ'# ?vt=4'
 
 if __name__ == "__main__":
     # a = u'的地方[34]方式'
     # pat = re.compile(u'(?<=地方\[)\d+?(?=\])')
     # res = pat.findall(a)
+    # res = pat.match(a)
+    # print res.span(2)
     # print res
     # if len(res) > 0:
         # follow = res[0].decode('utf-8').encode('gbk')
         # print u'关注：'.encode('gbk')+follow
-
+    # a = WBinfo(_url, _header, _cookie_str)
+    # fn = open('weibo.txt', 'r+')
+    # page=fn.read()
+    # fn.close()
+    # a.info_extractor(page)
     # sys.exit(0)
 
     a = WBinfo(_url, _header, _cookie_str)
+    # a.account_info()
     a.get_info()
 
 
