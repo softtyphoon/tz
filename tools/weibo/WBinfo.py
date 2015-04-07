@@ -10,8 +10,9 @@ import StringIO
 import copy
 import cookielib
 import time
+import random
 import argparse
-from bs4 import BeautifulSoup
+# from bs4 import BeautifulSoup
 
 
 
@@ -23,6 +24,56 @@ class WBinfo():
         self.url = url                        # 爬取的微博url
         self.header = header
         self.cookie_str = cookie_str
+        self.header['Cookie'] = self.cookie_str
+        
+    def get_fans(self, url, depth=0, pagein=None):
+        '''
+          返回指定深度的粉丝信息
+        '''
+        if pagein == None:
+            page = self.get_page(url)
+            page = page.decode('utf-8')
+        else:
+            page = pagein
+        
+        # 打印出自己的名字和url
+        pat = re.compile(u'(?<=<span class="ctt">).+?(?=&nbsp;)')
+        res = pat.findall(page)
+        if len(res) > 0:
+            name = res[0].encode('gbk')
+            print u'姓名：'.encode('gbk')+name + u'   '.encode('gbk') + url.encode('gbk')
+            # print name
+            
+        if depth == 0:    # 结束了
+            print u'end fans-digging!'
+            return True
+        
+        # 找到下一个粉丝
+        pat = re.compile(u'(?<=粉丝\[).+?(?=\])')
+        res = pat.findall(page)
+        if res[0] == u'0':    # 没有粉丝
+            print u'没有粉丝了!'.encode('gbk')
+            return True
+            
+        pat = re.compile(u'(?<=href=")[^<]+?(?=">粉丝\[)')
+        res = pat.findall(page)
+        url = u'http://weibo.cn' + res[0]
+        page = self.get_page(url)
+        page = page.decode('utf-8')
+        
+        pat = re.compile(u'(?<=<table>).+?(?=</table>)')
+        res = pat.findall(page)
+        table = res[0]
+        pat = re.compile(u'(?<=href=").+?(?=">)')
+        res = pat.findall(table)
+        url = res[0]
+        
+        depth_dec = depth - 1
+        delay = random.uniform(1, 3)
+        time.sleep(delay)
+        # print url, depth_dec
+        return self.get_fans(url, depth_dec)
+        
 
     def get_info(self):
       '''
@@ -261,12 +312,15 @@ class WBinfo():
         return str
 
 
-    def get_page(self):
+    def get_page(self, urlin=None):
         '''
           得到指定页面的内容
         '''
         header = self.header
-        url = self.url
+        if urlin == None:
+            url = self.url
+        else:
+            url = urlin
         data = None
 
         opener = urllib2.OpenerDirector()
@@ -319,12 +373,10 @@ _url = 'http://weibo.cn/lqszjx'# ?vt=4'
 # _url = 'http://weibo.cn/FreedomKZ'# ?vt=4'
 
 if __name__ == "__main__":
-    # a = u'的地方[34]方式'
-    # pat = re.compile(u'(?<=地方\[)\d+?(?=\])')
+    # a = u'href="wgfgf.dfdf./dfd?vt=4">'
+    # pat = re.compile(u'(?<=href=").+?(?=">)')
     # res = pat.findall(a)
-    # res = pat.match(a)
-    # print res.span(2)
-    # print res
+    # print res[0]
     # if len(res) > 0:
         # follow = res[0].decode('utf-8').encode('gbk')
         # print u'关注：'.encode('gbk')+follow
@@ -336,8 +388,9 @@ if __name__ == "__main__":
     # sys.exit(0)
 
     a = WBinfo(_url, _header, _cookie_str)
+    a.get_fans(_url, 2)
     # a.account_info()
-    a.get_info()
+    # a.get_info()
 
 
 

@@ -287,8 +287,9 @@ if __name__ == "__main__":
     # pwd = parser.parse_args().pwd
     username = '18817391791'    # 'xinming_song@sina.com'
     pwd = 'Sz3205031993'        # '14176596'
-    a = WBlogin(_url, _header, None, username, pwd)
+    a = WBlogin(_url, _header, None, username, pwd, _header_a)
     cookie_list = a.login()
+    print cookie_list
     # fn = open('done.txt', 'r+')
     # data = fn.write(page)
     # data = fn.read()
