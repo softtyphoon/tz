@@ -17,63 +17,141 @@ import argparse
 
 
 class WBinfo():
-    def __init__(self, url, header, cookie_str):
+    def __init__(self, url, header, cookie_str, depth=0, db_set = [None, None]):
         '''
           初始化
+          数据库格式：depth varchar(20),name varchar(20), area varchar(20), url varchar(50)
         '''
         self.url = url                        # 爬取的微博url
         self.header = header
         self.cookie_str = cookie_str
         self.header['Cookie'] = self.cookie_str
-        
+        self.fans_list = []
+        self.depth_set = depth
+        self.db = db_set[0]
+        self.db_table = db_set[1]
+
     def get_fans(self, url, depth=0, pagein=None):
         '''
           返回指定深度的粉丝信息
         '''
         if pagein == None:
-            page = self.get_page(url)
-            page = page.decode('utf-8')
+            page = None
+            while page == None:
+                delay = random.uniform(1, 3)
+                time.sleep(delay)
+                page = self.get_page(url)
+                if page == False or page == '':
+                    print '~~~~~~~~~~~~~~~~~~~~~notice a~~~~~~~~~~~~~~~~~~~~~~~~~'
+                    continue
+                else:
+                    try:
+                        # page = page.decode('utf-8')
+                        break
+                    except:
+                        print '~~~~~~~~~~~~~~~~~~~~~notice b~~~~~~~~~~~~~~~~~~~~~~~~~'
         else:
             page = pagein
-        
+
+        # 加入列表，防止以后重复
+        self.fans_list.append(url)
+
         # 打印出自己的名字和url
-        pat = re.compile(u'(?<=<span class="ctt">).+?(?=&nbsp;)')
+        pat = re.compile(u'(?<=\<a href=")[^<]+?(?=">资料</a>)')
         res = pat.findall(page)
-        if len(res) > 0:
-            name = res[0].encode('gbk')
-            print u'姓名：'.encode('gbk')+name + u'   '.encode('gbk') + url.encode('gbk')
+        info_url = u'http://weibo.cn' + res[0]
+        self.url = info_url
+        area, tag, intr, name = self.account_info()
+        '''
+          地区，标签，人物介绍，博客地址
+        '''
+        print u'Dep: %d/%d' % (depth, self.depth_set),
+        print u'姓名：'.encode('gbk') + name.encode('gbk'),
+        print u'地区: '.encode('gbk') + area.encode('gbk'),
+        print url.encode('gbk')
+        if self.db is not None:
+            cur = self.db.cursor()
+            db_dep = u'%d/%d' % (depth, self.depth_set)
+            db_dep = db_dep.encode('utf-8')
+            db_name = name.encode('utf-8')
+            db_area = area.encode('utf-8')
+            db_url = url.encode('utf-8')
+            # statement = "insert into %s value(depth varchar(20),name varchar(20), area varchar(20), url varchar(50))" % db_info[5]
+            statement = "insert into %s value('%s', '%s', '%s', '%s')" % (self.db_table, db_dep, db_name, db_area, db_url)
+            cur.execute(statement)
+            cur.close()
+            self.db.commit()
+
             # print name
-            
+
         if depth == 0:    # 结束了
             print u'end fans-digging!'
             return True
-        
+
         # 找到下一个粉丝
         pat = re.compile(u'(?<=粉丝\[).+?(?=\])')
         res = pat.findall(page)
         if res[0] == u'0':    # 没有粉丝
             print u'没有粉丝了!'.encode('gbk')
             return True
-            
+
         pat = re.compile(u'(?<=href=")[^<]+?(?=">粉丝\[)')
         res = pat.findall(page)
         url = u'http://weibo.cn' + res[0]
-        page = self.get_page(url)
-        page = page.decode('utf-8')
-        
-        pat = re.compile(u'(?<=<table>).+?(?=</table>)')
-        res = pat.findall(page)
-        table = res[0]
-        pat = re.compile(u'(?<=href=").+?(?=">)')
-        res = pat.findall(table)
-        url = res[0]
-        
+        url = self.new_fans(url)
+        if url == False:
+            print u'没有不重复的粉丝了!'.encode('gbk')
+            return True
+
         depth_dec = depth - 1
         delay = random.uniform(1, 3)
         time.sleep(delay)
         # print url, depth_dec
         return self.get_fans(url, depth_dec)
-        
+
+    def new_fans(self, url):
+        '''
+          找到没有重复过的粉丝，否则结束
+        '''
+        delay = random.uniform(1, 3)
+        time.sleep(delay)
+        page = self.get_page(url)
+        # page = page.decode('utf-8')
+
+        pat = re.compile(u'(?<=<table>).+?(?=</table>)')
+        res = pat.findall(page)
+        if len(res) == 0:
+            print u'END: 粉丝页没有粉丝了'.encode('gbk'),
+            print url
+            return False
+
+        for i in res:
+            pat = re.compile(u'(?<=href=").+?(?=">)')
+            sub_res = pat.findall(i)
+            url = sub_res[0]
+            if u'2671109275' in url:
+                print u'PASS（新手指南）:'.encode('gbk'),
+                print url
+                continue
+            if url not in self.fans_list:
+                return url
+            else:
+                print u'PASS（重复的粉丝）:'.encode('gbk'),
+                print url
+
+        # 找到下一页的链接
+        pat = re.compile(u'(?<=<a href=").+?(?=">下页</a>)')
+        res = pat.findall(page)
+        if len(res) == 0:
+            print u'END: 没有下一页了'.encode('gbk'),
+            print url
+            return False
+        else:
+            next_url = u'http://weibo.cn' + res[0]
+
+        next_url = next_url.replace(u'&amp;', u'&')
+        return new_fans(next_url)
+
 
     def get_info(self):
       '''
@@ -117,8 +195,7 @@ class WBinfo():
         res = pat.findall(page)
         info_url = u'http://weibo.cn' + res[0]
         self.url = info_url
-        [area, tag, intr, blog] = self.account_info()
-        print [area, tag, intr, blog]
+        [area, tag, intr, name] = self.account_info()
 
         # 关注数
         pat = re.compile(u'(?<=关注\[)\d+?(?=\])')
@@ -151,7 +228,7 @@ class WBinfo():
           地区，标签，人物介绍，博客地址
         '''
         page = self.get_page()
-        page = page.decode('utf-8')
+        # page = page.decode('utf-8')
 
         # 地区
         pat = re.compile(u'(?<=地区:).+?(?=<br/>)', re.DOTALL)
@@ -160,7 +237,7 @@ class WBinfo():
             area = u''
         else:
             area = res[0]
-        
+
         # 标签
         pat = re.compile(u'(?<=标签:).+?(?=更多)', re.DOTALL)
         res = pat.findall(page)
@@ -168,7 +245,7 @@ class WBinfo():
             tag = u''
         else:
             tag = self.html_tag_remove(res[0])
-        
+
         # 人物介绍
         pat = re.compile(u'(?<=简介:).+?(?=<br/>)', re.DOTALL)
         res = pat.findall(page)
@@ -176,13 +253,18 @@ class WBinfo():
             intr = u''
         else:
             intr = self.html_tag_remove(res[0])
-            
+
         # 博客地址    没发现有这一项
-        blog = u''
-        
-        return [area, tag, intr, blog]
-        
-        
+        pat = re.compile(u'(?<=昵称:).+?(?=<br/>)', re.DOTALL)
+        res = pat.findall(page)
+        if len(res) == 0:
+            name = u''
+        else:
+            name = res[0].strip(u' ').strip(u'\n')
+
+        return [area, tag, intr, name]
+
+
     def favors_num(self, str):
         # print str
         pat = re.compile(u'(?<=赞\[).+?(?=\])', re.DOTALL)
@@ -255,7 +337,7 @@ class WBinfo():
                     forward_b = forward_b[0:index]
                     [favor, forward, comment] = self.favors_num(div_cell[1])
                     weibo_content = forward_a + u'\n' + forward_b
-                    
+
             if div_cnt == 3:    # 带图片转发
                 forward_a = self.html_tag_remove(div_cell[0])
                 forward_b = self.html_tag_remove(div_cell[2])
@@ -263,8 +345,8 @@ class WBinfo():
                 forward_b = forward_b[0:index]
                 [favor, forward, comment] = self.favors_num(div_cell[2])
                 weibo_content = forward_a + u'\n' + forward_b
-                
-                
+
+
 
             weibo_content = weibo_content.replace(u'&nbsp;', u' ')
             weibo.append([weibo_content, favor, forward, comment])
@@ -282,9 +364,10 @@ class WBinfo():
         str = str.strip(u' ')
         str = str.strip(u'\n')
         # print str
-        if str[0]!=u'<' or str[-1]!=u'>':
-            print 'make sure the string is in a HTML format!'
-            return False
+        # if str[0]!=u'<' or str[-1]!=u'>':
+            # print 'make sure the string is in a HTML format!'
+            # return False
+            # return str
 
         while True:
             indexl = str.find(u'<')
@@ -293,8 +376,9 @@ class WBinfo():
                 break
 
             if indexr == -1:
-                print 'make sure the string is in a HTML format!'
-                return False
+                # print 'make sure the string is in a HTML format!'
+                # return False
+                return str
 
             if indexl == 0:
                 if indexr == (len(str) - 1):
@@ -355,6 +439,11 @@ class WBinfo():
             data = f.read()
         else:
             data = r.read()
+
+        try:
+            data = data.decode('utf-8')
+        except:
+            data = self.get_page(url)
 
         return data
 

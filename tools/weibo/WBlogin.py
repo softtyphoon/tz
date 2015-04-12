@@ -122,12 +122,12 @@ class WBlogin():
         for i in self.cookie_pool:
             if i[2][1:] == u'weibo.cn':
                 cookie_str += i[0] + '=' + i[1] + ';'
-        
+
         if len(cookie_str) > 0:
             cookie_str = cookie_str[0:-1]
-        
+
         return cookie_str
-        
+
     def account_info(self, page):
         '''
           登陆成功后提取账户基本资料
@@ -285,8 +285,8 @@ if __name__ == "__main__":
     # parser.add_argument('-p', type=str, required=True, metavar='file', dest='pwd', help='weibo account password')
     # username = parser.parse_args().username
     # pwd = parser.parse_args().pwd
-    username = '18817391791'    # 'xinming_song@sina.com'
-    pwd = 'Sz3205031993'        # '14176596'
+    username = '18817391791'
+    pwd = 'Sz3205031993'
     a = WBlogin(_url, _header, None, username, pwd, _header_a)
     cookie_list = a.login()
     print cookie_list
