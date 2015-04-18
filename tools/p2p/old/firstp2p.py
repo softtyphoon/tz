@@ -99,116 +99,32 @@ class firstp2p():
     def get_status(self, content=None):
         '''
           解析主页，得到各个项目的信息
-          返回列表数据，依次为：项目地址，投资总额，可投金额，剩余时间，可投金额差值，可投金额差值是否比上次的大(1)，[年化收益率，期限，收益方式，优惠, 优惠利率]
+          返回列表数据，依次为：项目地址，投资总额，可投金额，剩余时间，可投金额差值，可投金额差值是否比上次的大(1)，[年化收益率，期限，收益方式，优惠，优惠利率]
         '''
         funds = list()
         if content is None:
             page = self.get_page()
         else:
             page = content
-        # fn = open('page.txt', 'r+')
-        # page = fn.read()
-        # fn.close()
-        # sys.exit(0)
-        
-        page = page.decode('utf-8')
+
         bs = BeautifulSoup(page)
         fund_url = list()
-        main_div = bs.find_all('div', attrs={'class':'conbd'})
-        divs = main_div[0].find_all('div', attrs={'class':'p2p_product p5'})      # 找到每个产品
-        # print divs[0].get_text()
-        cnt = 0
-        for i in divs:
-            cnt += 1
-            sub = list(range(7))
-            a = i.find('a')
-            if a == None:
-                break       # 达到了过期项目
-            sub[0] = a['href']      # 获得项目地址
-            pat = re.compile(u'(?<=<).+?(?=>)')
-            b = pat.search(a.get_text())
-            if b == None:
-                lilv = u'0'
-            else:
-                pat = re.compile(u'[0-9.]')
-                c = pat.search(b.group())
-                if c == None:
-                    lilv = u'0'
-                else:
-                    lilv = c.group()
-            
-            div = i.find_all('div', attrs={'class':'con_l'})
-            info_div = div[0].find_all('div')    # 三个信息
-            p = info_div[0].find_all('p')
-            # print p[0].get_text()       # 收益率
-            # print p[1].get_text()
-            
-            pat = re.compile(u'[0-9.]+')
-            b = pat.search(p[0].get_text())
-            rate = b.group()        # 获得收益率
-            # print rate
-            
-            pat = re.compile(u'[0-9.]+')
-            b = pat.search(p[1].get_text())
-            sub[1] = (int(float(b.group())*10000))        # 获得项目资金
-            # print sub[1]
-            
-            p = info_div[2].find_all('p')
-            pat = re.compile(u'[0-9.,]+')
-            b = pat.search(p[1].get_text())
-            str = b.group().replace(',', '')
-            sub[2] = (int(float(str)))
-            # print sub[2]                                  # 获得已投金额
-            
-            time_left = 100000000
-            sub[3] = (time_left)                          # 获得项目剩余时间，分钟为单位
-            
-            p = info_div[1].find_all('p')
-            pat = re.compile(u'(?<=：).+', re.DOTALL)
-            b = pat.search(p[0].get_text())
-            period = b.group()              # 投资期限
-            
-            b = pat.search(p[1].get_text())
-            method = b.group()              # 收益方式
-
-            subb = list(range(6))
-            yh = i.find_all('i', attrs={'class':'deal_tips bg_blue'})
-            if len(yh) == 0:
-                subb[3] = 0
-                subb[4] = u''
-            else:
-                subb[3] = 1
-                subb[4] = yh[0].get_text()
-
-            subb[0] = rate
-            subb[1] = period
-            subb[2] = method
-            subb[5] = lilv
-            
-            strip_subb = subb
-            for (index, i) in enumerate(subb):
-                if index == 3:
-                    # print subb[index]
-                    continue
-                subb[index] = subb[index].strip(' ').strip('\n')
-                subb[index] = subb[index].strip('\n').strip(' ')
-                # print subb[index]
-            
-            sub[6] = subb
-            funds.append(sub)
-            # print '=====================%s==================' % lilv
-        
-        return funds
-
-        
-        sys.exit(0)
+        tbody = bs.find_all('tbody', attrs={'class':'j_index_tbody'})
+        trs = tbody[0].find_all('tr')
         for tr in trs:
             sub = list(range(7))
             atag =  tr.find('a')
             if atag is None:
                 continue
             sub[0] = (atag['href'])                  # 获得项目地址
-            # print atag['href']
+            name = atag.get_text()#.decode('utf-8')
+            pat = re.compile(u'[\d.]+%')
+            lilv_l = pat.findall(name)
+            if len(lilv_l) == 0:
+                lilv = u'0'.encode('gbk')
+            else:
+                lilv = lilv_l[0].encode('gbk')
+            
 
             atag =  tr.find_all('div', attrs={'class':'pro_links'})
             str = atag[0].get_text()
@@ -264,7 +180,7 @@ class firstp2p():
             sub[3] = (time_left)
 
             # 添加，年化收益率      "btm f14 tc">8.50<em>%</em>
-            subb = list(range(5))
+            subb = list(range(6))
             pat = re.compile(u'(?<=btm f14 tc">).*(?=<em>%</em>)')
             atag =  tr.find_all('p', attrs={'class':'btm f14 tc'})
             subb[0] = atag[0].get_text().strip('\n')
@@ -279,7 +195,7 @@ class firstp2p():
             else:
                 subb[3] = 1
                 subb[4] = atag[0].get_text()
-            sub[6] = subb
+            subb[5] = lilv
             # print subb[4]
             funds.append(sub)
 
@@ -476,7 +392,7 @@ class firstp2p():
 
             delay_time = self.delay_level*10+5
             # delay_sec = random.uniform(delay_time, delay_time + 10)
-            delay_sec = random.uniform(25, 45)
+            delay_sec = random.uniform(35, 65)
             print 'waiting ... ... ... %d second' % delay_sec
             time.sleep(int(delay_sec))
             self.last = copy.copy(funds)
@@ -490,15 +406,10 @@ class firstp2p():
 
 
 if __name__ == "__main__":
-    # a = 'sdf<sfdf3434.65sf>'
-    # pat = re.compile(u'(?<=<).+?(?=>)')
-    # b = pat.search(a)
-    # b = pat.findall(a)
-    # print b.group()
-    # print b
-    # sys.exit(0)
-    # a = firstp2p(main_url, _header)
-    # a.run()
+    # name = u'辅导费-232.5%34-是的'
+    # pat = re.compile(u'[\d.]+%')
+    # lilv = pat.findall(name)
+    # print lilv[0]
     # sys.exit(0)
     while True:
         try:
