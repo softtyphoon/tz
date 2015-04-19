@@ -26,6 +26,7 @@ class schedules_info():
                     '6':u'星期六',
                     '7':u'星期七'
                    }
+      self.db = None
       pass
 
   def run(self):
@@ -46,12 +47,33 @@ class schedules_info():
                   print k
                   fn.write((k).encode('gbk'))
           fn.flush()
+          self.write_db(i)
           # return 0
       print u'结束了！！！'
       self.conn.close()
       
   def write_db(self, sch_info):
-      pass
+      '''
+        向数据库写数据
+        输入数据格式
+            部门 教师姓名 课表信息[day, when info]
+        写入数据库格式
+            键一，教师姓名；键二，课表信息，内部以逗号（，）隔开，之间用分号（；）隔开
+      '''
+      cur = self.db.cursor()
+      bm = sch_info[0].encode('utf-8')
+      name = sch_info[1].encode('utf-8')
+      info_list = []
+      info = u''
+      for i in sch_info[3]:
+          info_list.append(u','.join(i))
+      info = u';'.join(info_list)
+      info = info.encode('utf-8')
+      # statement = "insert into %s value(depth varchar(20),name varchar(20), area varchar(20), url varchar(50))" % db_info[5]
+      statement = "insert into %s value('%s', '%s')" % (bm, name, info)
+      cur.execute(statement)
+      cur.close()
+      self.db.commit()
 
   def request_form(self):
       '''
@@ -159,11 +181,11 @@ class schedules_info():
                       delay = random.uniform(1,2)
                       # time.sleep(delay)
                       page = self.get_page(request_url, header, post_data)
-                  temp = (u'del\\'+all_js_name[js_num]+u'.txt').replace(u'/', '')
-                  f = open(temp, 'w+')
-                  f.write(page)
-                  f.write(post_data)
-                  f.close()
+                  # temp = (u'del/'+all_js_name[js_num]+u'.txt').replace(u'/', '')
+                  # f = open(temp, 'w+')
+                  # f.write(page)
+                  # f.write(post_data)
+                  # f.close()
                   try:
                     page = page.decode('gb2312')
                   except:
@@ -424,28 +446,21 @@ class schedules_info():
       print 'OK: selected database %s' % db_info[4]
       
       for t in table_info:
-          statement = "create table %s(name varchar(20), kebiao varchar(5000))" % t
+          statement = "create table %s(name varchar(400), kebiao varchar(5000))" % t
           cursor.execute(statement)
           print 'OK: create table(%s) cause the table is not exist in database %s' % (t, db_info[4])
 
       cursor.close()
-      self.conn = con
+      self.db = con
 
 
 if __name__ == "__main__":
-    # a = {'a':'教务处'}
-    # print urllib.urlencode(a)
-    # im = Image.open('ck.png')
-    # text = image_to_string(im)
-    # print text
-    # text = image_file_to_string('ck.png', graceful_errors=True)
-    # print "Using image_file_to_string():"
-    # print text
-    # sys.exit(0)
-    b = '<f>fsd<sfdf>dser<f.f>'
-    a = schedules_info('41230', 'hyitJSJ11416')
-    # a.html_tag_remove(b)
-    # a.login()
+    username = '41230'              # 用户名
+    password = 'hyitJSJ11416'       # 密码
+    # 数据库配置：服务器地址，用户名，密码，端口，存储数据的数据库名称
+    db_info = ['localhost', 'root', '123456', 3306, 'kebiao']
+    a = schedules_info(username, password, db_info)
+    a.login()
     a.run()
     
 
