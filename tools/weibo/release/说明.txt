@@ -1,0 +1,12 @@
+代码中设置的地方都已经注明，其他地方不要改
+
+附上一份 mysql 中导出的爬取结果和 manager 的截图
+
+注意，运行程序的时候，关闭 manager 和数据库的链接
+建议设置的时候，别改数据库名称，只对每次不同的爬取设置独立的表名，如果表存在，会删除，重建。
+
+数据库版本：mysql_installer_community_V5.6.21.1
+百度搜索直接能下。
+
+
+manager 下载地址：http://download.pchome.net/development/database/down-10462-1.html

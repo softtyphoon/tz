@@ -69,9 +69,9 @@ def init_db(db_info):
         statement = "create database %s" % db_info[4]
         cursor.execute(statement)
         print 'OK: create database %s' % db_info[4]
-        
-    con.select_db(db_info[4])
-    print 'OK: selected database %s' % db_info[4]
+    else:
+        con.select_db(db_info[4])
+        print 'OK: selected database %s' % db_info[4]
 
     statement = "show tables"
     cursor.execute(statement)
@@ -129,24 +129,8 @@ if __name__ == "__main__":
     a = WBlogin(_url_login, _header_for_login, None, username, pwd, _header_a)
     cookie_list = a.login()
     a = WBinfo(_url, _header_for_info, cookie_list, depth, [db_con, db_set[5]])
-    b = a.sn_info(_url)     # [[name, area, url], [[name, url], [name, url], ...]]
+    a.get_fans(_url, depth)
     db_con.close()
-    for i in b[1:]:
-        for j in i:
-            print j[0], j[1]
-        print ''
-        
-    for s in b[1:]:
-        print '------------------------------------------------------------'
-        for i in s:
-            c = a.sn_info(i[1])
-            print c[0][0], c[0][1], c[0][2]
-            for k in c[1:]:
-                for j in k:
-                    print j[0], j[1]
-                # print ''
-        
-    
 
 
 

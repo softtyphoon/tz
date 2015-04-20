@@ -31,92 +31,6 @@ class WBinfo():
         self.db = db_set[0]
         self.db_table = db_set[1]
 
-    def wb_sn(self, url, depth):
-        '''
-          得到微博之间的关系
-        '''
-        pass
-
-    def sn_info(self, url):
-        '''
-          得到账号信息，以及粉丝
-          返回格式 [[name, area, url], [[name, url], [name, url], ...]]
-        '''
-        page_num = 2
-        info = []
-        while True:
-            delay = random.uniform(1, 3)
-            time.sleep(delay)
-            page = self.get_page(url)
-            if page:
-                break
-
-        # 得到博主的信息
-        pat = re.compile(u'(?<=\<a href=")[^<]+?(?=">资料</a>)')
-        res = pat.findall(page)
-        info_url = u'http://weibo.cn' + res[0]
-        self.url = info_url
-        area, tag, intr, name = self.account_info()
-
-        info.append([name, area, url])
-
-        # 得到粉丝
-        pat = re.compile(u'(?<=粉丝\[).+?(?=\])')
-        res = pat.findall(page)
-        if res[0] == u'0':    # 没有粉丝
-            return info
-
-        # 进入粉丝页，查找粉丝
-        pat = re.compile(u'(?<=href=")[^<]+?(?=">粉丝\[)')
-        res = pat.findall(page)
-        url = u'http://weibo.cn' + res[0]
-        fan_list = self.retrive_fans(url, page_num)
-        info.append(fan_list)       # 传入主页的信息以及粉丝情况
-        return info
-
-    def retrive_fans(self, url, page_num):
-        '''
-          返回粉丝页面的粉丝信息
-        '''
-        fan_list = []
-        delay = random.uniform(1, 3)
-        time.sleep(delay)
-        page = self.get_page(url)
-
-        pat = re.compile(u'(?<=<table>).+?(?=</table>)')
-        res = pat.findall(page)
-        if len(res) == 0:
-            return fan_list
-
-        for i in res:
-            pat = re.compile(u'(?<=href=").+?(?=">)')
-            sub_res = pat.findall(i)
-            url = sub_res[0]
-
-            pat = re.compile(u'(?<=">)[^<]+?(?=</a>)')
-            sub_res = pat.findall(i)
-            name = sub_res[0]
-
-            if u'2671109275' in url:
-                continue
-
-            fan_list.append([name, url])
-
-        # 找到下一页的链接
-        pat = re.compile(u'(?<=<a href=")[^<]+?(?=">下页</a>)')
-        res = pat.findall(page)
-        if len(res) == 0:
-            return fan_list
-        else:
-            next_url = u'http://weibo.cn' + res[0]
-
-        next_url = next_url.replace(u'&amp;', u'&')
-        page_num = page_num - 1
-        if page_num == 0:
-            return fan_list
-        else:
-            return fan_list + (self.retrive_fans(next_url, page_num))
-
     def get_fans(self, url, depth=0, pagein=None):
         '''
           返回指定深度的粉丝信息
@@ -508,18 +422,23 @@ class WBinfo():
             req.add_data(data)
             req.add_header(u'Content-Length', len(data))
 
+        # print 'trans header'
+        # for (name, nal) in self.header.items():
+            # print name, ': ',  nal
+        # print repr(data)
         try:
             r = opener.open(req, timeout = 60)
-            if r.info().get('Content-Encoding') == 'gzip':
-                buf = StringIO.StringIO(r.read())
-                f = gzip.GzipFile(fileobj=buf)
-                data = f.read()
-            else:
-                data = r.read()
         except:
             print 'failed'
             opener.close()
             return False
+        # Make sure everything is working ;)
+        if r.info().get('Content-Encoding') == 'gzip':
+            buf = StringIO.StringIO(r.read())
+            f = gzip.GzipFile(fileobj=buf)
+            data = f.read()
+        else:
+            data = r.read()
 
         try:
             data = data.decode('utf-8')
