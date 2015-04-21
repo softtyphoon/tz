@@ -65,11 +65,15 @@ def init_db(db_info):
             existed[0] = True
             break
 
-    if existed[0] is False:
-        statement = "create database %s" % db_info[4]
+    if existed[0] is True:
+        statement = "drop database %s" % db_info[4]
         cursor.execute(statement)
-        print 'OK: create database %s' % db_info[4]
-        
+
+    statement = "create database %s" % db_info[4]
+    cursor.execute(statement)
+    print 'OK: create database %s' % db_info[4]
+
+
     con.select_db(db_info[4])
     print 'OK: selected database %s' % db_info[4]
 
@@ -94,9 +98,13 @@ def init_db(db_info):
             print u'ATTENTION: 表名称重复，请重新设置表名后再执行程序.'.encode('gbk')
             sys.exit(0)
 
-    statement = "create table %s(depth varchar(20),name varchar(200), area varchar(200), url varchar(500))" % db_info[5]
+    statement = "create table all_sn(name varchar(200), area varchar(200), url varchar(500))"
     cursor.execute(statement)
-    print 'OK: create table(%s) cause the table is not exist in database %s' % (db_info[5], db_info[4])
+    print 'OK: create table(%s) cause the table is not exist in database %s' % ('all_sn', db_info[4])
+
+    statement = "create table %s(From_id varchar(200), From_URL varchar(500), To_id varchar(200), To_URL varchar(500))" % 'sn_relationship'
+    cursor.execute(statement)
+    print 'OK: create table(%s) cause the table is not exist in database %s' % ('sn_relationship', db_info[4])
     # else:
         # print 'OK: table(%s) exist in database %s' % (db_info[5], db_info[4])
 
@@ -104,7 +112,7 @@ def init_db(db_info):
     # statement = "insert into test value('%s', 'a', 'a', 'a')" % a
     # cursor.execute(statement)
     # con.commit()
-    
+
     cursor.close()
     return con
     # con.close()
@@ -114,7 +122,8 @@ def init_db(db_info):
 if __name__ == "__main__":
     # _url = 'http://weibo.cn/lqszjx'# ?vt=4'
     # 设置起始微博的网址
-    _url = 'http://weibo.cn/2053134003'# ?vt=4'
+    # _url = 'http://weibo.cn/2053134003'# ?vt=4'     # 武汉移动
+    _url = 'http://weibo.cn/u/3871744623'# ?vt=4'
     # 设置用户名
     username = '18817391791'
     # 设置密码
@@ -129,24 +138,26 @@ if __name__ == "__main__":
     a = WBlogin(_url_login, _header_for_login, None, username, pwd, _header_a)
     cookie_list = a.login()
     a = WBinfo(_url, _header_for_info, cookie_list, depth, [db_con, db_set[5]])
-    b = a.sn_info(_url)     # [[name, area, url], [[name, url], [name, url], ...]]
+    b = a.sn_analysis(_url)     # [[name, area, url], [[name, url], [name, url], ...]]
     db_con.close()
-    for i in b[1:]:
-        for j in i:
-            print j[0], j[1]
-        print ''
-        
-    for s in b[1:]:
-        print '------------------------------------------------------------'
-        for i in s:
-            c = a.sn_info(i[1])
-            print c[0][0], c[0][1], c[0][2]
-            for k in c[1:]:
-                for j in k:
-                    print j[0], j[1]
+    print ''
+    print ''
+    print u'结束！！'
+    # for j in b[1][:]:
+        # print j[0], j[1]
+    # print ''
+
+    # for s in b[1:]:
+        # print '------------------------------------------------------------'
+        # for i in s:
+            # c = a.sn_info(i[1])
+            # print c[0][0], c[0][1], c[0][2]
+            # for k in c[1:]:
+                # for j in k:
+                    # print j[0], j[1]
                 # print ''
-        
-    
+
+
 
 
 

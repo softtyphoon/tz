@@ -74,6 +74,104 @@ class WBinfo():
         info.append(fan_list)       # 传入主页的信息以及粉丝情况
         return info
 
+    def sn_analysis(self, url):
+        '''
+          社交网络关系分析
+          数据来源 : b = a.sn_info(_url)     # [[name, area, url], [[name, url], [name, url], ...]]
+        '''
+        # 首先得到入口微博以及其粉丝的信息
+        all_sn = list()
+        main_info = self.sn_info(url)
+        all_sn.append(main_info)
+        print main_info[0][0], main_info[0][1], main_info[0][2]
+        for j in main_info[1][:]:
+            print j[0], j[1]
+        print ''
+        if self.db is not None:         # 写入数据库   name area url
+            cur = self.db.cursor()
+            db_name = main_info[0][0].encode('utf-8')
+            db_area = main_info[0][1].encode('utf-8')
+            db_url = main_info[0][2].encode('utf-8')
+            statement = "insert into %s value('%s', '%s', '%s')" % ('all_sn', db_name, db_area, db_url)
+            cur.execute(statement)
+            cur.close()
+            self.db.commit()
+
+        # 然后再得到粉丝微博的信息以及其各自的粉丝
+        for i in main_info[1][:]:
+            info = self.sn_info(i[1])
+            all_sn.append(info)
+            print info[0][0], info[0][1], info[0][2]
+            for j in info[1][:]:
+                print j[0], j[1]
+            # 写入数据库
+            cur = self.db.cursor()
+            db_name = info[0][0].encode('utf-8')
+            db_area = info[0][1].encode('utf-8')
+            db_url = info[0][2].encode('utf-8')
+            statement = "insert into %s value('%s', '%s', '%s')" % ('all_sn', db_name, db_area, db_url)
+            cur.execute(statement)
+            cur.close()
+            self.db.commit()
+            for j in info[1][:]:
+                cur = self.db.cursor()
+                db_name = j[0].encode('utf-8')
+                db_area = u''.encode('utf-8')
+                db_url = j[1].encode('utf-8')
+                statement = "insert into %s value('%s', '%s', '%s')" % ('all_sn', db_name, db_area, db_url)
+                cur.execute(statement)
+                cur.close()
+                self.db.commit()
+            # break
+            print ''
+        '''
+          开始进行关系分析
+        '''
+        # 先输出已经很明晰的关系   sn_relationship
+        # for i in all_sn:
+            # for j in i[1][:]:
+                # print '*************************************************'
+                # print j[0], j[1],
+                # print u' 关注了 ',
+                # print all_sn[0][0], all_sn[0][2]
+                # cur = self.db.cursor()
+                # from_name = j[0].encode('utf-8')
+                # from_url = j[1].encode('utf-8')
+                # to_name = all_sn[0][0].encode('utf-8')
+                # to_url = all_sn[0][2].encode('utf-8')
+                # statement = "insert into %s value('%s', '%s', '%s', %s)" % ('sn_relationship', from_name, from_url, to_name, to_url)
+                # cur.execute(statement)
+                # cur.close()
+                # self.db.commit()
+        
+        # 然后再分析各个之间是否存在关注关系   [[name, area, url], [[name, url], [name, url], ...]]
+        # print '-----------------------------'
+        no_repeat = []
+        for i in all_sn:
+            # print i
+            obj_list = [[i[0][0], i[0][2]]] + i[1][:]     # 取出一个微博信息
+            for object in obj_list:
+                for j in all_sn:
+                    for k in j[1][:]:       # 在每个微博的粉丝信息里面进行查询
+                        if object[0] in k[0] or object[1] in k[1]:
+                            # print '********************************************'
+                            # print object[0], k[0], object[1], k[1]
+                            print '********************************************'
+                            print object[0], object[1],
+                            print u' 关注了 '
+                            print j[0][0], j[0][2]
+                            cur = self.db.cursor()
+                            from_name = object[0].encode('utf-8')
+                            from_url = object[1].encode('utf-8')
+                            to_name = j[0][0].encode('utf-8')
+                            to_url = j[0][2].encode('utf-8')
+                            statement = "insert into %s value('%s', '%s', '%s', '%s')" % ('sn_relationship', from_name, from_url, to_name, to_url)
+                            cur.execute(statement)
+                            cur.close()
+                            self.db.commit()
+                            break     
+        # for 
+
     def retrive_fans(self, url, page_num):
         '''
           返回粉丝页面的粉丝信息

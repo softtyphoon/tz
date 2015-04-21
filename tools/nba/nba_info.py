@@ -6,6 +6,7 @@ import cookielib
 import time
 import StringIO
 import gzip
+import sys
 import re
 import time
 import random
@@ -25,19 +26,11 @@ _header = {'User-Agent':'Mozilla/5.0 (Windows NT 5.1; rv:36.0) Gecko/20100101 Fi
 game_schedule_url = u'http://nba.sports.sina.com.cn/match_result.php?dpc=1'
 ranking_url = [u'http://nba.sports.sina.com.cn/league_order1.php?dpc=1', u'http://nba.sports.sina.com.cn/league_order.php?dpc=1']
 player_url = u'http://nba.sports.sina.com.cn/playerstats.php?s=0&e=299&key=1&t=1'
-# sch_info = {u'时间':'',
-            # u'类型':'',
-            # u'客队':'',
-            # u'比分':'',
-            # u'主队':'',
-            # u'客队最高分':'',
-            # u'主队最高分':''
-           # }
 sch_info = [u'时间',u'类型',u'客队',u'比分',u'主队',u'客队最高分',u'主队最高分']
 
 
-def player_info(url = player_url, name = u'维斯布鲁克'):
-    
+def player_info(url = player_url, name = u'威斯布鲁克'):
+
     page, cookie = get_page(url, _header)
     # with open('test.txt', 'w+') as f:
         # f.write(page)
@@ -45,11 +38,19 @@ def player_info(url = player_url, name = u'维斯布鲁克'):
     page = BeautifulSoup(page)
     main_div = page.find('div', attrs={'id':'table730middle'})
     tr = main_div.find_all('tr')
+    title = False
     for i in tr:
         td = i.find_all('td')
-        for j in td:
-            print j.get_text().strip(),
-        print ''
+        if title == False:
+            title = True
+            for j in td:
+                print j.get_text().strip(),
+            print ''
+        else:
+            if name in td[1].get_text().strip():
+                for j in td:
+                    print j.get_text().strip(),
+                print ''
 
     pass
 
@@ -109,17 +110,17 @@ def nba_sch_info(url = game_schedule_url):
             if not future and not today:
                 print u'\n未来赛程'
                 future = True
-                
+
             if today == False:
                 print ''
                 print date
-                
+
         if bgcolor == '#FFEFB6':       # info
             if (u'完场' in td[0] or u'赛中' in td[0]) and today is True:
                 print u'今日比分'
                 print date
                 today = False
-                
+
             print ''
             for (index, value) in enumerate(sch_info):
                 print value, ':', td[index]
@@ -179,7 +180,7 @@ def get_page(url_in=None, header_in=None, data=None, cookie_set=None):
       https_handler = urllib2.HTTPSHandler()
 
       if cookie_set == None:
-          print 'initial cookie'
+          # print 'initial cookie'
           cookie = cookielib.CookieJar()
       else:
           cookie = cookie_set
@@ -214,30 +215,30 @@ def get_page(url_in=None, header_in=None, data=None, cookie_set=None):
 
       return [data, cookie]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == "__main__":
-    play_info()
-    # ranking_info()
-    # nba_sch_info()
+    while True:
+        print u'请选择命令：'
+        print u'  1. 查看联盟排名'
+        print u'  2. 查看分区排名'
+        print u'  3. 查看比赛信息'
+        print u'  4. 查看球员信息'
+        print u'  5. 退出'
+        cmd = raw_input()
+        if cmd == u'5':
+            print u'退出程序！ '
+            sys.exit(0)
+
+        if cmd == u'1':
+            ranking_info(ranking_url[0])
+
+        if cmd == u'2':
+            ranking_info(ranking_url[1])
+
+        if cmd == u'3':
+            nba_sch_info()
+
+        if cmd == u'4':
+            print u'请输入球员姓名:',
+            name = raw_input().decode('gbk')
+            player_info(url = player_url, name = name)
     pass
-
-
