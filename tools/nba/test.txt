@@ -152,7 +152,7 @@ _S_pSt(_S_PID_);
 	<a href="http://sports.sina.com.cn/l/2caipiao/jclq/?agentId=2332895"  target="_blank">篮球彩票</a>
     <a href="http://swf.games.sina.com.cn/tgy/ng/32/660/201166.html?sina1721&suda-key=game&suda-value=home:guide&suda-game=ftx2"  target="_blank">篮球游戏</a>
 	</p></div>
-    <div id="navright"><p style="padding-right:5px;">2015年04月20日</p></div>
+    <div id="navright"><p style="padding-right:5px;">2015年04月21日</p></div>
     <div id="navbottom"></div>
 
 <!-- 所有NBA数据库通用模块1 end --><!-- 页面主要内容 begin -->

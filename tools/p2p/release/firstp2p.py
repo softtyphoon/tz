@@ -10,6 +10,7 @@ import types
 import random
 import time
 import copy
+import StringIO
 
 
 
@@ -75,10 +76,17 @@ class firstp2p():
                 rty += 1
                 time.sleep(5)
                 continue
-                # print 'failed'
+                print 'failed'
                 opener.close()
                 return False
             # Make sure everything is working ;)
+            # if r.info().get('Content-Encoding') == 'gzip':
+                # buf = StringIO.StringIO(r.read())
+                # f = gzip.GzipFile(fileobj=buf)
+                # data = f.read()
+            # else:
+                # data = r.read()
+            # break
             try:
                 if r.info().get('Content-Encoding') == 'gzip':
                     buf = StringIO.StringIO(r.read())
@@ -88,7 +96,12 @@ class firstp2p():
                     data = r.read()
                 break
             except:
+                opener.close()
+                r.close()
+                if f:
+                  f.close()
                 rty += 1
+                print 'here'
                 time.sleep(5)
                 continue
             
@@ -497,8 +510,8 @@ if __name__ == "__main__":
     # print b.group()
     # print b
     # sys.exit(0)
-    # a = firstp2p(main_url, _header)
-    # a.run()
+    a = firstp2p(main_url, _header)
+    a.run()
     # sys.exit(0)
     while True:
         try:

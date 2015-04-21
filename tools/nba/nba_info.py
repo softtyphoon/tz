@@ -24,6 +24,7 @@ _header = {'User-Agent':'Mozilla/5.0 (Windows NT 5.1; rv:36.0) Gecko/20100101 Fi
 '''
 game_schedule_url = u'http://nba.sports.sina.com.cn/match_result.php?dpc=1'
 ranking_url = [u'http://nba.sports.sina.com.cn/league_order1.php?dpc=1', u'http://nba.sports.sina.com.cn/league_order.php?dpc=1']
+player_url = u'http://nba.sports.sina.com.cn/playerstats.php?s=0&e=299&key=1&t=1'
 # sch_info = {u'时间':'',
             # u'类型':'',
             # u'客队':'',
@@ -35,13 +36,30 @@ ranking_url = [u'http://nba.sports.sina.com.cn/league_order1.php?dpc=1', u'http:
 sch_info = [u'时间',u'类型',u'客队',u'比分',u'主队',u'客队最高分',u'主队最高分']
 
 
-def ranking_info(url = ranking_url[0]):
+def player_info(url = player_url, name = u'维斯布鲁克'):
+    
+    page, cookie = get_page(url, _header)
+    # with open('test.txt', 'w+') as f:
+        # f.write(page)
+
+    page = BeautifulSoup(page)
+    main_div = page.find('div', attrs={'id':'table730middle'})
+    tr = main_div.find_all('tr')
+    for i in tr:
+        td = i.find_all('td')
+        for j in td:
+            print j.get_text().strip(),
+        print ''
+
+    pass
+
+def ranking_info(url = ranking_url[1]):
     '''
       得到排名信息
     '''
     page, cookie = get_page(url, _header)
-    with open('test.txt', 'w+') as f:
-        f.write(page)
+    # with open('test.txt', 'w+') as f:
+        # f.write(page)
 
     page = BeautifulSoup(page)
     main_div = page.find('div', attrs={'id':'table980middle'})
@@ -49,46 +67,105 @@ def ranking_info(url = ranking_url[0]):
     for i in tr:
         td = i.find_all('td')
         for j in td:
-            print j.get_text(),
+            print j.get_text().strip(),
+        print ''
 
     pass
 
 def nba_sch_info(url = game_schedule_url):
     '''
       获得 nba 的赛程信息，入口url别改
+      BeautifulSoup 会掉信息，避免使用
     '''
     page, cookie = get_page(url, _header)
+    # with open('test.txt', 'w+') as f:
+        # f.write(page)
 
-    page = BeautifulSoup(page)
-    main_div = page.find('div', attrs={'id':'table980middle'})
-    # print main_div
-    tr = main_div.find_all('tr')
-    today = True
-    future = False
-    for i in tr:
-        if i['bgcolor'] == '#FFD200':       # 标题栏
-            date = i.find('td').get_text()
+    page = page.decode('gbk')
+    pat = re.compile(u'(?<=<div align="center">).+?(?=div>)', re.DOTALL)
+    div = pat.findall(page)[0]
+
+    pat = re.compile(u'(?<=<tr).+?(?=</tr>)', re.DOTALL)
+    trs = pat.findall(div)
+
+    today = True        # 默认当前为今日
+    future = False      # 默认当前不是未来赛程
+
+    for i in trs:
+        # bgcolor="#FFEFB6"
+        pat = re.compile(u'(?<=bgcolor=).+?(?= )', re.DOTALL)
+        bgcolor = pat.findall(i)[0].strip()
+        bgcolor = bgcolor.replace('"', '').strip()
+
+        # 所有的 td 值
+        # pat = re.compile(u'(?<=\>)[^<]+?(?=</td>)', re.DOTALL)
+        pat = re.compile(u'<td.+?(?=</td>)', re.DOTALL)
+        td = pat.findall(i)
+        for (index, val) in enumerate(td):
+            td[index] = html_tag_remove(td[index]).strip()
+
+        if bgcolor == '#FFD200':    # title
+            date = td[0]
             if not future and not today:
                 print u'\n未来赛程'
                 future = True
-
+                
             if today == False:
-                print '\n'
+                print ''
                 print date
-
-        if i['bgcolor'] == '#FFEFB6':       # 信息栏
-            tds = i.find_all('td')
-            if u'完场' in tds[0].get_text() and today is True:
+                
+        if bgcolor == '#FFEFB6':       # info
+            if (u'完场' in td[0] or u'赛中' in td[0]) and today is True:
                 print u'今日比分'
                 print date
                 today = False
-
-            print '\n'
+                
+            print ''
             for (index, value) in enumerate(sch_info):
-                print value, ':', tds[index].get_text().strip(' ').strip('\n').strip('\t').strip(' ').strip('\n').strip(' ')
+                print value, ':', td[index]
 
-    pass
+    return 0
 
+    # page = BeautifulSoup(page)
+    # main_div = page.find('div', attrs={'id':'table980middle'})
+    # table = main_div.find('table')
+    # tr = table.find_all('tr')
+    # today = True
+    # future = False
+    # for i in tr:
+        # if i['bgcolor'] == '#FFD200':       # 标题栏
+            # date = i.find('td').get_text().strip()
+            # if not future and not today:
+                # print u'\n未来赛程'
+                # future = True
+
+            # if today == False:
+                # print ''
+                # print date
+
+        # if i['bgcolor'] == '#FFEFB6':       # 信息栏
+            # tds = i.find_all('td')
+            # if (u'完场' in tds[0].get_text() or u'赛中' in tds[0].get_text()) and today is True:
+                # print u'今日比分'
+                # print date
+                # today = False
+
+            # print ''
+            # for (index, value) in enumerate(sch_info):
+                # print value, ':', tds[index].get_text().strip()
+
+    # pass
+
+def html_tag_remove(str):
+      '''
+        通用方法，移除tag
+      '''
+      pat = re.compile(u'<.+?>', re.DOTALL)
+      res = pat.findall(str)
+      str_fix = str
+      for i in res:
+          str_fix = str_fix.replace(i, ' ')
+      return str_fix
 
 def get_page(url_in=None, header_in=None, data=None, cookie_set=None):
       '''
@@ -158,8 +235,9 @@ def get_page(url_in=None, header_in=None, data=None, cookie_set=None):
 
 
 if __name__ == "__main__":
+    play_info()
     # ranking_info()
-    nba_sch_info()
+    # nba_sch_info()
     pass
 
 
