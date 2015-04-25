@@ -5,6 +5,7 @@ from fund_info import fund_info
 import sys
 import urllib2
 import re
+import zlib
 import gzip
 import types
 import random
@@ -68,45 +69,38 @@ class firstp2p():
         rty = 0
         while True:
             if rty == 10:
-                return False
-            try:
-                r = opener.open(req, timeout = 60)
-                # break
-            except:
-                rty += 1
-                time.sleep(5)
-                continue
-                print 'failed'
                 opener.close()
                 return False
-            # Make sure everything is working ;)
-            # if r.info().get('Content-Encoding') == 'gzip':
-                # buf = StringIO.StringIO(r.read())
-                # f = gzip.GzipFile(fileobj=buf)
-                # data = f.read()
-            # else:
-                # data = r.read()
-            # break
             try:
-                if r.info().get('Content-Encoding') == 'gzip':
-                    buf = StringIO.StringIO(r.read())
-                    f = gzip.GzipFile(fileobj=buf)
-                    data = f.read()
+                r = ''
+                r = opener.open(req, timeout = 60)
+                # Make sure everything is working ;
+                if r.info().get('Transfer-Encoding') == 'chunked':
+                    d = zlib.decompressobj(16+zlib.MAX_WBITS)
+                    content = ''
+                    while True:
+                        data = r.read()
+                        if not data:
+                          break
+                        content += d.decompress(data)
+                    data = content
                 else:
-                    data = r.read()
+                    if r.info().get('Content-Encoding') == 'gzip':
+                        buf = StringIO.StringIO(r.read())
+                        f = gzip.GzipFile(fileobj=buf)
+                        data = f.read()
+                    else:
+                        data = r.read()
                 break
             except:
-                opener.close()
-                r.close()
-                if f:
-                  f.close()
                 rty += 1
-                print 'here'
                 time.sleep(5)
                 continue
-            
+            finally:
+                opener.close()
+                if not r:
+                    r.close()
 
-        opener.close()
         return data
 
     def get_status(self, content=None):
@@ -524,7 +518,7 @@ if __name__ == "__main__":
         except KeyboardInterrupt:
             print 'exit'
             sys.exit(0)
-        except:
+        finally:
             a = None
     sys.exit(0)
 # total: tbody, j_index_tbody

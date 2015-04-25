@@ -98,7 +98,7 @@ def init_db(db_info):
             print u'ATTENTION: 表名称重复，请重新设置表名后再执行程序.'.encode('gbk')
             sys.exit(0)
 
-    statement = "create table all_sn(name varchar(200), area varchar(200), url varchar(500))"
+    statement = "create table all_sn(name varchar(200), area varchar(200), url varchar(500), follow varchar(100), fans varchar(100))"
     cursor.execute(statement)
     print 'OK: create table(%s) cause the table is not exist in database %s' % ('all_sn', db_info[4])
 

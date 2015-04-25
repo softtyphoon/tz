@@ -74,6 +74,42 @@ class WBinfo():
         info.append(fan_list)       # 传入主页的信息以及粉丝情况
         return info
 
+    def all_info(self, url=None):
+        '''
+          返回微博的 关注数，粉丝数，地区
+        '''
+        page = self.get_page(urlin=url)
+        # with open('1.txt', 'w+') as f:
+            # f.write(page.encode('utf-8'))
+        # with open('1.txt', 'r') as f:
+            # page=f.read()
+        
+
+        follow = ''
+        pat = re.compile(u'(?<=关注\[)\d+?(?=\])')
+        res = pat.findall(page)
+        # print res
+        if len(res) > 0:
+            follow = res[0].decode('utf-8').encode('gbk')
+
+        fans = ''
+        pat = re.compile(u'(?<=粉丝\[)\d+?(?=\])')
+        res = pat.findall(page)
+        # print res
+        if len(res) > 0:
+            fans = res[0].decode('utf-8').encode('gbk')
+
+        pat = re.compile(u'(?<=\<a href=")[^<]+?(?=">资料</a>)')
+        res = pat.findall(page)
+        info_url = u'http://weibo.cn' + res[0]
+        self.url = info_url
+        # print info_url
+        area, tag, intr, name = self.account_info()
+
+        # print 'f:', follow, 'fans', fans, 'area', area
+        return [follow, fans, area]
+        pass
+
     def sn_analysis(self, url):
         '''
           社交网络关系分析
@@ -88,11 +124,14 @@ class WBinfo():
             print j[0], j[1]
         print ''
         if self.db is not None:         # 写入数据库   name area url
+            [follow, fans, area] = self.all_info(main_info[0][2])
             cur = self.db.cursor()
             db_name = main_info[0][0].encode('utf-8')
             db_area = main_info[0][1].encode('utf-8')
             db_url = main_info[0][2].encode('utf-8')
-            statement = "insert into %s value('%s', '%s', '%s')" % ('all_sn', db_name, db_area, db_url)
+            db_follow = follow.encode('utf-8')
+            db_fans = fans.encode('utf-8')
+            statement = "insert into %s value('%s', '%s', '%s', '%s', '%s')" % ('all_sn', db_name, db_area, db_url, db_follow, db_fans)
             cur.execute(statement)
             cur.close()
             self.db.commit()
@@ -105,20 +144,26 @@ class WBinfo():
             for j in info[1][:]:
                 print j[0], j[1]
             # 写入数据库
+            [follow, fans, area] = self.all_info(info[0][2])
             cur = self.db.cursor()
             db_name = info[0][0].encode('utf-8')
             db_area = info[0][1].encode('utf-8')
             db_url = info[0][2].encode('utf-8')
-            statement = "insert into %s value('%s', '%s', '%s')" % ('all_sn', db_name, db_area, db_url)
+            db_follow = follow.encode('utf-8')
+            db_fans = fans.encode('utf-8')
+            statement = "insert into %s value('%s', '%s', '%s', '%s', '%s')" % ('all_sn', db_name, db_area, db_url, db_follow, db_fans)
             cur.execute(statement)
             cur.close()
             self.db.commit()
             for j in info[1][:]:
+                [follow, fans, area] = self.all_info(j[1])
                 cur = self.db.cursor()
                 db_name = j[0].encode('utf-8')
-                db_area = u''.encode('utf-8')
+                db_area = area.encode('utf-8')
                 db_url = j[1].encode('utf-8')
-                statement = "insert into %s value('%s', '%s', '%s')" % ('all_sn', db_name, db_area, db_url)
+                db_follow = follow.encode('utf-8')
+                db_fans = fans.encode('utf-8')
+                statement = "insert into %s value('%s', '%s', '%s', '%s', '%s')" % ('all_sn', db_name, db_area, db_url, db_follow, db_fans)
                 cur.execute(statement)
                 cur.close()
                 self.db.commit()
@@ -143,7 +188,7 @@ class WBinfo():
                 # cur.execute(statement)
                 # cur.close()
                 # self.db.commit()
-        
+
         # 然后再分析各个之间是否存在关注关系   [[name, area, url], [[name, url], [name, url], ...]]
         # print '-----------------------------'
         no_repeat = []
@@ -169,8 +214,8 @@ class WBinfo():
                             cur.execute(statement)
                             cur.close()
                             self.db.commit()
-                            break     
-        # for 
+                            break
+        # for
 
     def retrive_fans(self, url, page_num):
         '''
@@ -656,7 +701,8 @@ if __name__ == "__main__":
     # sys.exit(0)
 
     a = WBinfo(_url, _header, _cookie_str)
-    a.get_fans(_url, 2)
+    a.all_info()
+    # a.get_fans(_url, 2)
     # a.account_info()
     # a.get_info()
 

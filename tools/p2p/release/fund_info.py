@@ -6,7 +6,9 @@ import multiprocessing
 import time
 import sys
 import copy
+import zlib
 import gzip
+import StringIO
 # from bs4 import BeautifulSoup
 
 
@@ -38,7 +40,6 @@ class fund_info(object):
         '''
           得到页面
         '''
-        # print self.url
         opener = urllib2.OpenerDirector()
         http_handler = urllib2.HTTPHandler()
         https_handler = urllib2.HTTPSHandler()
@@ -50,33 +51,42 @@ class fund_info(object):
         if self.data is not None:
             req.add_data(self.data)
 
-        try:
-            r = opener.open(req, timeout = 60)
-        except:
-            # print 'failed'
-            opener.close()
-            self.page = None
-            return False
-        # Make sure everything is working ;)
-        if r.info().get('Content-Encoding') == 'gzip':
-            buf = StringIO.StringIO(r.read())
-            f = gzip.GzipFile(fileobj=buf)
-            data = f.read()
-        else:
-            data = r.read()
+        rty = 0
+        while True:
+            if rty == 10:
+                opener.close()
+                return False
+            try:
+                r = ''
+                r = opener.open(req, timeout = 60)
+                # Make sure everything is working ;
+                if r.info().get('Transfer-Encoding') == 'chunked':
+                    d = zlib.decompressobj(16+zlib.MAX_WBITS)
+                    content = ''
+                    while True:
+                        data = r.read()
+                        if not data:
+                          break
+                        content += d.decompress(data)
+                    data = content
+                else:
+                    if r.info().get('Content-Encoding') == 'gzip':
+                        buf = StringIO.StringIO(r.read())
+                        f = gzip.GzipFile(fileobj=buf)
+                        data = f.read()
+                    else:
+                        data = r.read()
+                break
+            except:
+                rty += 1
+                time.sleep(5)
+                continue
+            finally:
+                opener.close()
+                if not r:
+                    r.close()
 
         self.page = data
-
-        pat = re.compile(r'/\d+')
-        no = pat.findall(self.url)
-        no = no[0][1:]
-        self.no = no
-        # fn = self.no + '.txt'
-        # ppp = open(fn, 'w+')
-        # ppp.write(self.page)
-        # ppp.close()
-        opener.close()
-        r.close()
         return data
 
 
@@ -107,6 +117,7 @@ class fund_info(object):
                 name = res[-1].encode('gbk')
             else:
                 pat = re.compile(u'\D+')
+                res = res[0]
                 catch = pat.search(res)
                 name = catch.group()#.encode('gbk')
                 index = name.find(u'，')

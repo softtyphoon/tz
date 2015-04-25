@@ -9,6 +9,7 @@ import gzip
 import sys
 import re
 import time
+import zlib
 import random
 from bs4 import BeautifulSoup
 
@@ -180,7 +181,6 @@ def get_page(url_in=None, header_in=None, data=None, cookie_set=None):
       https_handler = urllib2.HTTPSHandler()
 
       if cookie_set == None:
-          # print 'initial cookie'
           cookie = cookielib.CookieJar()
       else:
           cookie = cookie_set
@@ -197,18 +197,31 @@ def get_page(url_in=None, header_in=None, data=None, cookie_set=None):
           req.add_header(u'Content-Length', len(data))
 
       try:
+          r = ''
           r = opener.open(req, timeout = 30)
-          # Make sure everything is working ;)
-          if r.info().get('Content-Encoding') == 'gzip':
-              buf = StringIO.StringIO(r.read())
-              f = gzip.GzipFile(fileobj=buf)
-              data = f.read()
+          # Make sure everything is working ;
+          if r.info().get('Transfer-Encoding') == 'chunked':
+              d = zlib.decompressobj(16+zlib.MAX_WBITS)
+              content = ''
+              while True:
+                  data = r.read()
+                  if not data:
+                    break
+                  content += d.decompress(data)
+              data = content
           else:
-              data = r.read()
+              if r.info().get('Content-Encoding') == 'gzip':
+                  buf = StringIO.StringIO(r.read())
+                  f = gzip.GzipFile(fileobj=buf)
+                  data = f.read()
+              else:
+                  data = r.read()
       except KeyboardInterrupt:
           print 'EXIT: Keyboard Interrupt'
           sys.exit(0)
-      except:
+      finally:
+          if not r:
+              r.close()
           print 'Time out'
           opener.close()
           return False
@@ -216,6 +229,9 @@ def get_page(url_in=None, header_in=None, data=None, cookie_set=None):
       return [data, cookie]
 
 if __name__ == "__main__":
+    a = u'伊戈达拉'
+    print repr(a)
+    print repr(a.encode('utf-8'))
     while True:
         print u'请选择命令：'
         print u'  1. 查看联盟排名'
@@ -239,6 +255,7 @@ if __name__ == "__main__":
 
         if cmd == u'4':
             print u'请输入球员姓名:',
-            name = raw_input().decode('gbk')
+            # name = raw_input().decode('utf-8')
+            name = raw_input()
             player_info(url = player_url, name = name)
     pass

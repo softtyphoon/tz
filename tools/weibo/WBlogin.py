@@ -99,9 +99,6 @@ class WBlogin():
 
             time.sleep(0.3)
 
-        fn = open('done.txt', 'w+')
-        fn.write(login_page)
-        fn.close()
         # print 'done'
         # for i in self.cookie_pool:
             # print i
