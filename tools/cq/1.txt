@@ -1,5 +1,0 @@
-initial cookie
---------------------aaa---------------------
-VMhOIbxho_checkcode njho
-VMhOIbxho_sid 985d218f93de3c8ac35385aa3b2b0f2a
-PHPSESSID 88fbadc270081289cfae3a8cd403b84b

@@ -1,0 +1,608 @@
+<!DOCTYPE html PUBliC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+<meta name="author" content="www.17173.com" />
+<meta name="Copyright" content="Copyright (c) 2001-2014 news.17173.com" />
+<meta name="keywords" content="反恐精英Online2">
+<meta name="description" content=",《反恐精英Online2》恶灵附身模式详解">
+<title>《反恐精英Online2》恶灵附身模式详解_网络游戏新闻_17173.com中国游戏第一门户站</title>
+<!--globalHeadBegin-->
+
+
+
+
+
+
+
+<link rel="dns-prefetch" href="http://ue.17173cdn.com/" />
+<link rel="dns-prefetch" href="http://ue1.17173cdn.com/" />
+<link rel="dns-prefetch" href="http://ue2.17173cdn.com/" />
+<link rel="dns-prefetch" href="http://ue3.17173cdn.com/" />
+<link type="image/x-icon" rel="icon" href="http://ue2.17173cdn.com/images/lib/v1/favicon-hd.ico" />
+<link type="image/x-icon" rel="shortcut icon" href="http://ue3.17173cdn.com/images/lib/v1/favicon.ico" />
+
+
+
+<script type="text/javascript" src="http://ue.17173cdn.com/a/lib/vda/seed.js"></script>
+<link href="http://ue.17173cdn.com/cache/lib/v2/reset-and-utils-1.0.css" rel="stylesheet" type="text/css" />
+<link href="http://ue.17173cdn.com/a/lib/article/article-news-v2.css" rel="stylesheet" type="text/css" />
+<link href="http://ue.17173cdn.com/a/news/final/2014/css/layout.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://ue.17173cdn.com/a/lib/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="http://ue.17173cdn.com/a/lib/pandora.js"></script>
+<script type="text/javascript" src="http://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+<style type="text/css">.box-newgame, .mod-live2{ display: none;}#jsSysw .sysw-con2{margin:0 0 0 30px}#side h2.gb-final-tit a{color:#333}#side h2.gb-final-tit a:hover{color:#0066cc;text-decoration: underline;}</style>
+<script type="text/javascript">$.fn.live = $.fn.on;</script>
+
+</head>
+
+<body>
+
+<div id="AdFirstBanner" class="adsystem-mark" data-ad-type="AdNewsComm"></div>
+	<div class="gb-final-wrapper" id="wrapper">
+		<div class="gb-final-header" id="header">
+	<div class="gb-final-logo-news"><a href="http://news.17173.com" title="新闻中心"><img src="http://ue1.17173cdn.com/a/news/final/2014/img/logo-news.png" alt="新闻中心" width="122" height="37" /></a></div>
+	<div class="gb-final-nav-main">
+		<dl>
+			<dt><a href="http://news.17173.com/game/xyry.shtml">新游热游</a><i class="gb-final-ico-arrow-r"></i></dt>
+			<dd><a href="http://news.17173.com/main/no2.shtml">全球</a><a href="http://news.17173.com/main/no1.shtml">大陆</a><a href="http://newgame.17173.com/list/pdlist.shtml">盘点</a></dd>
+		</dl>
+		<dl>
+			<dt><a href="http://news.17173.com/gamer/">玩家</a><i class="gb-final-ico-arrow-r"></i></dt>
+			<dd><a href="http://news.17173.com/game/jtj.shtml">囧图</a><a href="http://news.17173.com/topic/">话题</a><a href="http://news.17173.com/hongren/">红人</a><a href="http://news.17173.com/game/dbs.shtml">大B神</a><a href="http://news.17173.com/bnx/index.shtml">白女侠</a></dd>
+		</dl>
+		<dl>
+			<dt><a href="http://news.17173.com/chanye/">产业</a><i class="gb-final-ico-arrow-r"></i></dt>
+			<dd><a href="http://news.17173.com/zf/">专访</a><a href="http://news.17173.com/zt/">专题</a><a href="http://news.17173.com/game/hmkp.shtml">河马快评</a></dd>
+		</dl>
+		<dl class="gb-final-last">
+			<dt><a href="http://news.17173.com/game/" target="_blank">新闻大全</a></dt>
+		</dl>
+	</div>
+</div>
+		<!--end the header-->
+		<div class="gb-final-pn-top" id="pn_top">
+			<div class="gb-final-mod-crumbs">
+				<a href="http://www.17173.com/" target="_blank">17173</a><span class="gb-final-sep">></span>
+				<a href="http://news.17173.com/" target="_blank">新闻中心</a><span class="gb-final-sep">></span>
+				<a href="http://newgame.17173.com/_fkjy2/" target=_blank>反恐精英OL2</a><span class="gb-final-sep">></span>
+				<span class="gb-final-cur">正文</span>
+			</div>
+			<div class="gb-final-mod-search">
+	<form action="http://search.17173.com/news.jsp" method="post" name="form1" target="_blank">
+		<input onblur="Javascript:if(this.value==''){this.value=''}" type="text" name="keyword" class="gb-final-txt" value="新天龙八部" align="middle" onClick="this.value=''"/>
+		<input type="submit"  class="gb-final-btn" value="搜索" />
+	</form>
+</div>
+		</div>
+		<!-- end the gb-final-pn-top -->
+		<div class="gb-final-content clearfix" id="content">
+						<div class="gb-final-main" id="main">
+<script type="text/javascript">
+var article = {};
+article.infoChannel = '10009';
+article.infoId = '3910352';
+article.infoClass = '1';
+article.infoCommentHref = 'v2#10009#07q1a0e2ryvkpqbgx65l';
+article.tag = '反恐精英Online2 ';
+article.gamecode = '11958';
+article.game = null;
+var _config={categoryId:article.infoChannel};
+</script>
+	<div class="gb-final-pn-article">
+		<h1 class="gb-final-tit-article">《反恐精英Online2》恶灵附身模式详解</h1>
+		<div class="gb-final-mod-info"> <span class="gb-final-date">2015-04-22 11:28:42</span> 
+			 <span class="gb-final-correction"><a href="javascript:" id="err"><i class="gb-final-ico-write"></i>我要纠错</a><div id="errorReport" style="position:relative;z-index:3"></div></span> <span class="gb-final-rss"><a href="http://a.17173.com/tg/channel/index.html?id=A0011502031" target="_blank"><i class="gb-final-ico-phone"></i>手机订阅</a></span> <span class="gb-final-bt-to-comment forsetLink5"><a href="#changyan_area" target="_self"><i class="gb-final-ico-comment"></i>神评论<b id="changyan_count_unit"></b></a></span> </div>
+		<div class="gb-final-mod-article" id="mod_article"> <a name="pageanchor1" id="pageanchor1" ></a><p><span></span>　　4月22日，《反恐精英Online2》新模式“恶灵附身”即将登场，充满灵异气氛的新模式究竟是怎么样的呢？下面将为你带来恶灵附身模式的详细介绍。</p>
+<p>　　恶灵附身模式：恶灵追捕人类将所有人类变成恶灵并获得胜利，人类躲避恶灵的捕杀或将所有恶灵消灭获得胜利的一种模式。游戏开始后过一段时间某一玩家随机变成恶灵，其他人类被该恶灵攻击死亡后也会被恶灵附身而变成恶灵。</p>
+<p align=center><a href="http://news.17173.com/viewpic.htm?url=http://images.17173.com/2015/news/2015/04/22/mj0422av01.jpg" target=_blank><img border=1 alt="反恐精英Online2最新图片" src="http://images.17173.com/2015/news/2015/04/22/mj0422av01s.jpg"></a></p>
+<p>　　胜利目标</p>
+<p>　　人类阵营：在限制时间内存活或将所有恶灵击毙</p>
+<p>　　僵尸阵营：在限制时间内将所有人类感染成恶灵</p>
+<p align=center><a href="http://news.17173.com/viewpic.htm?url=http://images.17173.com/2015/news/2015/04/22/mj0422av02.jpg" target=_blank><img border=1 alt="反恐精英Online2最新图片" src="http://images.17173.com/2015/news/2015/04/22/mj0422av02s.jpg"></a></p>
+<p>　　恶灵拥有的特性：</p>
+<p>　　1、恶灵拥有比人类更多的血量，最初的母体恶灵拥有最高的血量（600），次级恶灵拥有300血量，人类的血量则为100；</p>
+<p align=center><a href="http://news.17173.com/viewpic.htm?url=http://images.17173.com/2015/news/2015/04/22/mj0422av03.jpg" target=_blank><img border=1 alt="反恐精英Online2最新图片" src="http://images.17173.com/2015/news/2015/04/22/mj0422av03s.jpg"></a></p>
+<p>　　2、恶灵不能使用武器攻击，这和生化模式的设定一样；</p>
+<p align=center><a href="http://news.17173.com/viewpic.htm?url=http://images.17173.com/2015/news/2015/04/22/mj0422av04.jpg" target=_blank><img border=1 alt="反恐精英Online2最新图片" src="http://images.17173.com/2015/news/2015/04/22/mj0422av04s.jpg"></a></p>
+<p>　　3、恶灵按Q键后，可以进入灵魂状态，灵魂状态下的恶灵可以浮空、穿墙、钻地，不受物理效果的影响；</p>
+<p align=center><a href="http://news.17173.com/viewpic.htm?url=http://images.17173.com/2015/news/2015/04/22/mj0422av05.jpg" target=_blank><img border=1 alt="反恐精英Online2最新图片" src="http://images.17173.com/2015/news/2015/04/22/mj0422av05s.jpg"></a></p>
+<p>　　4、恶灵无法像生化模式中的母体一样，攻击到人类即可将对方变成恶灵，恶灵附身模式中，恶灵需要杀死人类才可以将其变成恶灵。</p>
+<p align=center><a href="http://news.17173.com/viewpic.htm?url=http://images.17173.com/2015/news/2015/04/22/mj0422av06.jpg" target=_blank><img border=1 alt="反恐精英Online2最新图片" src="http://images.17173.com/2015/news/2015/04/22/mj0422av06s.jpg"></a></p>
+<a name="pageanchor2" id="pageanchor2" ></a>
+
+<p align=center></p>
+<p>　　5、女鬼只有被手电筒照射到才会被发现，不打开手电筒将不会被发现；</p>
+<p align=center><a href="http://news.17173.com/viewpic.htm?url=http://images.17173.com/2015/news/2015/04/22/mj0422av07.jpg" target=_blank><img border=1 alt="反恐精英Online2最新图片" src="http://images.17173.com/2015/news/2015/04/22/mj0422av07s.jpg"></a></p>
+<p>　　6、和幽灵模式一样，女鬼在你附近时，会发出凄惨的哀嚎声，你可以根据声音判断周围是否安全。</p>
+<p>　　相比于生化模式，恶灵附身模式对成为女鬼玩家的要求更高，尽管可以任意穿墙、浮空、钻地的设定看起来很美，但由于需要将人类抓死才可以将其变成恶灵，因此获胜的难度也不小，如何在枪林弹雨中杀敌致胜将是每一个女鬼需要考虑的难题。</p>
+<p align=center><a href="http://news.17173.com/viewpic.htm?url=http://images.17173.com/2015/news/2015/04/22/mj0422av08.jpg" target=_blank><img border=1 alt="反恐精英Online2最新图片" src="http://images.17173.com/2015/news/2015/04/22/mj0422av08s.jpg"></a></p>
+<p align=center><a href="http://news.17173.com/viewpic.htm?url=http://images.17173.com/2015/news/2015/04/22/mj0422av09.jpg" target=_blank><img border=1 alt="反恐精英Online2最新图片" src="http://images.17173.com/2015/news/2015/04/22/mj0422av09s.jpg"></a></p><br><div align=right>【编辑：Jenifer】</div> </div>
+		<!-- end the gb-final-article --> 
+<div class="gb-final-mod-notice">
+		17173.com发布此文仅为传递信息，不代表17173.com认同其观点或证实其描述。
+</div>
+		<div class="gb-final-comm-case gb-final-mod-channel"> 
+			<div id="gamelink"></div>
+		</div>
+		<!-- end the gb-final-channel --> 
+		<div id="news_attitude_box"></div>
+		<div class="gb-final-comm-case gb-final-mod-tag-news forsetLink19">
+			<div class="gb-final-comm-case-hd">
+				<h2 class="gb-final-tit">关于<em id="key-tags">反恐精英Online2</em>的新闻</h2>
+			</div>
+			<div class="gb-final-comm-case-bd">
+				<ul class="gb-final-comm-tlist gb-final-comm-tlist-ex2">
+					<li> <span class="gb-final-date">(2015-04-22)</span> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-22/20150422112715307_1.shtml" target="_blank" title="《反恐精英Online2》2个新女性角色介绍">《反恐精英Online2》2个新女性角色介绍</a></span> </li>
+					<li> <span class="gb-final-date">(2015-04-22)</span> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-22/20150422112543155_1.shtml" target="_blank" title="抽箱子啦！《反恐精英Online2》武器涂装上线">抽箱子啦！《反恐精英Online2》武器涂装上线</a></span> </li>
+					<li> <span class="gb-final-date">(2015-04-21)</span> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-21/20150421094714860_1.shtml" target="_blank" title="智云姐姐带你看《反恐精英Online2》女鬼模式">智云姐姐带你看《反恐精英Online2》女鬼模式</a></span> </li>
+					<li> <span class="gb-final-date">(2015-04-01)</span> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-01/20150401161214843.shtml" target="_blank" title="《反恐精英Online2》愚乐派对 狂欢不停">《反恐精英Online2》愚乐派对 狂欢不停</a></span> </li>
+				</ul>
+			</div>
+		</div>
+		<!-- end the gb-final-tag-news --> 
+		<div class="gb-final-mod-search1 forsetLink23">
+			<form action="http://search.17173.com/news.jsp" method="post" id="mod-search" name="form1" target="_blank">
+				<div class="gb-final-mod-search1-c1"> <span class="gb-final-cate" onclick="$('#mod-search').attr({'action':'http://search.17173.com/news.jsp','accept-charset':'gb2312'})">
+					<input type="radio" id="mod_search1_cate1" name="mod_search1_cate" checked />
+					<label for="mod_search1_cate1">网页</label>
+					</span> <span class="gb-final-cate" onclick="$('#mod-search').attr({'action':'http://search.17173.com/jsp/news_press.jsp', 'accept-charset':'utf-8'})">
+					<input type="radio" id="mod_search1_cate2" name="mod_search1_cate"/>
+					<label for="mod_search1_cate2">新闻</label>
+					</span> </div>
+				<div class="gb-final-mod-search1-c2">
+					<input onblur="Javascript:if(this.value==''){this.value=''}" id=keyword name="keyword" class="gb-final-txt" value="反恐精英Online2" align="middle" onClick="this.value=''"/>
+					<input type="submit"  class="gb-final-btn" value="搜索" />
+				</div>
+			</form>
+		</div>
+		<!-- end the gb-final-search --> 
+		<div class="gb-final-comm-case1 gb-final-mod-recomm forsetLink21 xwtj">
+			<div class="gb-final-comm-case1-hd">
+				<ul class="gb-final-tab gb-final-comm-tab">
+					<li class="gb-final-tab-item"><a class="gb-final-tab-c gb-final-current" data-tab href="#">新闻推荐</a></li>
+					<li class="gb-final-tab-item"><a class="gb-final-tab-c" data-tab href="#">新网游</a></li>
+				</ul>
+				<span class="gb-final-type-links adsystem-mark" data-ad-type='AdNewsComm' id="AdTextLink"></span>
+			</div>
+			<div class="gb-final-comm-case1-bd gb-final-tab-pn">
+				<div class="gb-final-box-recomm" data-tabcnt>
+					<ul class="gb-final-list2 gb-final-comm-plist gb-final-comm-plist-ex1">
+						<li class="gb-final-list2-item"> <a href="http://upload.zj.17173.com/ggcount/go.php?g_id=2622&g_url=http://news.17173.com/content/2015-04-24/20150424145834686.shtml" class="gb-final-list2-con" target="_blank"> <span class="gb-final-list2-c1"> <img alt="" src="http://i1.17173.itc.cn/2015/news/2015/04/24/0424dgtj2.jpg" width="200" height="150" class="gb-final-avatar" /> </span> <span class="gb-final-list2-c2"><span class="gb-final-txt">大B神：你把她当公主</span></span> </a> </li>
+
+
+<li class="gb-final-list2-item"> <a href="http://upload.zj.17173.com/ggcount/go.php?g_id=2622&g_url=http://news.17173.com/content/2015-04-23/20150423015325019_1.shtml" class="gb-final-list2-con" target="_blank"> <span class="gb-final-list2-c1"> <img alt="" src="http://i2.17173.itc.cn/2015/news/2015/04/22/mh00.jpg" width="200" height="150" class="gb-final-avatar" /> </span> <span class="gb-final-list2-c2"><span class="gb-final-txt">超级搞笑的邪恶漫画</span></span> </a> </li>
+
+
+<li class="gb-final-list2-item"> <a href="http://upload.zj.17173.com/ggcount/go.php?g_id=3949&g_url=http://acg.17173.com/zt/biantai/bt014.shtml" class="gb-final-list2-con" target="_blank"> <span class="gb-final-list2-c1"> <img alt="" src="http://i1.17173.itc.cn/2015/acg/2015/tj/0424/news01.jpg" width="200" height="150" class="gb-final-avatar" /> </span> <span class="gb-final-list2-c2"><span class="gb-final-txt">女装是男人的浪漫！</span></span> </a> </li>
+					</ul>
+				</div>
+				<div class="gb-final-box-newgame" style="display:none" data-tabcnt>
+					<ul class="gb-final-list2 gb-final-comm-plist gb-final-comm-plist-ex2">
+						<li class="gb-final-list2-item"> <a href="http://newgame.17173.com/game-info-1000440.html" class="gb-final-list2-con" target="_blank"> <span class="gb-final-list2-c1"> <img alt="光环OL" src="http://i2.17173cdn.com/z0og4j/YWxqaGBf/newgame/20150413/eEvxXMbjsyFfuum.jpg!a-1-160x90.jpg" width="160" height="90" class="gb-final-avatar"> </span> <span class="gb-final-list2-c2"><span class="gb-final-txt">光环OL</span></span> </a>
+	<div class="gb-final-list2-detail">
+		<p><span class="gb-final-tit">类型：</span>第一人称射击</p>
+		<p><span class="gb-final-tit">特征：</span>动作</p>
+		<p><span class="gb-final-tit">星级：</span><span class="gb-final-star"><span style="WIDTH:80%" class="gb-final-star-in"></span></span></p>
+	</div>
+</li>
+<li class="gb-final-list2-item"> <a href="http://newgame.17173.com/game-info-1000439.html" class="gb-final-list2-con" target="_blank"> <span class="gb-final-list2-c1"> <img alt="英雄纪元" src="http://i2.17173cdn.com/z0og4j/YWxqaGBf/newgame/20150413/rKanYsbjsyxcBit.jpg!a-1-160x90.jpg" width="160" height="90" class="gb-final-avatar"> </span> <span class="gb-final-list2-c2"><span class="gb-final-txt">英雄纪元</span></span> </a>
+	<div class="gb-final-list2-detail">
+		<p><span class="gb-final-tit">类型：</span>大型角色扮演</p>
+		<p><span class="gb-final-tit">特征：</span>PK</p>
+		<p><span class="gb-final-tit">星级：</span><span class="gb-final-star"><span style="WIDTH:60%" class="gb-final-star-in"></span></span></p>
+	</div>
+</li>
+<li class="gb-final-list2-item"> <a href="http://newgame.17173.com/game-info-1000438.html" class="gb-final-list2-con" target="_blank"> <span class="gb-final-list2-c1"> <img alt="决战凡尔登" src="http://i2.17173cdn.com/z0og4j/YWxqaGBf/newgame/20150410/mcXtBHbjsrirglx.jpg!a-1-160x90.jpg" width="160" height="90" class="gb-final-avatar"> </span> <span class="gb-final-list2-c2"><span class="gb-final-txt">决战凡尔登</span></span> </a>
+	<div class="gb-final-list2-detail">
+		<p><span class="gb-final-tit">类型：</span>第一人称射击</p>
+		<p><span class="gb-final-tit">特征：</span>动作</p>
+		<p><span class="gb-final-tit">星级：</span><span class="gb-final-star"><span style="WIDTH:60%" class="gb-final-star-in"></span></span></p>
+	</div>
+</li>
+<li class="gb-final-list2-item"> <a href="http://newgame.17173.com/game-info-1000437.html" class="gb-final-list2-con" target="_blank"> <span class="gb-final-list2-c1"> <img alt="格子仙侠行" src="http://i2.17173cdn.com/z0og4j/YWxqaGBf/newgame/20150410/IDVhvMbjsrcbooB.jpg!a-1-160x90.jpg" width="160" height="90" class="gb-final-avatar"> </span> <span class="gb-final-list2-c2"><span class="gb-final-txt">格子仙侠行</span></span> </a>
+	<div class="gb-final-list2-detail">
+		<p><span class="gb-final-tit">类型：</span>大型角色扮演</p>
+		<p><span class="gb-final-tit">特征：</span>PK</p>
+		<p><span class="gb-final-tit">星级：</span><span class="gb-final-star"><span style="WIDTH:60%" class="gb-final-star-in"></span></span></p>
+	</div>
+</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+		 </div>
+	<!-- end the pn-article --> 
+	<a name="comments"></a>
+	<div class="gb-final-final-pn-comment">
+		<div id="SOHUCS" sid="3910352_1_10009"></div>
+	</div>
+	<!-- end the pn-comment --> 
+	<script type="text/javascript" src="http://ue.17173cdn.com/a/news/final/2014/js/tpl.min.js?20141223"></script>
+						</div>
+						<div class="gb-final-side" id="side">
+				<div id="ginfo"></div>
+<div id="info-news"></div>
+				<!-- end the gb-final-pn-newest -->
+				<div id="AdNewsRightVideo" class="gb-final-pn-ad1 adsystem-mark" data-ad-type="AdNewsRightVideo"></div>
+				<!-- end the gb-final-pn-ad1 -->
+
+<div class="gb-final-comm-case gb-final-pn-exclusive forsetLink8">
+					<div class="gb-final-comm-case-hd"><h2 class="gb-final-tit"><a href="http://news.17173.com/ch/" target="_blank" title="独家策划">独家策划</a></h2></div>
+					<div class="gb-final-comm-case-bd">
+						<ul class="gb-final-comm-tlist gb-final-comm-tlist-ex">
+							
+<li> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-25/20150425000117309_1.shtml" target="_blank" title="金正恩手撕美帝 老外十款脑洞大开的游戏盘点">金正恩手撕美帝 老外十款脑洞大开的游戏盘点</a></span> </li>
+
+<li> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-24/20150424034223560.shtml" target="_blank" title="拿“补课费”充值网游礼包的正确姿势">拿“补课费”充值网游礼包的正确姿势</a></span> </li>
+
+<li> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-18/20150418000016490_1.shtml" target="_blank" title="终有一首让你热泪盈眶！十大游戏主题曲点评">终有一首让你热泪盈眶！十大游戏主题曲点评</a></span> </li>
+
+<li> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-17/20150417111517376.shtml" target="_blank" title="为什么游戏越玩越累，却找不回当初的美好">为什么游戏越玩越累，却找不回当初的美好</a></span> </li>
+
+
+<li><span class=gb-final-tit><a title='手残脑不残玩家的春天！卡牌对战类新游盘点' href="http://newgame.17173.com/news/04232015/113111898_1.shtml"' target=_blank>手残脑不残玩家的春天！卡牌对战类新游盘点</a></span> 
+<li><span class=gb-final-tit><a title='17173热门网游榜：QQ飞车、FF14热度上升' href="http://newgame.17173.com/news/04232015/100742708_1.shtml"' target=_blank>17173热门网游榜：QQ飞车、FF14热度上升</a></span> </li>
+						</ul>
+					</div>
+				</div><!-- end the gb-final-pn-exclusive -->
+
+				<div class="gb-final-comm-case gb-final-pn-webgame forsetLink9">
+					<div class="gb-final-comm-case-hd"><h2 class="gb-final-tit"><a href="http://news.17173.com/gamer/" target="_blank" title="网游大观">网游大观</a></h2></div>
+					<div class="gb-final-comm-case-bd">
+						<ul class="gb-final-list2 gb-final-comm-plist wydg">
+							
+<li class="gb-final-list2-item"> <a href="http://news.17173.com/content/2015-04-25/20150425015703322_1.shtml" class="gb-final-list2-con" target="_blank"> <span class="gb-final-list2-c1"> <img alt="" src="http://i3.17173.itc.cn/2015/news/2015/04/24/2015cpb0424diyxt3.jpg" width="140" height="105" class="gb-final-avatar" /> </span> <span class="gb-final-list2-c2"><span class="gb-final-txt">图书馆遇到这种妹子</span></span> </a> </li>
+
+<li class="gb-final-list2-item"> <a href="http://news.17173.com/content/2015-04-25/20150425011348778_1.shtml" class="gb-final-list2-con" target="_blank"> <span class="gb-final-list2-c1"> <img alt="" src="http://i1.17173.itc.cn/2015/news/2015/04/24/dzh00.jpg" width="140" height="105" class="gb-final-avatar" /> </span> <span class="gb-final-list2-c2"><span class="gb-final-txt">大杂烩:无法抵档诱惑</span></span> </a> </li>
+
+<li class="gb-final-list2-item"> <a href="http://news.17173.com/content/2015-04-25/20150425001302622.shtml" class="gb-final-list2-con" target="_blank"> <span class="gb-final-list2-c1"> <img alt="" src="http://i1.17173.itc.cn/2015/news/2015/04/23/2015cpb0423dotaxt.jpg" width="140" height="105" class="gb-final-avatar" /> </span> <span class="gb-final-list2-c2"><span class="gb-final-txt">从来没见过这么坑队友</span></span> </a> </li>
+
+<li class="gb-final-list2-item"> <a href="http://news.17173.com/hongren/075/index.shtml" class="gb-final-list2-con" target="_blank"> <span class="gb-final-list2-c1"> <img alt="" src="http://i3.17173.itc.cn/2015/news/2015/04/24/gxy0423aa35463.JPG" width="140" height="105" class="gb-final-avatar" /> </span> <span class="gb-final-list2-c2"><span class="gb-final-txt">杨幂美腿诱惑</span></span> </a> </li>
+
+<li class="gb-final-list2-item"> <a href="http://news.17173.com/content/2015-04-24/20150424145834686.shtml" class="gb-final-list2-con" target="_blank"> <span class="gb-final-list2-c1"> <img alt="" src="http://i2.17173.itc.cn/2015/news/2015/04/24/2015cpb0424dbsxt.jpg" width="140" height="105" class="gb-final-avatar" /> </span> <span class="gb-final-list2-c2"><span class="gb-final-txt">大B神：公主和嫖客</span></span> </a> </li>
+
+<li class="gb-final-list2-item"> <a href="http://news.17173.com/content/2015-04-24/20150424005546666_1.shtml" class="gb-final-list2-con" target="_blank"> <span class="gb-final-list2-c1"> <img alt="" src="http://i3.17173.itc.cn/2015/news/2015/04/24/2015cpb0423lzsxt3.jpg" width="140" height="105" class="gb-final-avatar" /> </span> <span class="gb-final-list2-c2"><span class="gb-final-txt">冷知识：男女脱衣习惯</span></span> </a> </li>
+
+						</ul>
+						<ul class="gb-final-list2 gb-final-comm-plist wydg" style="display:none">
+
+
+							<li class="gb-final-list2-item">
+								<a href="http://upload.zj.17173.com/ggcount/go.php?g_id=3945&g_url=http://news.17173.com/content/2015-04-22/20150422051050645.shtml" class="gb-final-list2-con" target="_blank">
+									<span class="gb-final-list2-c1">
+										<img alt="" src="http://i2.17173.itc.cn/2015/news/2015/04/22/djs.jpg" width="140" height="105" class="gb-final-avatar" />
+									</span>
+									<span class="gb-final-list2-c2"><span class="gb-final-txt">大J神:我的女友是小姐</span></span>
+								</a>
+							</li>
+
+
+							<li class="gb-final-list2-item">
+								<a href="http://upload.zj.17173.com/ggcount/go.php?g_id=2639&g_url=http://news.17173.com/content/2015-04-23/20150423020148793_1.shtml" class="gb-final-list2-con" target="_blank">
+									<span class="gb-final-list2-c1">
+										<img alt="" src="http://i3.17173.itc.cn/2015/news/2015/04/24/gxy0422ad254122.jpg" width="140" height="105" class="gb-final-avatar" />
+									</span>
+									<span class="gb-final-list2-c2"><span class="gb-final-txt">吐槽集：猜腿大赛</span></span>
+								</a>
+							</li>
+
+
+							<li class="gb-final-list2-item">
+								<a href="http://upload.zj.17173.com/ggcount/go.php?g_id=2639&g_url=http://news.17173.com/content/2015-04-22/20150422012206726_1.shtml" class="gb-final-list2-con" target="_blank">
+									<span class="gb-final-list2-c1">
+										<img alt="" src="http://i2.17173.itc.cn/2015/news/2015/04/21/r0421hl00.jpg" width="140" height="105" class="gb-final-avatar" />
+									</span>
+									<span class="gb-final-list2-c2"><span class="gb-final-txt">玩家看得懂的内涵图</span></span>
+								</a>
+							</li>
+
+	
+
+
+							<li class="gb-final-list2-item">
+								<a href="http://upload.zj.17173.com/ggcount/go.php?g_id=2758&g_url=http://acg.17173.com/news/04222015/104349271_1.shtml" class="gb-final-list2-con" target="_blank">
+									<span class="gb-final-list2-c1">
+										<img alt="" src="http://i3.17173.itc.cn/2015/acg/2015/tj/0424/news03.jpg" width="140" height="105" class="gb-final-avatar" />
+									</span>
+									<span class="gb-final-list2-c2"><span class="gb-final-txt">最强肉番第三季</span></span>
+								</a>
+							</li>
+							<li class="gb-final-list2-item">
+								<a href="http://upload.zj.17173.com/ggcount/go.php?g_id=2757&g_url=http://acg.17173.com/news/04222015/145021718_1.shtml" class="gb-final-list2-con" target="_blank">
+									<span class="gb-final-list2-c1">
+										<img alt="" src="http://i1.17173.itc.cn/2015/acg/2015/tj/0424/news04.jpg" width="140" height="105" class="gb-final-avatar" />
+									</span>
+									<span class="gb-final-list2-c2"><span class="gb-final-txt">谁敢来剪我的毛！？</span></span>
+								</a>
+							</li>
+							<li class="gb-final-list2-item">
+								<a href="http://upload.zj.17173.com/ggcount/go.php?g_id=3948&g_url=http://acg.17173.com/news/04242015/095712004_1.shtml" class="gb-final-list2-con" target="_blank">
+									<span class="gb-final-list2-c1">
+										<img alt="" src="http://i2.17173.itc.cn/2015/acg/2015/tj/0424/news02.jpg" width="140" height="105" class="gb-final-avatar" />
+									</span>
+									<span class="gb-final-list2-c2"><span class="gb-final-txt">爱音乐的耳机萌妹</span></span>
+								</a>
+							</li>
+						</ul>	
+					</div>
+				</div><!-- end the gb-final-pn-webgame -->				
+				<div class="gb-final-comm-case gb-final-pn-star-col" id="pingpai">
+					<div class="gb-final-comm-case-hd">
+						<h2 class="gb-final-tit"><a href="http://news.17173.com/dcb/index.shtml" target="_blank" title="品牌栏目">品牌栏目</a></h2>
+						<div class="gb-final-carousel-tab">
+							<a href="javascript:;" data-tab="0" class="gb-final-current"></a>
+							<a href="javascript:;" data-tab="1"></a>
+							<a href="javascript:;" data-tab="2"></a>
+						</div>
+					</div>
+					<div class="gb-final-comm-case-bd">
+						<div class="gb-final-carousel-con">
+							<ul class="gb-final-list2 gb-final-comm-plist gb-final-comm-plist-ex4" data-cnt>
+								<LI class=gb-final-list2-item><A class=gb-final-list2-con href="http://news.17173.com/game/dbs.shtml" target=_blank><SPAN class=gb-final-list2-c1><IMG class=gb-final-avatar alt="" src="http://i3.17173.itc.cn/2014/news/2014/12/11/1211dgtj3.jpg" width=133 height=60> </SPAN><SPAN class=gb-final-list2-c2><SPAN class=gb-final-txt>大B神脱口秀</SPAN></SPAN> </A>
+<LI class=gb-final-list2-item><A class=gb-final-list2-con href="http://news.17173.com/game/hmkp.shtml" target=_blank><SPAN class=gb-final-list2-c1><IMG class=gb-final-avatar alt="" src="http://i2.17173.itc.cn/2014/news/2014/12/11/1211dgtj5.jpg" width=133 height=60> </SPAN><SPAN class=gb-final-list2-c2><SPAN class=gb-final-txt>河马快评</SPAN></SPAN> </A>
+<LI class=gb-final-list2-item><A class=gb-final-list2-con href="http://news.17173.com/bnx/index.shtml" target=_blank><SPAN class=gb-final-list2-c1><IMG class=gb-final-avatar alt="" src="http://i1.17173.itc.cn/2014/news/2014/12/11/1211dgtj4.jpg" width=133 height=60> </SPAN><SPAN class=gb-final-list2-c2><SPAN class=gb-final-txt>女侠闯江湖</SPAN></SPAN> </A>
+<LI class=gb-final-list2-item><A class=gb-final-list2-con href="http://news.17173.com/game/wjhtpk.shtml" target=_blank><SPAN class=gb-final-list2-c1><IMG class=gb-final-avatar alt="" src="http://i2.17173.itc.cn/2014/news/2014/12/11/1211dgtj8.jpg" width=133 height=60> </SPAN><SPAN class=gb-final-list2-c2><SPAN class=gb-final-txt>话题PK：问题来了</SPAN></SPAN> </A>
+<LI class=gb-final-list2-item><A class=gb-final-list2-con href="http://news.17173.com/game/hrmdm.shtml" target=_blank><SPAN class=gb-final-list2-c1><IMG class=gb-final-avatar alt="" src="http://i1.17173.itc.cn/2014/news/2014/12/11/1211dgtj7.jpg" width=133 height=60> </SPAN><SPAN class=gb-final-list2-c2><SPAN class=gb-final-txt>红人面对面</SPAN></SPAN> </A>
+<LI class=gb-final-list2-item><A class=gb-final-list2-con href="http://news.17173.com/game/yzyy.shtml" target=_blank><SPAN class=gb-final-list2-c1><IMG class=gb-final-avatar alt="" src="http://i3.17173.itc.cn/2014/news/2014/12/11/1211dgtj6.jpg" width=133 height=60> </SPAN><SPAN class=gb-final-list2-c2><SPAN class=gb-final-txt>一周一游</SPAN></SPAN> </A></LI>
+							</ul>
+						</div>
+					</div>
+				</div>				
+				<!-- end the gb-final-pn-star-col-->
+				
+<div class="gb-final-comm-case gb-final-pn-live" id="xiuchang"></div>
+				<div class="gb-final-comm-case gb-final-pn-rank forsetLink10 rmph">
+					<div class="gb-final-comm-case-hd">
+						<h2 class="gb-final-tit"><a href="http://news.17173.com/top/" target="_blank" title="热门新闻排行">热门新闻排行</a></h2>
+						<ul class="gb-final-tab gb-final-comm-tab1">
+							<li class="gb-final-tab-item"><a class="gb-final-tab-c gb-final-current" data-tab href="javascript:;">每周</a></li>
+							<li class="gb-final-tab-item"><a class="gb-final-tab-c" data-tab href="javascript:;">每月</a></li>
+						</ul>
+					</div>
+					<div class="gb-final-comm-case-bd gb-tab-pn">
+					<ul class="gb-final-comm-tlist gb-final-comm-tlist-ex1 js-rank" data-tabcnt>
+						<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-19/20150419111430754_1.shtml" target="_blank" title="一看吓一跳：雷死人不偿命的囧图集(217) ">一看吓一跳：雷死人不偿命的囧图集(217) </a></span> </li>
+<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-22/20150422012206726_1.shtml" target="_blank" title="刺客信条大战美少女战士 玩家看得懂的内涵图">刺客信条大战美少女战士 玩家看得懂的内涵图</a></span> </li>
+<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-23/20150423020148793_1.shtml" target="_blank" title="一周吐槽集：棒棒糖要这样吃  大波胸器来袭">一周吐槽集：棒棒糖要这样吃  大波胸器来袭</a></span> </li>
+<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-24/20150424005546666_1.shtml" target="_blank" title="冷知识：男女脱衣习惯不同 多任务让人智商下降">冷知识：男女脱衣习惯不同 多任务让人智商下降</a></span> </li>
+<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-23/20150423015325019_1.shtml" target="_blank" title="妹子约你玩00XX游戏 超级搞笑的邪恶漫画">妹子约你玩00XX游戏 超级搞笑的邪恶漫画</a></span> </li>
+<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-21/20150421005129912_1.shtml" target="_blank" title="神级GIF：男人和女人的区别 妹子别随意玩空翻">神级GIF：男人和女人的区别 妹子别随意玩空翻</a></span> </li>
+<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-25/20150425015703322_1.shtml" target="_blank" title="公车遇到一个奔放妹子 动手能力强的妖孽伤不起">公车遇到一个奔放妹子 动手能力强的妖孽伤不起</a></span> </li>
+<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-25/20150425011348778_1.shtml" target="_blank" title="大杂烩：男子偷听女性如厕 男人无法抵档的诱惑">大杂烩：男子偷听女性如厕 男人无法抵档的诱惑</a></span> </li>
+<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-21/20150421121216154_1.shtml" target="_blank" title="全球精品汇聚！一周大师级CosPlay欣赏(134)">全球精品汇聚！一周大师级CosPlay欣赏(134)</a></span> </li>
+<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-20/20150420154825014_1.shtml" target="_blank" title="巫妖王3D重制版!小编私藏给力壁纸大放送127">巫妖王3D重制版!小编私藏给力壁纸大放送127</a></span> </li>
+
+					</ul>
+					<ul style="DISPLAY: none" class="gb-final-comm-tlist gb-final-comm-tlist-ex1 js-rank" data-tabcnt>
+						<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-03-29/20150329032308410_1.shtml" target="_blank" title="一看吓一跳：雷死人不偿命的囧图集(214) ">一看吓一跳：雷死人不偿命的囧图集(214) </a></span> </li>
+<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-05/20150405101408086_1.shtml" target="_blank" title="一看吓一跳：雷死人不偿命的囧图集(215) ">一看吓一跳：雷死人不偿命的囧图集(215) </a></span> </li>
+<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-19/20150419111430754_1.shtml" target="_blank" title="一看吓一跳：雷死人不偿命的囧图集(217) ">一看吓一跳：雷死人不偿命的囧图集(217) </a></span> </li>
+<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-12/20150412105910650_1.shtml" target="_blank" title="一看吓一跳：雷死人不偿命的囧图集(216) ">一看吓一跳：雷死人不偿命的囧图集(216) </a></span> </li>
+<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-10/20150410002347558_1.shtml" target="_blank" title="冷知识：镜子里的你比现实好看 人类胸大的原因">冷知识：镜子里的你比现实好看 人类胸大的原因</a></span> </li>
+<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-01/20150401003118655_1.shtml" target="_blank" title="如何让自己显得有钱 玩家看得懂的内涵图">如何让自己显得有钱 玩家看得懂的内涵图</a></span> </li>
+<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-09/20150409011039016_1.shtml" target="_blank" title="一周吐槽集：做鸡的美好一天  打架的杀手锏">一周吐槽集：做鸡的美好一天  打架的杀手锏</a></span> </li>
+<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-18/20150418020020521_1.shtml" target="_blank" title="充气娃娃包装很重要！动手能力强的妖孽伤不起">充气娃娃包装很重要！动手能力强的妖孽伤不起</a></span> </li>
+<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-15/20150415012605329_1.shtml" target="_blank" title="女朋友就像iphone plus 玩家看得懂的内涵图">女朋友就像iphone plus 玩家看得懂的内涵图</a></span> </li>
+<li> <em></em> <span class="gb-final-tit"><a href="http://news.17173.com/content/2015-04-04/20150404015020273_1.shtml" target="_blank" title="黑丝妹子请注意节操 动手能力强的妖孽伤不起">黑丝妹子请注意节操 动手能力强的妖孽伤不起</a></span> </li>
+
+					</ul>
+					</div>
+				</div><!-- end the gb-final-pn-rank -->
+				<div class="gb-final-comm-case gb-final-pn-allgame forsetLink15">
+					<div class="gb-final-comm-case-hd"><h2 class="gb-final-tit"><a href="http://news.17173.com/gamer/" target="_blank" title="游戏万花筒">游戏万花筒</a></h2></div>
+					<div class="gb-final-comm-case-bd">
+						<ul class="gb-final-list2 gb-final-comm-plist">
+							<!--818游戏之外-->
+<LI class=gb-final-list2-item><A class=gb-final-list2-con href="http://orz.17173.com/" target=_blank><SPAN class=gb-final-list2-c1><IMG class=gb-final-avatar alt="" src="http://i2.17173.itc.cn/2015/orz/images/04/24/zjy0424a.jpg" width=140 height=105> </SPAN><SPAN class=gb-final-list2-c2><SPAN class=gb-final-txt>爆笑囧图 第119期</SPAN></SPAN> </A>
+<LI class=gb-final-list2-item><A class=gb-final-list2-con href="http://orz.17173.com/" target=_blank><SPAN class=gb-final-list2-c1><IMG class=gb-final-avatar alt="" src="http://i3.17173.itc.cn/2015/orz/images/04/22/zjy0422a.jpg" width=140 height=105> </SPAN><SPAN class=gb-final-list2-c2><SPAN class=gb-final-txt>美女研究社 第10期</SPAN></SPAN> </A><!--51军事2张-->
+<LI class=gb-final-list2-item><A class=gb-final-list2-con href="http://upload.zj.17173.com/ggcount/go.php?g_id=4023" target=_blank><SPAN class=gb-final-list2-c1><IMG class=gb-final-avatar alt="" src="http://i1.17173.itc.cn/2015/news/2015/04/24/51junshi.jpg" width=140 height=105> </SPAN><SPAN class=gb-final-list2-c2><SPAN class=gb-final-txt>30大桃色吉尼斯记录</SPAN></SPAN> </A>
+<LI class=gb-final-list2-item><A class=gb-final-list2-con href="http://upload.zj.17173.com/ggcount/go.php?g_id=4037" target=_blank><SPAN class=gb-final-list2-c1><IMG class=gb-final-avatar alt="" src="http://i1.17173.itc.cn/2015/news/2015/04/24/51junshi2.jpg" width=140 height=105> </SPAN><SPAN class=gb-final-list2-c2><SPAN class=gb-final-txt>大爷，什么感觉?</SPAN></SPAN> </A><!--木蚂蚁1张-->
+<LI class=gb-final-list2-item><A class=gb-final-list2-con href="http://upload.zj.17173.com/ggcount/go.php?g_id=4025" target=_blank><SPAN class=gb-final-list2-c1><IMG class=gb-final-avatar alt="" src="http://i1.17173.itc.cn/2015/news/2015/04/24/mumayi.jpg" width=140 height=105> </SPAN><SPAN class=gb-final-list2-c2><SPAN class=gb-final-txt>现代女人喜欢吃这个</SPAN></SPAN></A> <!--天极1张-->
+<LI class=gb-final-list2-item><A class=gb-final-list2-con href="http://upload.zj.17173.com/ggcount/go.php?g_id=4024" target=_blank><SPAN class=gb-final-list2-c1><IMG class=gb-final-avatar alt="" src="http://i1.17173.itc.cn/2015/news/2015/04/24/yesky.jpg" width=140 height=105> </SPAN><SPAN class=gb-final-list2-c2><SPAN class=gb-final-txt>美女醉倒路边的下场</SPAN></SPAN> </A><!--比特2张-->
+<LI class=gb-final-list2-item><A class=gb-final-list2-con href="http://upload.zj.17173.com/ggcount/go.php?g_id=4022" target=_blank><SPAN class=gb-final-list2-c1><IMG class=gb-final-avatar alt="" src="http://i1.17173.itc.cn/2015/news/2015/04/24/chinabyte1.jpg" width=140 height=105> </SPAN><SPAN class=gb-final-list2-c2><SPAN class=gb-final-txt>我有独特的自拍技巧</SPAN></SPAN> </A>
+<LI class=gb-final-list2-item><A class=gb-final-list2-con href="http://upload.zj.17173.com/ggcount/go.php?g_id=4035" target=_blank><SPAN class=gb-final-list2-c1><IMG class=gb-final-avatar alt="" src="http://i1.17173.itc.cn/2015/news/2015/04/24/chinabyte2.jpg" width=140 height=105> </SPAN><SPAN class=gb-final-list2-c2><SPAN class=gb-final-txt>看到美女那贱样</SPAN></SPAN> </A><!--图2张-->
+<LI class=gb-final-list2-item><A class=gb-final-list2-con href="http://tu.17173.com/album/detail-3030.html?from=173n" target=_blank><SPAN class=gb-final-list2-c1><IMG class=gb-final-avatar alt="" src="http://i1.17173.itc.cn/2015/news/2015/04/24/tu001.jpg" width=140 height=105> </SPAN><SPAN class=gb-final-list2-c2><SPAN class=gb-final-txt>Love Live！同人图</SPAN></SPAN> </A>
+<LI class=gb-final-list2-item><A class=gb-final-list2-con href="http://tu.17173.com/album/detail-2930.html?from=173n" target=_blank><SPAN class=gb-final-list2-c1><IMG class=gb-final-avatar alt="" src="http://i1.17173.itc.cn/2015/news/2015/04/24/tu002.jpg" width=140 height=105> </SPAN><SPAN class=gb-final-list2-c2><SPAN class=gb-final-txt>日本性感3D原画</SPAN></SPAN> </A></LI>
+						</ul>
+					</div>
+				</div><!-- end the gb-final-pn-allgame -->
+				
+				<!-- end the gb-final-pn-live -->
+				<div id="AdRightButton" class="gb-final-pn-ad2 adsystem-mark" data-ad-type="AdNewsComm"></div>
+				<!-- end the gb-final-pn-ad2 -->
+				<!-- end the gb-final-pn-wan -->
+			</div>
+		</div>
+		<!--end the content-->
+	<div id="AdBottomBanner" class="gb-final-pn-ad adsystem-mark" data-ad-type="AdNewsComm"></div>
+	<div id="footer" class="gb-final-footer">
+		<div class="gb-final-pn-bottom">
+	<div class="gb-final-nav-bottom">
+		<a href="http://www.17173.com/" 
+target=_blank>17173首页</a><span class="gb-final-sep">|</span><a href="http://news.17173.com/" 
+target=_blank>新闻</a><span class="gb-final-sep">|</span><a href="http://newgame.17173.com/" 
+target=_blank>新网游</a><span class="gb-final-sep">|</span><a href="http://www.17173.com/f/index.shtml" 
+target=_blank>找游戏</a><span class="gb-final-sep">|</span><a href="http://orz.17173.com/" target=_blank>宅人帮</a><span class="gb-final-sep">|</span><a 
+href="http://flash.17173.com/" target=_blank>小游戏</a><span class="gb-final-sep">|</span><a 
+href="http://bbs.17173.com/" target=_blank>社区</a><span class="gb-final-sep">|</span><a 
+href="http://v.17173.com/" target=_blank>视频</a><span class="gb-final-sep">|</span><a 
+href="http://blog.17173.com/" target=_blank>博客</a><span class="gb-final-sep">|</span><a 
+href="http://download.17173.com/" target=_blank>下载</a><span class="gb-final-sep">|</span><a 
+href="http://www.wan.com/" target=_blank>网页游戏</a><span class="gb-final-sep">|</span><a 
+href="http://my.17173.com/" target=_blank>玩家中心</a>
+	</div>
+		<a href="javascript:;" target="_self" class="gb-final-bt-to-top"><i class="gb-final-ico-to-top"></i>返回顶部</a>
+</div>
+				
+		
+<div class="global-footer">
+	<a href="http://about.17173.com/" target="_blank">&#x5173;&#x4E8E;17173</a> |
+	<a href="http://about.17173.com/join-us.shtml" target="_blank">&#x4EBA;&#x624D;&#x62DB;&#x8058;</a> |
+	<a href="http://marketing.17173.com" target="_blank">&#x5E7F;&#x544A;&#x670D;&#x52A1;</a> |
+	<a href="http://about.17173.com/business-cooperate.shtml" target="_blank">&#x5546;&#x52A1;&#x6D3D;&#x8C08;</a> |
+	<a href="http://about.17173.com/contact-us.shtml" target="_blank">&#x8054;&#x7CFB;&#x65B9;&#x5F0F;</a> |
+	<a href="http://help.17173.com/" target="_blank">&#x5BA2;&#x670D;&#x4E2D;&#x5FC3;</a> |
+	<a href="http://about.17173.com/site-map.shtml" target="_blank">&#x7F51;&#x7AD9;&#x5BFC;&#x822A;</a> <br />
+	<span class="copyright">Copyright &copy; 2001-2015 17173. All rights reserved.</span>
+</div>
+
+
+
+
+
+	</div>
+	<!--end the footer-->
+	<div class="gb-final-pn-float" id="float">
+	<div class="mod-share"></div>
+	<script type="text/javascript">
+       pandora.use(['share'], function(Share) {
+        new Share({
+                element: '.mod-share',
+                styleType: '1',
+                shareList: 'weixin,qq,qzone,tsina',
+                showLabel: false,
+                customShare : {
+					weixin : {
+						position : 'left'
+					}
+				}
+          });
+       });
+      </script>
+</div>
+	<!-- end the gb-final-pn-float -->
+</div>
+<!--end the wrapper-->
+	<div id="AdTopBg" class="adsytem-mark" data-ad-type="AdNewsTopAndBg"></div>
+	<script type="text/javascript" src="http://ue.17173cdn.com/a/news/final/2014/js/news-1.0.0.min.js"></script>
+<!--[if IE 6]>
+<script type="text/javascript" src="http://ue.17173cdn.com/a/news/final/2014/js/ie6.js"></script>
+<![endif]-->
+<script type="text/javascript" src="http://ue.17173cdn.com/a/lib/vda/othersources/outerad.min.js"></script>
+		<script type="text/javascript">
+advConfigs.config({
+    type:'AdNewsComm',
+    'AdFirstBanner': {
+        width: 1000,
+        height: 120,
+        src: 'http://i2.17173.itc.cn/2015/www/2015/gg/hd/02/16/xc-0216-1000120-news-1.jpg',
+        link: 'http://Cvda.17173.com/click?media_code=17173&ad_code=171732055&resource_code=2055&order_code=1002324'
+    }
+});
+</script>
+	 
+	<script type="text/javascript">
+advConfigs.config({
+    type:'AdNewsComm',
+    'AdBottomBanner': {
+        width: 1000,
+        height: 60,
+        src: 'http://i2.17173.itc.cn/2015/www/2015/gg/wendao/04/24/q-0424-100060xwwzzx.jpg',
+        link: 'http://Cvda.17173.com/click?media_code=17173&ad_code=171732101&resource_code=2101&order_code=1001689'
+    }
+});
+</script>
+	<script type="text/javascript">
+ 
+advConfigs.config({
+    type:'AdNewsComm',
+    'AdTextLink' :{
+        text1:'福利：现金红包派送中',  
+        link1:'http://Cvda.17173.com/click?media_code=17173&ad_code=171732071&resource_code=2075&order_code=1001672',      
+        text1Color:'red',          
+        text2:'跑男李晨送iphone6',     
+        link2:'http://Cvda.17173.com/click?media_code=17173&ad_code=171732071&resource_code=2071&order_code=1001733',      
+        text2Color:'#0055aa'           
+    }
+})
+</script>
+	<script type="text/javascript">
+ advConfigs.config({
+  type: 'AdNewsKeyword',
+  bottoms:[{
+    keyword:['巫医3','wow'],
+    
+    src:'http://images.17173.com/2014/www/2014/gg/37wan/09/02/wz-0902-100080yybanner3.swf',
+    link:'http://www.17173.com', 
+    height : 100,
+    width:1000
+  },{
+    keyword:['问道'],
+    src:'http://i3.17173.itc.cn/2014/news/zt/cf/cf25.jpg',
+    link:'http://www.17173.com',
+    height : 100,
+    width:1000
+  }],
+  banner:[{
+    keyword:['风暴英雄','wow'],
+    src:'http://images.17173.com/2014/www/2014/gg/37wan/09/02/wz-0902-100080yybanner3.swf',
+    link:'http://www.17173.com',
+    height:60,
+    width: 600
+  },{
+    keyword:['巫医3'],
+    src:'http://i1.17173.itc.cn/2014/asktao/2014/04/09/top0617.jpg',  //图片或者swf地址
+    link:'http://www.17173.com',  //广告监控链接
+    height:60,
+    width: 600
+  } ]
+});
+ 
+</script>
+	<script type="text/javascript">
+advConfigs.config({
+    type:'AdNewsComm',
+    'AdRightButton':{
+        width: 300,
+        height: 110,
+        src: 'http://i3.17173.itc.cn/2014/www/2014/gg/hd/12/31/sp-0101-300-110.gif',
+        link: 'http://Cvda.17173.com/click?media_code=17173&ad_code=171732064&resource_code=2065&order_code=1002324'
+    }
+});
+</script>
+	 	
+	
+
+
+
+<script type="text/javascript">
+if(!window.Passport){
+document.write('<script type="text/javascript" src="http://s.ue.17173cdn.com/a/lib/passport/v2/js/passport.js"><' + '/script>');
+}
+</script>
+
+<script type="text/javascript" src="http://ue.17173cdn.com/a/lib/topbar/v2/js/topbar.js?201411181144"></script>
+<script type="text/javascript" src="http://ue8.17173.itc.cn/cache/money/2013/ydd-zntg.js"></script>
+
+<script type="text/javascript" src="http://ue.17173cdn.com/a/money/2014/app-tip/apptip.js"></script>
+
+
+
+	<script type="text/javascript" src="http://news.17173.com/2014/popupnews.config.js" charset="gbk"></script>
+	<script type="text/javascript">
+	(function($){var pn=window.location.pathname;pn=pn=='/'&&pn!='/index.shtml';if($('.gb-newfix-box').length>0||('0'==1&&pn))return;var p=document.createElement('script');p.type='text/javascript';p.async=true;p.src='http://ue.17173cdn.com/a/money/2014/zq-pop/js/popupnews.js';document.body.appendChild(p)})(jQuery);
+	</script>
+
+
+
+<script type="text/javascript" src="http://www.17173.com/2014/new/shouyoushanwan.js"></script>
+
+
+<!-- START 17173 Site Census -->
+<script type="text/javascript" src="http://js.17173.com/ping.js"></script>
+<noscript>
+	<img src="http://log.17173.com/ping.gif" height="0" width="0" alt="" />
+</noscript>
+<!-- END 17173 Site Census -->
+
+<script type="text/javascript" src="http://ue8.17173.itc.cn/cache/lib/v2/odvmonitor/lp.min.js"></script>
+
+
+
+<script type="text/javascript" src="http://www.17173.com/2013/new/channel-float.js"></script>
+
+<SCRIPT src="http://hits.17173.com/static.php?channel=10009&web_id=3910352&kind=1"></SCRIPT>
+</body>
+</html>

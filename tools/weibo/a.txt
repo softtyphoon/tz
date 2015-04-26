@@ -1,2 +1,0 @@
-(('information_schema',), ('mysql',), ('performance_schema',), ('python',), ('sakila',), ('test',), ('weibo',), ('world',))
-OK: selected database weibo

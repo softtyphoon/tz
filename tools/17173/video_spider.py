@@ -99,7 +99,7 @@ class video_spider(news_spider):
                     while pic == '':
                         time.sleep(delay)
                         pic, cookie = self.get_page(pic_addr, header_in=header)
-                        delay = random.uniform(0.5, 2)
+                        delay = random.uniform(0.1, 0.5)
 
                     with open(self.pic_path + name, 'wb+') as f:
                         f.write(pic)
@@ -123,8 +123,12 @@ class video_spider(news_spider):
                     url = 'http://' + urlparse.urlparse(self.start_url).netloc + url
             page_num += 1
             if page_num == 2:
-                break
+                # break
                 pass
+            delay = random.uniform(0.5, 2)
+            time.sleep(delay)
+            print '.',
+        print ''
         print u'视频信息爬取完成！！！'
 
 

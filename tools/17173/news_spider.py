@@ -28,9 +28,15 @@ class news_spider(object):
         self.start_url = url
         self.start_title = start_title          # 用于断点下载
         self.header = header
+        self.referer = u'17173.com'
         self.path = path
-        if not os.path.exists(self.path):
-            os.makedirs(self.path)
+        self.fileid = '00000000000000000'
+        if not path == '':
+            if not os.path.exists(self.path):
+                os.makedirs(self.path)
+
+            if not os.path.exists(self.path + u'图片\\'):
+                os.makedirs(self.path + u'图片\\')
         pass
 
     def __del__(self):
@@ -56,14 +62,14 @@ class news_spider(object):
             elif 'gbk' in res or 'gb2312' in res:
                 page = page.decode('gbk')
 
-            # 解析网页
+            # 解析网页    [日期，名称，url]
             news_set = self.src_web_analysis(page)
 
             # 新闻下载
             for i in news_set:
                 delay = random.uniform(1.5, 2.5)
                 time.sleep(delay)
-                self.news_download(i[2], i[1])
+                self.news_download(i[2], i[1], i[0])
 
            # 判断是否还有下一页
             pat = re.compile(u'(?<=class="next").+?(?=下一页</a>)', re.DOTALL)
@@ -78,19 +84,20 @@ class news_spider(object):
                     url = 'http://' + urlparse.urlparse(self.start_url).netloc + url
 
 
-    def news_download(self, url, title):
+    def news_download(self, url, title, date):
         '''
           下载新闻及其图片
           传入参数：url，新闻的网址
         '''
-        print u'下载新闻：', title, url
+        # print u'下载新闻：', title, url
+        print '.',
         trail = url[len(url)-1-url[::-1].index('.'):]
         all = u'_all' + trail
         trail = u'_1' + trail
         if trail in url:
             url = url.replace(trail, all)
 
-        print url
+        # print url
         page = ''
         delay = 0
         rty = 0
@@ -102,9 +109,9 @@ class news_spider(object):
             if rty == 10:
                 return
 
-        with open('news.txt', 'w+') as f:
+        # with open('news.txt', 'w+') as f:
             # page = f.read()
-            f.write(page)
+            # f.write(page)
 
         page = page.lower()
         pat = re.compile(u'(?<=charset=).+?(?=")', re.DOTALL)
@@ -118,9 +125,25 @@ class news_spider(object):
             page = page.decode('gbk')
 
         res = self.content_extractor(page)
-        with open('xxx.txt', 'w+') as f:
-            f.write(res.encode('gbk'))
-        with open(self.path + title + u'.txt', 'w+') as f:
+        # with open('xxx.txt', 'w+') as f:
+            # f.write(res.encode('gbk'))
+        # t = self.get_time()
+        # if t == self.fileid[0:14]:
+            # index = int(self.fileid[14:]) + 1
+            # index = str(index)
+            # if len(index) == 1:
+                # self.fileid[-1] = index
+            # if len(index) == 2:
+                # self.fileid[-2:] = index
+            # if len(index) == 3:
+                # self.fileid[-3:] = index
+        # else:
+            # self.fileid = (t + '000')
+
+        header = title + '|' + date + '|' + self.referer + '\n'
+        self.fileid = title + '_' + date
+        with open(self.path + self.fileid + u'.txt', 'w+') as f:
+            f.write(header.encode('gbk'))
             f.write(self.content_process(res, url))
 
     def content_extractor(self, page):
@@ -137,7 +160,6 @@ class news_spider(object):
                 if len(res) > 0:
                     break
             if len(res) == 0:
-                print u'不好，又遇到不同结构的网页了'
                 return ''
 
             # 剔除视频
@@ -238,6 +260,21 @@ class news_spider(object):
             str_fix = str_fix.replace(i, ' ')
         return str_fix
 
+    def get_time(self):
+        time_set = time.localtime(time.time())
+        year = str(time_set.tm_year)
+        month = str(time_set.tm_mon)
+        day = str(time_set.tm_mday)
+        hour = str(time_set.tm_hour)
+        min = str(time_set.tm_min)
+        sec = str(time_set.tm_sec)
+        month = ('0'+month) if len(month) == 1 else month
+        day = ('0'+day) if len(day) == 1 else day
+        hour = ('0'+hour) if len(hour) == 1 else hour
+        sec = ('0'+sec) if len(sec) == 1 else sec
+        min = ('0'+min) if len(min) == 1 else min
+        return year + month + day + hour + min + sec
+
     def get_page(self, url_in=None, header_in=None, data=None, cookie_set=None):
         '''
           通用方法，请求页面
@@ -312,8 +349,10 @@ if __name__ == "__main__":
     # if os.path.exists('pic'):
         # os.mkdir('aaa')
     # print os.path()
+    # print time.localtime(time.time())
     # sys.exit(0)
-    a = news_spider()
+    a = news_spider(path=u'c:\新闻\\')
+    # a.get_time()
     a.run()
     # a.news_download(u'http://news.17173.com/yzyy/2014/49/5/index.shtml', 'test')
     # a.src_web_analysis()
