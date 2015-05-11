@@ -1,0 +1,517 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>新游 _ 游民视频 GamerSky.com</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<script type="text/javascript" src="http://j.gamersky.com/g/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="http://j.gamersky.com/video2/js/Video.js"></script>
+<link href="http://j.gamersky.com/allsite.css" type="text/css" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="http://j.gamersky.com/nav/css/QZnav_bai_v.css" />
+<link type="text/css" href="http://j.gamersky.com/video2/css/Video.css" rel="stylesheet" />
+<link type="text/css" href="http://j.gamersky.com/video2/css/Video_list.css" rel="stylesheet" />
+</head>
+<body class="C1200">
+
+<!--头部 开始-->
+<script type="text/javascript" src="http://www.gamersky.com/Template/Default/mbk/gsinc/allsite_nav_js.htm"></script>
+<div class="topbg">
+  <div class="top">
+    <div class="top_1">
+      <div class="top1_1"><a href="/" title="游民视频"><img src="http://image.gamersky.com/webimg13/video2/logo.gif" width="217" height="102" /></a></div>
+      <div class="top1_2">
+        <form class="Frm Sr" action="http://so.gamersky.com/" target="_blank">
+		  <select name="node" style="display:none;">
+			<option value="52" selected>视频搜索</option>
+		  </select>
+          <input class="sub Sr" type="submit" value="" hidefocus />
+          <input class="txt" type="text" name="s" value="输入搜索信息" maxlength="100" onfocus="if(value=='输入搜索信息')value='';this.onblur=function(){if(value=='')value='输入搜索信息'}" />
+        </form>
+      </div>
+    </div>
+    <!--top_1 end--> 
+		<div class="top_2 menu"><div class="menu_L"><a href="/">首页</a> <a href="/game/news/">新游视频</a> <a href="/original/">玩家原创</a> <a href="/cg/">CG</a> <a href="/zrm/">真人</a> <a href="http://live.gamersky.com/">游戏直播</a> <a href="http://donghua.gamersky.com/">在线动画</a></div><div class="menu_R"><a class="tg" href="http://v.gamersky.com/VideoDeliver/VideoDeliver.shtml">投稿</a></div>
+    <!--top_2 end-->
+  </div>
+</div>
+<!--头部 结束-->
+<div class="Center">
+  <!--中部 开始-->
+  <div class="mid">
+    <!--顶部广告位-->
+	  
+    <!--顶部广告位结束-->
+    <div class="mid_L mw">
+      <div class="midL_0 mw">新游</div>
+      <div class="midL_1 mw">
+        <ul class="mw">
+        
+            
+           
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/580802.shtml" target="_blank"><img src="http://imgs.gamersky.com/pic/2015/i0509zj_10.jpg" alt="张馨予代言！《大唐双龙传》世界观首爆"  width="200" height="112" class="pic1" border="0"><span>张馨予代言！《大唐双龙传》世界观首爆</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-09</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/580795.shtml" target="_blank"><img src="http://imgs.gamersky.com/pic/2015/i0509zj_09.jpg" alt="海战世界中德系战舰解析 U9潜艇无敌海狼"  width="200" height="112" class="pic1" border="0"><span>海战世界中德系战舰解析 U9潜艇无敌海狼</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-09</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/580743.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505091221104953.jpg" alt="《黑色沙漠》日服最新宣传 激情上演大逃杀"  width="200" height="112" class="pic1" border="0"><span>《黑色沙漠》日服最新宣传 激情上演大逃杀</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-09</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/580736.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505091216092211.jpg" alt="《如龙0》中文字幕桐生篇演示 来战油腻妹子"  width="200" height="112" class="pic1" border="0"><span>《如龙0》中文字幕桐生篇演示 来战油腻妹子</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-09</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/580733.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505091213476006.jpg" alt="《风暴英雄》凯尔萨斯完整CG 大招技能公布"  width="200" height="112" class="pic1" border="0"><span>《风暴英雄》凯尔萨斯完整CG 大招技能公布</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-09</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/580724.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505091200488176.jpg" alt="《天使帝国4》预告首曝 时隔十二年震撼再现"  width="200" height="112" class="pic1" border="0"><span>《天使帝国4》预告首曝 时隔十二年震撼再现</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-09</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/580719.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505091156043760.jpg" alt="《GTA4》ICEnhancer大神《GTA5》MOD首演示"  width="200" height="112" class="pic1" border="0"><span>《GTA4》ICEnhancer大神《GTA5》MOD首演示</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-09</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/579362.shtml" target="_blank"><img src="http://imgs.gamersky.com/pic/2015/i0507zj_09.jpg" alt="年度大作《巫师3》PS4演示曝光 超逼真画面"  width="200" height="112" class="pic1" border="0"><span>年度大作《巫师3》PS4演示曝光 超逼真画面</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-09</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/580579.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505091145288838.jpg" alt="《勇士：复活之日》开场动画 童年的味道"  width="200" height="112" class="pic1" border="0"><span>《勇士：复活之日》开场动画 童年的味道</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-09</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/580284.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505081652568399.jpg" alt="游民美女小编为《星际战甲》双子女皇配音"  width="200" height="112" class="pic1" border="0"><span>游民美女小编为《星际战甲》双子女皇配音</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-08</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/580280.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505081646472410.jpg" alt="自由买卖轻松集换 萌妹子《HEX》国服初体验"  width="200" height="112" class="pic1" border="0"><span>自由买卖轻松集换 萌妹子《HEX》国服初体验</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-08</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/580269.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505081634441446.jpg" alt="《铁拳7》宇宙忍者吉光新造型 诡异触手怪"  width="200" height="112" class="pic1" border="0"><span>《铁拳7》宇宙忍者吉光新造型 诡异触手怪</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-08</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/580211.shtml" target="_blank"><img src="http://imgs.gamersky.com/pic/2015/i0508zj_10.jpg" alt="最终幻想15游戏演示曝光 发丝清晰可见！"  width="200" height="112" class="pic1" border="0"><span>最终幻想15游戏演示曝光 发丝清晰可见！</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-08</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/580192.shtml" target="_blank"><img src="http://imgs.gamersky.com/pic/2015/i0508zj_09.jpg" alt="《全职大师》超酷战斗CG 育碧厕所哭晕！"  width="200" height="112" class="pic1" border="0"><span>《全职大师》超酷战斗CG 育碧厕所哭晕！</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-08</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/580067.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505081609098073.jpg" alt="《突击英雄》主题曲 She is my sin"  width="200" height="112" class="pic1" border="0"><span>《突击英雄》主题曲 She is my sin</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-08</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/580052.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505081204127297.jpg" alt="《刺客信条胜利》更名《刺客信条：辛迪加》"  width="200" height="112" class="pic1" border="0"><span>《刺客信条胜利》更名《刺客信条：辛迪加》</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-08</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/579513.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505071646591928.jpg" alt="《赛车计划》PS4/One帧数对比 天气影响颇大"  width="200" height="112" class="pic1" border="0"><span>《赛车计划》PS4/One帧数对比 天气影响颇大</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-07</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/579503.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505071636414406.jpg" alt="《文明帝国OL》进军港澳台 开发组采访公布"  width="200" height="112" class="pic1" border="0"><span>《文明帝国OL》进军港澳台 开发组采访公布</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-07</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/579271.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505071224103893.jpg" alt="《黑色沙漠》捏人美女勾魂 新版韩国整容术"  width="200" height="112" class="pic1" border="0"><span>《黑色沙漠》捏人美女勾魂 新版韩国整容术</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-07</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/579259.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505071214236919.jpg" alt="《文明帝国OL》变纸模文明 再现千年老城池"  width="200" height="112" class="pic1" border="0"><span>《文明帝国OL》变纸模文明 再现千年老城池</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-07</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/579245.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505071205129985.jpg" alt="《巫师3》PS4版本演示 强大机能带强大特效"  width="200" height="112" class="pic1" border="0"><span>《巫师3》PS4版本演示 强大机能带强大特效</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-07</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/579240.shtml" target="_blank"><img src="http://imgs.gamersky.com/pic/2015/i0507zj_08.jpg" alt="《星际战甲》“超能革命”开测 震撼CG登场"  width="200" height="112" class="pic1" border="0"><span>《星际战甲》“超能革命”开测 震撼CG登场</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-07</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/579185.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505071139017044.jpg" alt="此路相伴，莫问结局！《倩女2》剧情预告片"  width="200" height="112" class="pic1" border="0"><span>此路相伴，莫问结局！《倩女2》剧情预告片</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-07</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/579183.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505071137208085.jpg" alt="左手狙神陈子豪测评《突击英雄》"  width="200" height="112" class="pic1" border="0"><span>左手狙神陈子豪测评《突击英雄》</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-07</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/579039.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505070953527399.jpg" alt="《NBA2K Online》技能风暴最终"  width="200" height="112" class="pic1" border="0"><span>《NBA2K Online》技能风暴最终</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-07</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/578626.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505061705004698.jpg" alt="CE引擎坦克网游《装甲战争》公布新战争CG"  width="200" height="112" class="pic1" border="0"><span>CE引擎坦克网游《装甲战争》公布新战争CG</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-06</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/578616.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505061656143509.jpg" alt="《龙腾世纪：审判》屠龙者DLC预告 血战群龙"  width="200" height="112" class="pic1" border="0"><span>《龙腾世纪：审判》屠龙者DLC预告 血战群龙</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-06</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/578386.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505061220027093.jpg" alt="《GTA5》鬼畜车枪MOD 每发子弹射出一辆豪车"  width="200" height="112" class="pic1" border="0"><span>《GTA5》鬼畜车枪MOD 每发子弹射出一辆豪车</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-06</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/578379.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505061216278169.jpg" alt="《半条命》重制版《黑山》登陆Steam新预告"  width="200" height="112" class="pic1" border="0"><span>《半条命》重制版《黑山》登陆Steam新预告</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-06</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/578374.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505061211247840.jpg" alt="《德军总部：旧血脉》发售预告 18禁不虚传"  width="200" height="112" class="pic1" border="0"><span>《德军总部：旧血脉》发售预告 18禁不虚传</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-06</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/578355.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505061159554996.jpg" alt="《德军总部：旧血脉》新彩蛋 致敬《老滚5》"  width="200" height="112" class="pic1" border="0"><span>《德军总部：旧血脉》新彩蛋 致敬《老滚5》</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-06</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/578348.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505061155444098.jpg" alt="传送门主题弹珠台预告 为Valve神秘“新作”"  width="200" height="112" class="pic1" border="0"><span>传送门主题弹珠台预告 为Valve神秘“新作”</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-06</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/578342.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505061149291123.jpg" alt="《模拟山羊》丧尸生存DLC预告 大作纷纷中枪"  width="200" height="112" class="pic1" border="0"><span>《模拟山羊》丧尸生存DLC预告 大作纷纷中枪</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-06</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/578336.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505061145156003.jpg" alt="恐怖新游《Project Dogmat》预告 吸血鬼城"  width="200" height="112" class="pic1" border="0"><span>恐怖新游《Project Dogmat》预告 吸血鬼城</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-06</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/578243.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505061041579212.jpg" alt="《天谕》大印象“追风逐云”"  width="200" height="112" class="pic1" border="0"><span>《天谕》大印象“追风逐云”</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-06</span></div>
+            </div>
+          </li>
+          
+          <li>
+            <div class="L2">
+              <div class="L2_1"><a href="http://v.gamersky.com/201505/577288.shtml" target="_blank"><img src="http://imgs.gamersky.com/pic/2015/i0505zj_08.jpg" alt="德军总部：旧血脉最新预告 揭秘纳粹总部"  width="200" height="112" class="pic1" border="0"><span>德军总部：旧血脉最新预告 揭秘纳粹总部</span></a></div>
+              <div class="L2_2"><span>发布：2015-05-05</span></div>
+            </div>
+          </li>
+           
+          
+        </ul>
+      </div>
+      <!--midL_1 end-->
+      <div class="midL_2 mw">
+        <!--分页 开始-->
+        <div class="Page"><!--{pe.begin.pagination}--><span id="pe100_page_allnews" class="pagecss"> 
+
+ <a class="p4" href="http://v.gamersky.com/game/news/">1</a> <a class="p3" href="http://v.gamersky.com/game/news/List_144.shtml">2</a> <a class="p3" href="http://v.gamersky.com/game/news/List_143.shtml">3</a> <a class="p3" href="http://v.gamersky.com/game/news/List_142.shtml">4</a> <a class="p3" href="http://v.gamersky.com/game/news/List_141.shtml">5</a> <a class="p3" href="http://v.gamersky.com/game/news/List_140.shtml">6</a> <a class="p3" href="http://v.gamersky.com/game/news/List_139.shtml">7</a> <a class="p3" href="http://v.gamersky.com/game/news/List_138.shtml">8</a> <a class="p3" href="http://v.gamersky.com/game/news/List_137.shtml">9</a> <a class="p3" href="http://v.gamersky.com/game/news/List_136.shtml">10</a> 
+ <a class="p1" href="http://v.gamersky.com/game/news/List_135.shtml">>></a>
+ <a class="p2" href="http://v.gamersky.com/game/news/List_144.shtml">下一页</a></span><!--{pe.end.pagination}--></div>
+        <!--分页 结束-->
+      </div>
+      <!--midL_2 end-->
+    </div>
+    <!--mid_L end-->
+    <div class="mid_R">
+		<!--左侧广告位-->
+		
+		<!--左侧广告位结束-->	  
+      <div class="midR_0"><span class="s0">本栏目推荐</span><span class="s1">HOT</span></div>
+      <div class="midR_1">
+        <ul class="Ru1">
+        
+            
+          
+            <li class="R1">
+              <div class="R1_1"><a href="http://v.gamersky.com/201505/580802.shtml" target="_blank"><img src="http://imgs.gamersky.com/pic/2015/i0509zj_10.jpg" alt="张馨予代言！《大唐双龙传》世界观首爆"  width="110" height="62" class="pic1" border="0"> </a></div>
+              <div class="R1_2">
+                <div class="R12_1"><a href="http://v.gamersky.com/201505/580802.shtml" target="_blank">张馨予代言！《大唐双龙传》世界观首爆</a></div>
+                <div class="R12_2"><span class="t1 fy">141</span><span class="t2 fy">0</span></div>
+              </div>
+            </li>
+           
+            <li class="R1">
+              <div class="R1_1"><a href="http://v.gamersky.com/201505/580795.shtml" target="_blank"><img src="http://imgs.gamersky.com/pic/2015/i0509zj_09.jpg" alt="海战世界中德系战舰解析 U9潜艇无敌海狼"  width="110" height="62" class="pic1" border="0"> </a></div>
+              <div class="R1_2">
+                <div class="R12_1"><a href="http://v.gamersky.com/201505/580795.shtml" target="_blank">海战世界中德系战舰解析 U9潜艇无敌海狼</a></div>
+                <div class="R12_2"><span class="t1 fy">120</span><span class="t2 fy">0</span></div>
+              </div>
+            </li>
+           
+            <li class="R1">
+              <div class="R1_1"><a href="http://v.gamersky.com/201505/580743.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505091221104953.jpg" alt="《黑色沙漠》日服最新宣传 激情上演大逃杀"  width="110" height="62" class="pic1" border="0"> </a></div>
+              <div class="R1_2">
+                <div class="R12_1"><a href="http://v.gamersky.com/201505/580743.shtml" target="_blank">《黑色沙漠》日服最新宣传 激情上演大逃杀</a></div>
+                <div class="R12_2"><span class="t1 fy">102</span><span class="t2 fy">0</span></div>
+              </div>
+            </li>
+           
+            <li class="R1">
+              <div class="R1_1"><a href="http://v.gamersky.com/201505/580736.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505091216092211.jpg" alt="《如龙0》中文字幕桐生篇演示 来战油腻妹子"  width="110" height="62" class="pic1" border="0"> </a></div>
+              <div class="R1_2">
+                <div class="R12_1"><a href="http://v.gamersky.com/201505/580736.shtml" target="_blank">《如龙0》中文字幕桐生篇演示 来战油腻妹子</a></div>
+                <div class="R12_2"><span class="t1 fy">187</span><span class="t2 fy">0</span></div>
+              </div>
+            </li>
+           
+            <li class="R1">
+              <div class="R1_1"><a href="http://v.gamersky.com/201505/580733.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505091213476006.jpg" alt="《风暴英雄》凯尔萨斯完整CG 大招技能公布"  width="110" height="62" class="pic1" border="0"> </a></div>
+              <div class="R1_2">
+                <div class="R12_1"><a href="http://v.gamersky.com/201505/580733.shtml" target="_blank">《风暴英雄》凯尔萨斯完整CG 大招技能公布</a></div>
+                <div class="R12_2"><span class="t1 fy">75</span><span class="t2 fy">0</span></div>
+              </div>
+            </li>
+           
+            <li class="R1">
+              <div class="R1_1"><a href="http://v.gamersky.com/201505/580724.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505091200488176.jpg" alt="《天使帝国4》预告首曝 时隔十二年震撼再现"  width="110" height="62" class="pic1" border="0"> </a></div>
+              <div class="R1_2">
+                <div class="R12_1"><a href="http://v.gamersky.com/201505/580724.shtml" target="_blank">《天使帝国4》预告首曝 时隔十二年震撼再现</a></div>
+                <div class="R12_2"><span class="t1 fy">132</span><span class="t2 fy">0</span></div>
+              </div>
+            </li>
+           
+            <li class="R1">
+              <div class="R1_1"><a href="http://v.gamersky.com/201505/580719.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505091156043760.jpg" alt="《GTA4》ICEnhancer大神《GTA5》MOD首演示"  width="110" height="62" class="pic1" border="0"> </a></div>
+              <div class="R1_2">
+                <div class="R12_1"><a href="http://v.gamersky.com/201505/580719.shtml" target="_blank">《GTA4》ICEnhancer大神《GTA5》MOD首演示</a></div>
+                <div class="R12_2"><span class="t1 fy">82</span><span class="t2 fy">0</span></div>
+              </div>
+            </li>
+           
+            <li class="R1">
+              <div class="R1_1"><a href="http://v.gamersky.com/201505/579362.shtml" target="_blank"><img src="http://imgs.gamersky.com/pic/2015/i0507zj_09.jpg" alt="年度大作《巫师3》PS4演示曝光 超逼真画面"  width="110" height="62" class="pic1" border="0"> </a></div>
+              <div class="R1_2">
+                <div class="R12_1"><a href="http://v.gamersky.com/201505/579362.shtml" target="_blank">年度大作《巫师3》PS4演示曝光 超逼真画面</a></div>
+                <div class="R12_2"><span class="t1 fy">533</span><span class="t2 fy">0</span></div>
+              </div>
+            </li>
+           
+            <li class="R1">
+              <div class="R1_1"><a href="http://v.gamersky.com/201505/580579.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505091145288838.jpg" alt="《勇士：复活之日》开场动画 童年的味道"  width="110" height="62" class="pic1" border="0"> </a></div>
+              <div class="R1_2">
+                <div class="R12_1"><a href="http://v.gamersky.com/201505/580579.shtml" target="_blank">《勇士：复活之日》开场动画 童年的味道</a></div>
+                <div class="R12_2"><span class="t1 fy">16</span><span class="t2 fy">0</span></div>
+              </div>
+            </li>
+           
+            <li class="R1">
+              <div class="R1_1"><a href="http://v.gamersky.com/201505/580284.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505081652568399.jpg" alt="游民美女小编为《星际战甲》双子女皇配音"  width="110" height="62" class="pic1" border="0"> </a></div>
+              <div class="R1_2">
+                <div class="R12_1"><a href="http://v.gamersky.com/201505/580284.shtml" target="_blank">游民美女小编为《星际战甲》双子女皇配音</a></div>
+                <div class="R12_2"><span class="t1 fy">113</span><span class="t2 fy">0</span></div>
+              </div>
+            </li>
+           
+            <li class="R1">
+              <div class="R1_1"><a href="http://v.gamersky.com/201505/580280.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505081646472410.jpg" alt="自由买卖轻松集换 萌妹子《HEX》国服初体验"  width="110" height="62" class="pic1" border="0"> </a></div>
+              <div class="R1_2">
+                <div class="R12_1"><a href="http://v.gamersky.com/201505/580280.shtml" target="_blank">自由买卖轻松集换 萌妹子《HEX》国服初体验</a></div>
+                <div class="R12_2"><span class="t1 fy">39</span><span class="t2 fy">0</span></div>
+              </div>
+            </li>
+           
+            <li class="R1">
+              <div class="R1_1"><a href="http://v.gamersky.com/201505/580269.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505081634441446.jpg" alt="《铁拳7》宇宙忍者吉光新造型 诡异触手怪"  width="110" height="62" class="pic1" border="0"> </a></div>
+              <div class="R1_2">
+                <div class="R12_1"><a href="http://v.gamersky.com/201505/580269.shtml" target="_blank">《铁拳7》宇宙忍者吉光新造型 诡异触手怪</a></div>
+                <div class="R12_2"><span class="t1 fy">180</span><span class="t2 fy">0</span></div>
+              </div>
+            </li>
+           
+            <li class="R1">
+              <div class="R1_1"><a href="http://v.gamersky.com/201505/580211.shtml" target="_blank"><img src="http://imgs.gamersky.com/pic/2015/i0508zj_10.jpg" alt="最终幻想15游戏演示曝光 发丝清晰可见！"  width="110" height="62" class="pic1" border="0"> </a></div>
+              <div class="R1_2">
+                <div class="R12_1"><a href="http://v.gamersky.com/201505/580211.shtml" target="_blank">最终幻想15游戏演示曝光 发丝清晰可见！</a></div>
+                <div class="R12_2"><span class="t1 fy">1076</span><span class="t2 fy">0</span></div>
+              </div>
+            </li>
+           
+            <li class="R1">
+              <div class="R1_1"><a href="http://v.gamersky.com/201505/580192.shtml" target="_blank"><img src="http://imgs.gamersky.com/pic/2015/i0508zj_09.jpg" alt="《全职大师》超酷战斗CG 育碧厕所哭晕！"  width="110" height="62" class="pic1" border="0"> </a></div>
+              <div class="R1_2">
+                <div class="R12_1"><a href="http://v.gamersky.com/201505/580192.shtml" target="_blank">《全职大师》超酷战斗CG 育碧厕所哭晕！</a></div>
+                <div class="R12_2"><span class="t1 fy">163</span><span class="t2 fy">0</span></div>
+              </div>
+            </li>
+           
+            <li class="R1">
+              <div class="R1_1"><a href="http://v.gamersky.com/201505/580067.shtml" target="_blank"><img src="http://imgs.gamersky.com/upimg/2015/201505081609098073.jpg" alt="《突击英雄》主题曲 She is my sin"  width="110" height="62" class="pic1" border="0"> </a></div>
+              <div class="R1_2">
+                <div class="R12_1"><a href="http://v.gamersky.com/201505/580067.shtml" target="_blank">《突击英雄》主题曲 She is my sin</a></div>
+                <div class="R12_2"><span class="t1 fy">152</span><span class="t2 fy">0</span></div>
+              </div>
+            </li>
+           
+        </ul>
+      </div>
+      <div class="midR_0"><span class="s0">热门视频排行</span><span class="s1">TOP</span></div>
+	  <div class="midR_1">
+        <ul class="Ru2">
+         
+                
+              
+            <li class="R2"><span class="t0 bg1">1</span><span class="t1"><a href="http://v.gamersky.com/201505/578662.shtml" title="10大史上最逗比的武器发明 你绝对想不到！" target="_blank">10大史上最逗比的武器发明 你绝对想不到！</a></span><span class="t2 fy">22127</span></li>
+            
+            <li class="R2"><span class="t0 bg2">2</span><span class="t1"><a href="http://v.gamersky.com/201505/580097.shtml" title="GTA5神还原 成都打女司机事件全镜头解析！" target="_blank">GTA5神还原 成都打女司机事件全镜头解析！</a></span><span class="t2 fy">16437</span></li>
+            
+            <li class="R2"><span class="t0 bg3">3</span><span class="t1"><a href="http://v.gamersky.com/201505/578590.shtml" title="复联2拍摄惊悚外传 黑寡妇和奥创相亲相爱！" target="_blank">复联2拍摄惊悚外传 黑寡妇和奥创相亲相爱！</a></span><span class="t2 fy">10234</span></li>
+            
+            <li class="R2"><span class="t0 bg4">4</span><span class="t1"><a href="http://v.gamersky.com/201505/580379.shtml" title="GTA5之中国好导演 好尸愤怒吐槽奇葩的一家人" target="_blank">GTA5之中国好导演 好尸愤怒吐槽奇葩的一家人</a></span><span class="t2 fy">8047</span></li>
+            
+            <li class="R2"><span class="t0 bg5">5</span><span class="t1"><a href="http://v.gamersky.com/201505/578386.shtml" title="《GTA5》鬼畜车枪MOD 每发子弹射出一辆豪车" target="_blank">《GTA5》鬼畜车枪MOD 每发子弹射出一辆豪车</a></span><span class="t2 fy">7255</span></li>
+            
+            <li class="R2"><span class="t0 bg6">6</span><span class="t1"><a href="http://v.gamersky.com/201505/578631.shtml" title="GTA5超强引力枪MOD 把他送到月球上去" target="_blank">GTA5超强引力枪MOD 把他送到月球上去</a></span><span class="t2 fy">5375</span></li>
+            
+            <li class="R2"><span class="t0 bg7">7</span><span class="t1"><a href="http://v.gamersky.com/201505/577757.shtml" title="GTA5版蠢蛋搞怪秀 高难度作死火力丝毫不减" target="_blank">GTA5版蠢蛋搞怪秀 高难度作死火力丝毫不减</a></span><span class="t2 fy">4079</span></li>
+            
+            <li class="R2"><span class="t0 bg8">8</span><span class="t1"><a href="http://v.gamersky.com/201505/579264.shtml" title="《GTA5》飞碟内构揭秘 外星驾驶员竟是老黑" target="_blank">《GTA5》飞碟内构揭秘 外星驾驶员竟是老黑</a></span><span class="t2 fy">3481</span></li>
+            
+            <li class="R2"><span class="t0 bg9">9</span><span class="t1"><a href="http://v.gamersky.com/201505/578166.shtml" title="GTA5带你走进科学 探索飞碟内部是啥样的" target="_blank">GTA5带你走进科学 探索飞碟内部是啥样的</a></span><span class="t2 fy">3108</span></li>
+            
+            <li class="R2"><span class="t0 bg10">10</span><span class="t1"><a href="http://v.gamersky.com/201505/580849.shtml" title="最欢乐联机游戏 美女玩家神坑队友" target="_blank">最欢乐联机游戏 美女玩家神坑队友</a></span><span class="t2 fy">2499</span></li>
+            
+            <li class="R2"><span class="t0 bg11">11</span><span class="t1"><a href="http://v.gamersky.com/201505/577629.shtml" title="GTA5死斗模式的作死玩家 各种不想活" target="_blank">GTA5死斗模式的作死玩家 各种不想活</a></span><span class="t2 fy">2310</span></li>
+            
+            <li class="R2"><span class="t0 bg12">12</span><span class="t1"><a href="http://v.gamersky.com/201505/578374.shtml" title="《德军总部：旧血脉》发售预告 18禁不虚传" target="_blank">《德军总部：旧血脉》发售预告 18禁不虚传</a></span><span class="t2 fy">2275</span></li>
+            
+            <li class="R2"><span class="t0 bg13">13</span><span class="t1"><a href="http://v.gamersky.com/201505/578443.shtml" title="名侦探狄仁杰番外篇3 白元芳新娘竟是狄仁杰" target="_blank">名侦探狄仁杰番外篇3 白元芳新娘竟是狄仁杰</a></span><span class="t2 fy">2044</span></li>
+            
+            <li class="R2"><span class="t0 bg14">14</span><span class="t1"><a href="http://v.gamersky.com/201505/580095.shtml" title="复联2超长正片曝光 绿巨人徒手撕钢铁侠" target="_blank">复联2超长正片曝光 绿巨人徒手撕钢铁侠</a></span><span class="t2 fy">1854</span></li>
+            
+            <li class="R2"><span class="t0 bg15">15</span><span class="t1"><a href="http://v.gamersky.com/201505/579007.shtml" title="超慢动作看子弹撞击瞬间 画面颇有震撼力" target="_blank">超慢动作看子弹撞击瞬间 画面颇有震撼力</a></span><span class="t2 fy">1788</span></li>
+            
+ 
+        </ul>
+      </div>
+	  
+      <!--midR_1 end-->
+    </div>
+    <!--mid_R end-->
+  </div>
+  <!--中部 结束-->
+</div>
+<!--Center end-->
+<div class="botbg">
+  <!--底部 开始-->
+	  <div class="bot">
+    <div class="bot_1"> <a class="a5" href="http://www.gamersky.com/about/Index.html" target="_blank">关于本站</a> | <a class="a5" href="http://www.gamersky.com/about/join.html" target="_blank">网站招聘</a> | <a class="a5" href="http://www.gamersky.com/about/contact.html" target="_blank">联系我们</a> | <a class="a5" href="http://www.gamersky.com/about/ad.html" target="_blank">广告服务</a> | <a class="a5" href="http://www.gamersky.com/about/map.html" target="_blank">网站地图</a> | <a class="a5" href="http://weibo.com/mygamersky" target="_blank">新浪微博</a> | <a class="a5" href="http://t.qq.com/gamersky" target="_blank">腾讯微博</a> | <a class="a5" href="http://u.youku.com/gamersky/" target="_blank">优酷空间</a> </div>
+    <div class="bot_2"> Copyright&copy;2003-2015 GamerSky.com All rights reserved. 游民星空 版权所有 <a class="a5" href="http://www.miibeian.gov.cn/" target="_blank">冀ICP证B2-20130083</a> 冀网文[2013]0591-010号 </div>
+  </div>
+  <!--底部 结束-->
+</div>
+<!--botbg end-->
+<script language="javascript" type="text/javascript" src="http://j.gamersky.com/g/jquery.gamersky.v2.min.js"></script>
+<div style="display:none">
+<iframe name=I1 marginwidth=0 marginheight=0 height=0 width=0 scrolling=no border=0 frameborder=0 src=/count/count1.htm></iframe>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fdcb5060fba0123ff56d253331f28db6a' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script src="http://s19.cnzz.com/stat.php?id=5448511&web_id=5448511" language="JavaScript"></script>
+</div>
+</body>
+</html>

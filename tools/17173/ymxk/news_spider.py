@@ -16,6 +16,8 @@ import urlparse
 
 _spec_char = [u'\\', u'/', u'*', u'|', u'<', u'>', u'?', u':', u'"']
 
+unicode_rep = [u'\u200b', u'\u2022']
+
 _header = {'User-Agent':'Mozilla/5.0 (Windows NT 5.1; rv:36.0) Gecko/20100101 Firefox/36.0',
            'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
            'Accept-Language':'zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3',
@@ -23,15 +25,20 @@ _header = {'User-Agent':'Mozilla/5.0 (Windows NT 5.1; rv:36.0) Gecko/20100101 Fi
            'Accept-Encoding':'gzip, deflate'
           }
 
-_url = 'http://newgame.17173.com/game-newslist-11958.html?news_type=1'
+# _url = 'http://www.gamersky.com/news/Special/dmc5/'               # 新闻
+_url = u'http://www.gamersky.com/handbook/Special/dmc5/'          # 攻略
+
+# <table width="100%" cellpadding="0" cellspacing="0">
 
 class news_spider(object):
-    def __init__(self, url=_url, header=_header, start_title = '', path = ''):
+    def __init__(self, url=_url, header=_header, start_title = '', path = '', type=0):
         self.start_url = url
         self.start_title = start_title          # 用于断点下载
         self.header = header
-        self.referer = u'17173.com'
+        self.referer = u'gamersky.com'
         self.path = path
+        self.type = type
+        self.cnt = 0
         self.fileid = '00000000000000000'
         if not path == '':
             if not os.path.exists(self.path):
@@ -53,10 +60,7 @@ class news_spider(object):
         url = self.start_url
         while True:
             page, cookie = self.get_page(url, self.header)
-            # with open('t.txt', 'w+') as f:
-                # f.write(page)
-            # with open('t.txt', 'r') as f:
-                # page = f.read()
+
             pat = re.compile(u'(?<=charset=).+?(?=")', re.DOTALL)
             res = pat.findall(page)[0]
             if 'utf-8' in res:
@@ -64,23 +68,27 @@ class news_spider(object):
             elif 'gbk' in res or 'gb2312' in res:
                 page = page.decode('gbk')
 
+            # with open('sss.txt', 'w+') as f:
+                # f.write(page.encode('gbk'))
             # 解析网页    [日期，名称，url]
             news_set = self.src_web_analysis(page)
 
             # 新闻下载
+            # print len(news_set)
             for i in news_set:
                 delay = random.uniform(1.5, 2.5)
-                time.sleep(delay)
+                # time.sleep(delay)
                 self.news_download(i[2], i[1], i[0])
 
            # 判断是否还有下一页
-            pat = re.compile(u'(?<=class="next").+?(?=下一页</a>)', re.DOTALL)
+            pat = re.compile(u'(?<=<a href=")[^<]+?(?=">下一页</a>)', re.DOTALL)
             res = pat.findall(page)
             if len(res) == 0:
                 break
+            elif res[0] == url:
+                break
             else:
-                pat = re.compile(u'(?<=href=").+?(?=">)', re.DOTALL)
-                res = pat.findall(res[0])[0].replace(u'&amp;', u'&')
+                res = res[0].replace(u'&amp;', u'&')
                 url = res
                 if not 'http://' in url:
                     url = 'http://' + urlparse.urlparse(self.start_url).netloc + url
@@ -89,73 +97,120 @@ class news_spider(object):
     def news_download(self, url, title, date):
         '''
           下载新闻及其图片
-          传入参数：url，新闻的网址
+          传入参数：url，新闻的网址      title, 新闻标题       date，新闻日期
         '''
         # print u'下载新闻：', title, url
         print '.',
-        trail = url[len(url)-1-url[::-1].index('.'):]
-        all = u'_all' + trail
-        trail = u'_1' + trail
-        if trail in url:
-            url = url.replace(trail, all)
-
-        # print url
-        page = ''
+        self.cnt += 1
+        if self.cnt < 78:
+            pass
+            # return
         delay = 0
-        rty = 0
-        while page == '':
-            rty += 1
-            time.sleep(delay)
-            page, cookie = self.get_page(url, self.header)
-            delay = random.uniform(0.5, 2)
-            if rty == 10:
-                return
+        pagenum = 1
+        content = u''
+        while True:   # 一直到没有下一页
+            # print url
+            page = ''
+            rty = 0
+            while True:
+                rty += 1
+                page = ''
+                # time.sleep(delay)
+                page, cookie = self.get_page(url, self.header)
+                delay = random.uniform(0.5, 1)
+                if rty == 10:
+                    return
 
-        # with open('news.txt', 'w+') as f:
-            # page = f.read()
-            # f.write(page)
+                if page == '':
+                    time.sleep(delay)
+                    continue
 
-        page = page.lower()
-        pat = re.compile(u'(?<=charset=).+?(?=")', re.DOTALL)
-        res = pat.findall(page)[0]
-        if 'utf-8' in res:
-            try:
-              page = page.decode('utf-8')
-            except:
-              page = page.decode('gbk')
-        elif 'gbk' in res or 'gb2312' in res:
-            page = page.decode('gbk')
+                temp = page.lower()
+                pat = re.compile(r'(?<=charset=).+?(?=")', re.DOTALL)
+                res = pat.findall(temp)
+                if len(res) == 0:
+                    continue
+                res = res[0]
+                if 'utf-8' in res:
+                    page = page.decode('utf-8')
+                elif 'gbk' in res or 'gb2312' in res:
+                    page = page.decode('gbk')
+                else:
+                    page = page.decode('utf-8')
+                break
 
-        res = self.content_extractor(page)
-        # with open('xxx.txt', 'w+') as f:
-            # f.write(res.encode('gbk'))
-        # t = self.get_time()
-        # if t == self.fileid[0:14]:
-            # index = int(self.fileid[14:]) + 1
-            # index = str(index)
-            # if len(index) == 1:
-                # self.fileid[-1] = index
-            # if len(index) == 2:
-                # self.fileid[-2:] = index
-            # if len(index) == 3:
-                # self.fileid[-3:] = index
-        # else:
-            # self.fileid = (t + '000')
+            # with open(str(pagenum) + '.txt', 'w+') as f:
+                # f.write(page.encode('gbk'))
+            # 提取出正文部分
+            res = self.content_extractor(page)
+            temp = self.content_process(res, url)
+            # for i in unicode_rep:
+                # temp = temp.replace(i, u'')
+            content += temp.strip() + u'\n'
+            # with open('s2.txt', 'a') as f:
+                # f.write(content.encode('gbk'))
 
+            # 查看是否还有下一页
+            pat = re.compile(u'(?<=<a href=")[^<]+?(?=">下一页</a>)', re.DOTALL)
+            res = pat.findall(page)
+            if len(res) == 0:
+                break
+            else:
+                url = res[0]
+                pagenum += 1
         header = title + '|' + date + '|' + self.referer + '\n'
         self.fileid = title + '_' + date
         for i in _spec_char:
             self.fileid = self.fileid.replace(i, u'')
         with open(self.path + self.fileid + u'.txt', 'w+') as f:
-            f.write(header.encode('gbk'))
-            f.write(self.content_process(res, url))
+            f.write(header.encode('utf-8'))
+            fix_str = self.custom_encode(content)
+            # fix_str = content
+            f.write(fix_str.encode('utf-8'))
+
+    def custom_encode(self, strings):
+        temp_str = strings
+        a = ''
+        while True:
+            try:
+                pass
+                temp_str.encode('gbk')
+                return temp_str
+            except:
+                type, value = sys.exc_info()[:2]
+                a = u'%s' % value
+                pat = re.compile(r'u[0-9a-z]+')
+                # pat = re.compile(r'(?<=\')u[0-9a-z]+?(?=\')')
+                res = pat.findall(a)
+                if len(res) == 0:
+                    return temp_str
+                    pass
+                else:
+                    a = u'\\' + u''.join(res[0])
+                    if len(a) != 6:
+                        return temp_str
+                    print a,
+                    a = 'u\'' + a + '\''
+                pass
+            try:
+                a = eval(a)
+                temp_str = temp_str.replace(a, u'')
+                continue
+            except:
+                return temp_str
+            return temp_str
+            pass
+
 
     def content_extractor(self, page):
         '''
           提取咨询内容，并过滤掉视频
         '''
         over = False
-        pat_list = [u'<div class="gb-final-mod-article".+?</div>', u'<div class="article-con".+?</div>', u'<div class="art-con".+?</div>']
+        if self.type == 0:
+            pat_list = [u'<div class="act mid" id="gspaging">.+?(?=<div class="act mid">)']
+        elif self.type == 1:
+            pat_list = [u'<div class="act mid" id="gspaging">.+?(?=<div class="post_ding mid"> )']
         video_pat = [u'<div class="video-box">.+?</div>']
         while not over:
             for i in pat_list:
@@ -163,50 +218,47 @@ class news_spider(object):
                 res = pat.findall(page)
                 if len(res) > 0:
                     break
+            over = True
             if len(res) == 0:
                 return ''
 
             # 剔除视频
-            for i in video_pat:
-                pat = re.compile(i, re.DOTALL)
-                video = pat.findall(res[0])
-                if len(video) > 0:
-                    # print video[0]
-                    pat = re.compile(u'(?<=src=").+?(?=")', re.DOTALL)
-                    video_url = pat.findall(video[0])[0]
-                    # print video_url
-                    video_url = '\n' + video_url + '\n'
-                    page = page.replace(video[0], video_url)
-                    break
-                over = True
         return res[0]
 
 
-    def src_web_analysis(self, page):
+    def src_web_analysis(self, page=''):
         '''
           从源网站获取新闻信息
-          返回新闻的 [日期，名称，url]
+          返回新闻的 [日期，名称，url]   <table width="100%" cellpadding="0" cellspacing="0">
         '''
 
         # with open('1.txt', 'r') as f:
             # f.write(page)
-            # page = f.read()
+            # page = f.read().decode('gbk')
 
         info = []
-        pat = re.compile(u'<div class="article-list">.+?</div>', re.DOTALL)
-        res = pat.findall(page)[0]
+        pat = re.compile(u'<table width="100%" cellpadding="0" cellspacing="0">.+?</table>', re.DOTALL)
+        res = pat.findall(page)[-1]
 
-        pat = re.compile(u'<li>.+?</li>', re.DOTALL)
+        pat = re.compile(u'<tr>.+?</tr>', re.DOTALL)
         res = pat.findall(res)
         for i in res:
             # print i
-            pat = re.compile(u'(?<=<span class="date">).+?(?=</span>)', re.DOTALL)
-            date = pat.search(i).group().strip()
+            pat = re.compile(u'(?<=</a>).+?(?=</td>)', re.DOTALL)
+            date = pat.search(i).group()
+            date = self.html_tag_remove(date).strip()
 
-            title = self.html_tag_remove(i).replace(date, '').strip()
+            pat = re.compile(u'<a.+?</a>', re.DOTALL)
+            title = pat.search(i).group()
+            # title = pat.findall(i)[0].strip()
+            title = self.html_tag_remove(title).strip()
+
             url = ''
             pat = re.compile(u'(?<=href=").+?(?=")', re.DOTALL)
             url = pat.findall(i)[0]
+            # print date
+            # print title
+            # print url
             info.append([date, title, url])
         return info
 
@@ -222,7 +274,7 @@ class news_spider(object):
             if '<' in i[1:]:
                 str_fix = str_fix.replace(i[i[1:].index('<')+1:], '')
 
-        # print str_fix
+        # 去除html标签，并且下载图片
         pat = re.compile(u'<.+?>', re.DOTALL)
         res = pat.findall(str_fix)
         for i in res:
@@ -233,7 +285,9 @@ class news_spider(object):
                 if len(res) > 0:
                     res = res[0]
                     name = res[len(res)-res[::-1].index('/'):]
-                    rstr = name
+                    # rstr = name         # 保存图片名称
+                    # rstr = res            # 保存图片地址
+                    rstr = u'<img src=\'%s\'/>' % res
                     # 下载图片
                     header = self.header
                     header['Referer'] = url
@@ -242,16 +296,21 @@ class news_spider(object):
                     while page == '':
                         time.sleep(delay)
                         page, cookie = self.get_page(res, header_in=header)
-                        delay = random.uniform(0.5, 2)
+                        delay = random.uniform(0.5, 1)
 
                     with open(self.path + u'图片\\'+name, 'wb+') as f:
                         f.write(page)
             elif '<br>' == i:
                 rstr = '\n'
+            elif '<iframe' in i.lower():        # 视频
+                if u'allowfullscreen' in i:
+                    pat = re.compile(u'(?<=src=").+?(?=")', re.DOTALL)
+                    # rstr = pat.findall(i)[0]
+                    rstr = u'<iframe src=\'%s\'/>' % pat.findall(i)[0]
             else:
                 rstr = ''
             str_fix = str_fix.replace(i, rstr)
-        return str_fix.encode('gbk')
+        return str_fix.strip()
 
     def html_tag_remove(self, str):
         '''
@@ -309,7 +368,7 @@ class news_spider(object):
 
         try:
             r = ''
-            r = opener.open(req, timeout = 30)
+            r = opener.open(req, timeout = 45)
             # Make sure everything is working ;
             if r.info().get('Transfer-Encoding') == 'chunked':
                 d = zlib.decompressobj(16+zlib.MAX_WBITS)
@@ -354,8 +413,9 @@ if __name__ == "__main__":
         # os.mkdir('aaa')
     # print os.path()
     # print time.localtime(time.time())
-    # sys.exit(0)
-    a = news_spider(path=u'c:\新闻\\')
+    type = 1
+    path=u'c:\攻略\\'
+    a = news_spider(path=path, type=type)
     # a.get_time()
     a.run()
     # a.news_download(u'http://news.17173.com/yzyy/2014/49/5/index.shtml', 'test')

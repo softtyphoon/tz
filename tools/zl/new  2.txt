@@ -1,0 +1,244 @@
+function gjcx() {
+	var gjcx = document.getElementById("ksjs");
+	var lx = document.getElementsByName("lx");
+	var temp = "";
+	var temp1 = "";
+	var date1, date2;
+	var j = false;
+	ksjs.numFMGB.value = "";
+	ksjs.numFMSQ.value = "";
+	ksjs.numSYXX.value = "";
+	ksjs.numWGSQ.value = "";
+  // 四个复选框检查
+	for (var i = 0; i < lx.length; i++) {
+		if (lx[i].checked) {
+			if (!j)
+				j = true;
+			temp = lx[i].value;
+			if (temp == "fmgb") {
+				gjcx.numFMGB.value = "0";
+			} else if (temp == "fmsq") {
+				gjcx.numFMSQ.value = "0";
+			} else if (temp == "xxsq") {
+				gjcx.numSYXX.value = "0";
+			} else if (temp == "wgsq") {
+				gjcx.numWGSQ.value = "0";
+			}
+		}
+	}
+	if (!j) {
+		gjcx.numFMGB.value = "0";
+		gjcx.numFMSQ.value = "0";
+		gjcx.numSYXX.value = "0";
+		gjcx.numWGSQ.value = "0";
+	}
+	var strWord = "";
+  // 公告公布号
+	temp = getE("pnm");
+	if (temp != "") {
+		temp = temp.replace(/^(?:CN ?)?/, "CN")
+				.replace(/%?$/, "%")
+				.replace(/ ?([ABCSUY]%)$/, "$1")
+				.replace(/ ?([ABCSUY][1-9])%$/, "$1");
+		strWord += "公开（公告）�?='" + temp + "' and ";
+	}
+  // 公布公告日查询
+	temp = getE("pd1");
+	if (temp != "") {
+		date1 = checkDate(temp);
+	} else {
+		date1 = null;
+	}
+	temp1 = getE("pd2");
+	if (temp1 != "") {
+		date2 = checkDate(temp1);
+	} else {
+		date2 = null;
+	}
+	if (date1 == false || date2 == false) {
+		alert("公布（公告）日格式有误。请按“年.�?.日”的格式填写�?");
+		return;
+	}
+	if (date1 != null) {
+		if (date2 != null) {
+			strWord += "公开（公告）�?=BETWEEN['" + date1 + "','" + date2 + "'] and ";
+		} else {
+			strWord += "公开（公告）�?='" + date1 + "' and ";
+		}
+	} else {
+		if (date2 != null)
+			strWord += "公开（公告）�?<='" + date2 + "' and ";
+	}
+  // 申请号
+	temp = getE("an");
+	if (temp != "") {
+		if (/[?%]/.exec(temp)) {
+			temp = temp.replace(".", "").replace(/[?%]?$/, "%");
+		} else {
+			temp = temp.replace(".", "").replace(/^((?:8[5-9]|9\d|0[0-3])[12389]\d{5}|20\d{2}[12389]\d{7})$/, "$1%");
+		}
+		strWord += "申请�?='" + temp + "' and ";
+	}
+	temp = getE("ad1");
+	if (temp != "") {
+		date1 = checkDate(temp);
+	} else {
+		date1 = null;
+	}
+	temp1 = getE("ad2");
+	if (temp1 != "") {
+		date2 = checkDate(temp1);
+	} else {
+		date2 = null;
+	}
+	if (date1 == false || date2 == false) {
+		alert("申请日格式有误。请按“年.�?.日”的格式填写�?");
+		return;
+	}
+	if (date1 != null) {
+		if (date2 != null) {
+			strWord += "申请�?=BETWEEN['" + date1 + "','" + date2 + "'] and ";
+		} else {
+			strWord += "申请�?='" + date1 + "' and ";
+		}
+	} else {
+		if (date2 != null)
+			strWord += "申请�?<='" + date2 + "' and ";
+	}
+  // 这里才是查询点
+	temp = getE("pa");
+	if (temp != "") {
+		strWord += "申请（专利权）人='%" + temp + "%' and ";
+	}
+	temp = getE("inn");
+	if (temp != "") {
+		strWord += "发明（设计）�?='%" + temp + "%' and ";
+	}
+	temp = getE("ar");
+	if (temp != "")
+		strWord += "地址='" + temp + "' and ";
+	temp = getE("sic");
+	if (temp != "") {
+		if (/[?%]/.exec(temp)) {
+			strWord += "分类�?='" + temp + "' and ";
+		} else {
+			if (/^[A-Ha-h]\d{2}[A-Za-z]\d{1,3}$/.exec(temp)) {
+				strWord += "分类�?='" + temp + "/%' and ";
+			} else {
+				strWord += "分类�?='" + temp + "%' and ";
+			}
+			
+		}
+	}
+	temp = getE("ti");
+	if (temp != "") {
+		strWord += "(名称='" + temp.replace(/ ?(not|and|or) +([^ ]+)/gi, "' $1 名称='$2") + "') and ";
+	}
+	temp = getE("abst");
+	if (temp != "") {
+		strWord += "(摘要='" + temp.replace(/ ?(not|and|or) +([^ ]+)/gi, "' $1 摘要='$2") + "') and ";
+	}
+	temp = getE("agc");
+	if (temp != "")
+		strWord += "专利代理机构='" + temp + "' and ";
+	temp = getE("agt");
+	if (temp != "")
+		strWord += "代理�?='%" + temp + "%' and ";
+	temp = getE("pr");
+	if (temp != "") {
+		/\b(\d{8}|\d{2,4}\.\d{1,2}\.\d{1,2})\b/.test(temp);
+		temp1 = RegExp.$1;
+		date = checkDate(temp1);
+		if (date != false) {
+			temp = temp.replace(temp1, date);
+		}
+		if (/[?%]/.exec(temp))
+			strWord += "优先�?='" + temp + "' and ";
+		else
+			strWord += "优先�?='%" + temp + "%' and ";
+	}
+	temp = getE("e66");
+	if (temp != "") {
+		/\b(\d{8}|\d{2,4}\.\d{1,2}\.\d{1,2})\b/.test(temp);
+		temp1 = RegExp.$1;
+		date = checkDate(temp1);
+		if (date != false) {
+			temp = temp.replace(temp1, date);
+		}
+		temp = temp.replace(/\.([0-9Xx])\b/, "$1").replace(/\.[?%]?\b/, "?");
+		if (/[?%]/.exec(temp)) {
+			strWord += "本国优先�?='" + temp + "%' and ";
+		} else {
+			strWord += "本国优先�?='%" + temp + "%' and ";
+		}
+	}
+	temp = getE("dan");
+	if (temp != "") {
+		temp = temp.replace(/\b((?:8[5-9]|9\d|0[0-3])[12389]\d{5}|20\d{2}[12389]\d{7})\.?([0-9Xx]?)\b/, "$1$2%");
+		/\b(\d{8}|\d{2,4}\.\d{1,2}\.\d{1,2})\b/.test(temp);
+		temp1 = RegExp.$1;
+		date = checkDate(temp1);
+		if (date != false) {
+			temp = temp.replace(temp1, date);
+		}
+		if (/[?%]/.exec(temp))
+			strWord += "分案原申请号='" + temp + "%' and ";
+		else
+			strWord += "分案原申请号='%" + temp + "%' and ";
+	}
+	temp = getE("e83");
+	if (temp != "") {
+		if (/[?%]/.exec(temp))
+			strWord += "生物保藏='" + temp + "%' and ";
+		else
+			strWord += "生物保藏='%" + temp + "%' and ";
+	}
+	temp = getE("den");
+	if (temp != "") {
+		date1 = checkDate(temp);
+		if (date1 == false) {
+			alert("PCT进入国家阶段日格式有误。请按“年.�?.日”的格式填写�?");
+			return;
+		}
+		strWord += "进入国家日期='" + date1 + "' and ";
+	}
+	temp = getE("ian");
+	if (temp != "") {
+		/\b(\d{8}|\d{2,4}\.\d{1,2}\.\d{1,2})\b/.test(temp);
+		temp1 = RegExp.$1;
+		date = checkDate(temp1);
+		if (date != false) {
+			temp = temp.replace(temp1, date);
+		}
+		if (/[?%]/.exec(temp))
+			strWord += "国际申请='" + temp + "%' and ";
+		else
+			strWord += "国际申请='%" + temp + "%' and ";
+	}
+	temp = getE("ipn");
+	if (temp != "") {
+		/\b(\d{8}|\d{2,4}\.\d{1,2}\.\d{1,2})\b/.test(temp);
+		temp1 = RegExp.$1;
+		date = checkDate(temp1);
+		if (date != false) {
+			temp = temp.replace(temp1, date);
+		}
+		if (/[?%]/.exec(temp))
+			strWord += "国际公布='" + temp + "%' and ";
+		else
+			strWord += "国际公布='%" + temp + "%' and ";
+	}
+	if (strWord == "") {
+		alert("请输入至少一项查询条件！");
+		return;
+	}
+	strWord = strWord.substr(0, strWord.length - 5);
+	gjcx.strWord.value = strWord;
+	gjcx.showType.value = "1";
+	gjcx.strLicenseCode.value = "";
+	gjcx.selected.value = "";
+	gjcx.pageSize.value = "3";
+	gjcx.pageNow.value = "1";
+	gjcx.submit();
+	$("body").mask('请稍�?...');
+}
